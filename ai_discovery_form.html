@@ -584,8 +584,36 @@
         </select>
       </div>
       <div class="question">
-        <label class="question-label">Entity</label>
-        <input type="text" placeholder="e.g. Paris HQ, Lyon Branch…" id="q-entity" />
+        <label class="question-label">Entity <span class="req">*</span></label>
+        <select id="q-entity" onchange="updateProgress()">
+          <option value="">Select your entity…</option>
+          <option>CHARGEURS ENTRETELAS PORTUGAL</option>
+          <option>CHARGEURS INTERLINING HK</option>
+          <option>CHARGEURS PCC (THAILAND) CO LTD</option>
+          <option>CHARGEURS PCC BRASIL TEXTIL LTDA</option>
+          <option>CHARGEURS PCC CHINA MANUFACTURING</option>
+          <option>CHARGEURS PCC GERMANY GMBH</option>
+          <option>CHARGEURS PCC ITALY SPA</option>
+          <option>CHARGEURS PCC KOREA LTD</option>
+          <option>CHARGEURS PCC NORTH AMERICA INC</option>
+          <option>CHARGEURS PCC ROMANIA SRL</option>
+          <option>CHARGEURS PCC SINGAPORE PTE LTD</option>
+          <option>CHARGEURS PCC SPAIN</option>
+          <option>CHARGEURS PCC UNITED KINGDOM LIMITED</option>
+          <option>ETACOL BANGLADESH LTD</option>
+          <option>INTISSEL LANKA</option>
+          <option>LAINIERE DE PICARDIE BC</option>
+          <option>LANTOR LANKA</option>
+          <option>PCC ASIA LLC</option>
+          <option>PCC ASIA LTD</option>
+          <option>PCC GUANGZHOU TRADING CO LTD</option>
+          <option>PCC INTERLININGS PVT LTD</option>
+          <option>PCC VIETNAM LLC (PCC VN)</option>
+          <option>PT CHARGEURS PCC INDONESIA</option>
+          <option>PT PCC INDONESIA</option>
+          <option>SENFA</option>
+          <option>STROUD RILEY</option>
+        </select>
       </div>
       <div class="question">
         <label class="question-label">Date</label>
@@ -614,10 +642,10 @@
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q2</span> Which tasks take the most time but feel like low-value and repetitive work?
+        <span class="q-num">Q2</span> Which tasks take the most time but feel like low-value and repetitive work? <span class="req">*</span>
       </label>
       <div class="question-hint">e.g. copying data, sending the same emails, updating spreadsheets manually…</div>
-      <textarea id="q2" placeholder="List as many as come to mind…" oninput="countChars(this,'c2')"></textarea>
+      <textarea id="q2" placeholder="List as many as come to mind…" oninput="updateProgress(); countChars(this,'c2')"></textarea>
       <div class="char-counter" id="c2"></div>
     </div>
   </div>
@@ -645,10 +673,10 @@
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q6</span> Are there specific emails you send that require manual follow-up to check for a reply? Please describe the context and the types of recipients involved.
+        <span class="q-num">Q6</span> Are there specific emails you send that require manual follow-up to check for a reply? Please describe the context and the types of recipients involved. <span class="req">*</span>
       </label>
       <div class="question-hint">e.g. external clients, internal departments, vendors, etc.</div>
-      <textarea id="q6" placeholder="Describe the situation and who you follow up with…" oninput="countChars(this,'c6')"></textarea>
+      <textarea id="q6" placeholder="Describe the situation and who you follow up with…" oninput="updateProgress(); countChars(this,'c6')"></textarea>
       <div class="char-counter" id="c6"></div>
     </div>
   </div>
@@ -675,11 +703,11 @@
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q8</span> Do you ever copy data from emails or PDFs into a spreadsheet?
+        <span class="q-num">Q8</span> Do you ever copy data from emails or PDFs into a spreadsheet? <span class="req">*</span>
       </label>
       <div class="choice-group" id="choiceC8">
-        <button class="choice-btn" onclick="selectChoice('choiceC8', this); showExtra('extraC8', true)">Yes</button>
-        <button class="choice-btn" onclick="selectChoice('choiceC8', this); showExtra('extraC8', false)">No</button>
+        <button class="choice-btn" onclick="selectChoice('choiceC8', this); showExtra('extraC8', true); updateProgress()">Yes</button>
+        <button class="choice-btn" onclick="selectChoice('choiceC8', this); showExtra('extraC8', false); updateProgress()">No</button>
       </div>
       <div id="extraC8" style="display:none;" class="extra-field">
         <div class="question-hint" style="margin-bottom:8px;">How often do you do this? Please specify the type of data, the source, and a brief description of your procedure.</div>
@@ -704,9 +732,9 @@
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q11</span> Do any tasks get lost or ignored because there is no clear system to track them? If yes, please provide a specific example of something that was missed.
+        <span class="q-num">Q11</span> Do any tasks get lost or ignored because there is no clear system to track them? If yes, please provide a specific example of something that was missed. <span class="req">*</span>
       </label>
-      <textarea id="q11" placeholder="Describe a concrete situation where something slipped through…" oninput="countChars(this,'c11')"></textarea>
+      <textarea id="q11" placeholder="Describe a concrete situation where something slipped through…" oninput="updateProgress(); countChars(this,'c11')"></textarea>
       <div class="char-counter" id="c11"></div>
     </div>
   </div>
@@ -755,14 +783,16 @@
   }, { threshold: 0.07 });
   document.querySelectorAll('.section').forEach(s => observer.observe(s));
 
-  const required = ['q-name','q-team','q1','q5','q7'];
+  const required = ['q-name','q-team','q-entity','q1','q2','q5','q6','q7','q11'];
+  const TOTAL_FIELDS = required.length + 1; // +1 for Q8 choice
 
   function updateProgress() {
     const filled = required.filter(id => {
       const el = document.getElementById(id);
       return el && el.value.trim() !== '';
     }).length;
-    const pct = Math.round((filled / required.length) * 100);
+    const q8Filled = !!document.querySelector('#choiceC8 .choice-btn.selected') ? 1 : 0;
+    const pct = Math.round(((filled + q8Filled) / TOTAL_FIELDS) * 100);
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressPct').textContent = pct + '%';
   }
@@ -801,6 +831,8 @@
       return !el || el.value.trim() === '';
     });
 
+    const q8Missing = !document.querySelector('#choiceC8 .choice-btn.selected');
+
     if (missing.length > 0) {
       const el = document.getElementById(missing[0]);
       if (el) {
@@ -810,6 +842,12 @@
         el.style.boxShadow = '0 0 0 3px rgba(216,90,48,0.13)';
         setTimeout(() => { el.style.borderColor = ''; el.style.boxShadow = ''; }, 2500);
       }
+      return;
+    }
+
+    if (q8Missing) {
+      const q8 = document.getElementById('choiceC8');
+      if (q8) q8.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
 
