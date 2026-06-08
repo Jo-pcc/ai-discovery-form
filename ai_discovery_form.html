@@ -82,6 +82,17 @@
     padding: 60px 32px 52px;
   }
 
+  /* BRAND ROW */
+  .brand-row {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 30px; min-height: 40px;
+  }
+  .brand-logo { height: 40px; width: auto; display: block; }
+  .brand-fallback {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px; color: var(--amber-100); letter-spacing: 0.02em;
+  }
+
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
     background: rgba(250,199,117,0.12);
@@ -172,6 +183,25 @@
     color: var(--amber-400);
     min-width: 30px;
     text-align: right;
+  }
+
+  /* LANG TOGGLE */
+  .lang-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .lang-toggle:hover {
+    border-color: var(--amber-200);
+    color: var(--amber-600);
+    background: var(--amber-50);
   }
 
   /* FORM BODY */
@@ -513,6 +543,39 @@
     line-height: 1.75;
   }
 
+  /* IDEAS SECTION */
+  .idea-entry {
+    display: flex; align-items: flex-start; gap: 8px;
+    margin-bottom: 10px;
+  }
+  .idea-entry textarea { min-height: 72px; flex: 1; }
+  .btn-remove-idea {
+    flex-shrink: 0; margin-top: 11px;
+    width: 32px; height: 32px;
+    background: none; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); color: var(--text-hint);
+    font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s ease;
+  }
+  .btn-remove-idea:hover { border-color: var(--coral-200); color: var(--coral-400); background: var(--coral-50); }
+  .btn-add-idea {
+    width: 100%;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: var(--surface); border: 1.5px dashed var(--gray-200);
+    border-radius: var(--radius); padding: 14px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+    color: var(--text-muted); cursor: pointer;
+    transition: all 0.18s ease; margin-top: 4px;
+  }
+  .btn-add-idea:hover { border-color: var(--amber-200); color: var(--amber-600); background: var(--amber-50); }
+  .btn-add-idea .plus {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--amber-200), var(--coral-400));
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -526,12 +589,17 @@
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-content">
+    <div class="brand-row">
+      <img src="chargeurs-pcc-logo.png" alt="Chargeurs PCC" class="brand-logo"
+           onerror="this.style.display='none'; document.getElementById('brandFallback').style.display='block';">
+      <span class="brand-fallback" id="brandFallback" style="display:none;">CHARGEURS&nbsp;PCC</span>
+    </div>
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-dot"></div>
-      Data &amp; AI Team · Team Discovery
+      <span data-i18n="eyebrow">Data &amp; AI Team · Team Discovery</span>
     </div>
-    <h1>AI Automation<br><em>Team Discovery</em></h1>
-    <p class="hero-sub">
+    <h1 data-i18n-html="h1">AI Automation<br><em>Team Discovery</em></h1>
+    <p class="hero-sub" data-i18n="hero-sub">
       We are exploring how AI can simplify repetitive work across our teams.
       This form helps us understand your daily working routine.
     </p>
@@ -541,11 +609,12 @@
 <!-- PROGRESS BAR -->
 <div class="progress-wrap">
   <div class="progress-inner">
-    <span class="progress-label">Progress</span>
+    <span class="progress-label" data-i18n="progress-label">Progress</span>
     <div class="progress-bar-track">
       <div class="progress-bar-fill" id="progressFill"></div>
     </div>
     <span class="progress-pct" id="progressPct">0%</span>
+    <button class="lang-toggle" id="langToggle" onclick="setLanguage(currentLang==='en'?'fr':'en')">FR</button>
   </div>
 </div>
 
@@ -554,7 +623,7 @@
 
   <!-- HOW TO COMPLETE -->
   <div class="intro-callout">
-    <p>
+    <p data-i18n="intro-text">
       Answer based on your actual day-to-day — there are no right or wrong answers.
       Be specific: concrete examples help us identify the right automations.
       The Data &amp; AI team relies entirely on what you share here to understand how work actually happens —
@@ -564,29 +633,31 @@
 
   <!-- YOUR DETAILS -->
   <div class="details-card">
-    <div class="details-card-title">Your details</div>
+    <div class="details-card-title" data-i18n="details-title">Your details</div>
     <div class="q-grid-2">
       <div class="question">
-        <label class="question-label">Name <span class="req">*</span></label>
-        <input type="text" placeholder="Your full name" id="q-name" oninput="updateProgress()" />
+        <label class="question-label"><span data-i18n="name-label">Name</span> <span class="req">*</span></label>
+        <input type="text" data-i18n-ph="name-ph" placeholder="Your full name" id="q-name" oninput="updateProgress()" />
       </div>
       <div class="question">
-        <label class="question-label">Team / Department <span class="req">*</span></label>
+        <label class="question-label"><span data-i18n="team-label">Team / Department</span> <span class="req">*</span></label>
         <select id="q-team" onchange="updateProgress()">
-          <option value="">Select your team…</option>
-          <option>Purchasing</option>
-          <option>Customer Service</option>
-          <option>Logistics / Operations</option>
-          <option>Finance</option>
-          <option>Sales</option>
-          <option>Management</option>
-          <option>Other</option>
+          <option value="" data-i18n="team-ph">Select your team…</option>
+          <option value="Purchasing" data-i18n-opt="team-0">Purchasing</option>
+          <option value="Customer Service" data-i18n-opt="team-1">Customer Service</option>
+          <option value="Logistics / Operations" data-i18n-opt="team-2">Logistics / Operations</option>
+          <option value="Finance" data-i18n-opt="team-3">Finance</option>
+          <option value="Sales" data-i18n-opt="team-4">Sales</option>
+          <option value="Management" data-i18n-opt="team-5">Management</option>
+          <option value="IT" data-i18n-opt="team-6">IT</option>
+          <option value="Other" data-i18n-opt="team-7">Other</option>
         </select>
       </div>
       <div class="question">
-        <label class="question-label">Entity <span class="req">*</span></label>
+        <label class="question-label"><span data-i18n="entity-label">Entity</span> <span class="req">*</span></label>
         <select id="q-entity" onchange="updateProgress()">
-          <option value="">Select your entity…</option>
+          <option value="" data-i18n="entity-ph">Select your entity…</option>
+          <option>CHARGEURS PCC CORPORATE</option>
           <option>CHARGEURS ENTRETELAS PORTUGAL</option>
           <option>CHARGEURS INTERLINING HK</option>
           <option>CHARGEURS PCC (THAILAND) CO LTD</option>
@@ -599,24 +670,20 @@
           <option>CHARGEURS PCC ROMANIA SRL</option>
           <option>CHARGEURS PCC SINGAPORE PTE LTD</option>
           <option>CHARGEURS PCC SPAIN</option>
-          <option>CHARGEURS PCC UNITED KINGDOM LIMITED</option>
           <option>ETACOL BANGLADESH LTD</option>
           <option>INTISSEL LANKA</option>
           <option>LAINIERE DE PICARDIE BC</option>
           <option>LANTOR LANKA</option>
-          <option>PCC ASIA LLC</option>
-          <option>PCC ASIA LTD</option>
+          <option>PCC ASIA</option>
           <option>PCC GUANGZHOU TRADING CO LTD</option>
-          <option>PCC INTERLININGS PVT LTD</option>
           <option>PCC VIETNAM LLC (PCC VN)</option>
           <option>PT CHARGEURS PCC INDONESIA</option>
           <option>PT PCC INDONESIA</option>
           <option>SENFA</option>
-          <option>STROUD RILEY</option>
         </select>
       </div>
       <div class="question">
-        <label class="question-label">Date</label>
+        <label class="question-label" data-i18n="date-label">Date</label>
         <input type="text" id="q-date" />
       </div>
     </div>
@@ -627,25 +694,25 @@
     <div class="section-header">
       <div class="section-letter amber">A</div>
       <div>
-        <div class="section-title">Your daily work</div>
-        <div class="section-desc">How you spend your time day to day</div>
+        <div class="section-title" data-i18n="secA-title">Your daily work</div>
+        <div class="section-desc" data-i18n="secA-desc">How you spend your time day to day</div>
       </div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q1</span> What is the most repetitive task you do every day? <span class="req">*</span>
+        <span class="q-num">Q1</span> <span data-i18n="q1-text">What is the most repetitive task you do every day?</span> <span class="req">*</span>
       </label>
-      <textarea id="q1" placeholder="Describe the task as concretely as possible…" oninput="updateProgress(); countChars(this,'c1')"></textarea>
+      <textarea id="q1" data-i18n-ph="q1-ph" placeholder="Describe the task as concretely as possible…" oninput="updateProgress(); countChars(this,'c1')"></textarea>
       <div class="char-counter" id="c1"></div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q2</span> Which tasks take the most time but feel like low-value and repetitive work? <span class="req">*</span>
+        <span class="q-num">Q2</span> <span data-i18n="q2-text">Which tasks take the most time but feel like low-value and repetitive work?</span> <span class="req">*</span>
       </label>
-      <div class="question-hint">e.g. copying data, sending the same emails, updating spreadsheets manually…</div>
-      <textarea id="q2" placeholder="List as many as come to mind…" oninput="updateProgress(); countChars(this,'c2')"></textarea>
+      <div class="question-hint" data-i18n="q2-hint">e.g. copying data, sending the same emails, updating spreadsheets manually…</div>
+      <textarea id="q2" data-i18n-ph="q2-ph" placeholder="List as many as come to mind…" oninput="updateProgress(); countChars(this,'c2')"></textarea>
       <div class="char-counter" id="c2"></div>
     </div>
   </div>
@@ -657,26 +724,26 @@
     <div class="section-header">
       <div class="section-letter coral">B</div>
       <div>
-        <div class="section-title">Email &amp; communication</div>
-        <div class="section-desc">Patterns in the emails you send and receive</div>
+        <div class="section-title" data-i18n="secB-title">Email &amp; communication</div>
+        <div class="section-desc" data-i18n="secB-desc">Patterns in the emails you send and receive</div>
       </div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q5</span> Which emails do you respond to with nearly the same text every time? <span class="req">*</span>
+        <span class="q-num">Q3</span> <span data-i18n="q3-text">Which emails do you respond to with nearly the same text every time?</span> <span class="req">*</span>
       </label>
-      <div class="question-hint">e.g. delivery confirmations, order status, supplier follow-ups</div>
-      <textarea id="q5" placeholder="Describe the type of email and how often it comes in…" oninput="updateProgress(); countChars(this,'c5')"></textarea>
+      <div class="question-hint" data-i18n="q3-hint">e.g. delivery confirmations, order status, supplier follow-ups</div>
+      <textarea id="q5" data-i18n-ph="q3-ph" placeholder="Describe the type of email and how often it comes in…" oninput="updateProgress(); countChars(this,'c5')"></textarea>
       <div class="char-counter" id="c5"></div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q6</span> Are there specific emails you send that require manual follow-up to check for a reply? Please describe the context and the types of recipients involved. <span class="req">*</span>
+        <span class="q-num">Q4</span> <span data-i18n="q4-text">Are there specific emails you send that require manual follow-up to check for a reply? Please describe the context and the types of recipients involved.</span> <span class="req">*</span>
       </label>
-      <div class="question-hint">e.g. external clients, internal departments, vendors, etc.</div>
-      <textarea id="q6" placeholder="Describe the situation and who you follow up with…" oninput="updateProgress(); countChars(this,'c6')"></textarea>
+      <div class="question-hint" data-i18n="q4-hint">e.g. external clients, internal departments, vendors, etc.</div>
+      <textarea id="q6" data-i18n-ph="q4-ph" placeholder="Describe the situation and who you follow up with…" oninput="updateProgress(); countChars(this,'c6')"></textarea>
       <div class="char-counter" id="c6"></div>
     </div>
   </div>
@@ -688,31 +755,31 @@
     <div class="section-header">
       <div class="section-letter teal">C</div>
       <div>
-        <div class="section-title">Data entry &amp; documents</div>
-        <div class="section-desc">Manual data work and document handling</div>
+        <div class="section-title" data-i18n="secC-title">Data entry &amp; documents</div>
+        <div class="section-desc" data-i18n="secC-desc">Manual data work and document handling</div>
       </div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q7</span> Which spreadsheets do you update manually — and where does the data come from? <span class="req">*</span>
+        <span class="q-num">Q5</span> <span data-i18n="q5-text">Which spreadsheets do you update manually — and where does the data come from?</span> <span class="req">*</span>
       </label>
-      <textarea id="q7" placeholder="Name the spreadsheet and describe where the data originates…" oninput="updateProgress(); countChars(this,'c7')"></textarea>
+      <textarea id="q7" data-i18n-ph="q5-ph" placeholder="Name the spreadsheet and describe where the data originates…" oninput="updateProgress(); countChars(this,'c7')"></textarea>
       <div class="char-counter" id="c7"></div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q8</span> Do you ever copy data from emails or PDFs into a spreadsheet? <span class="req">*</span>
+        <span class="q-num">Q6</span> <span data-i18n="q6-text">Do you ever copy data from emails or PDFs into a spreadsheet?</span> <span class="req">*</span>
       </label>
       <div class="choice-group" id="choiceC8">
-        <button class="choice-btn" onclick="selectChoice('choiceC8', this); showExtra('extraC8', true); updateProgress()">Yes</button>
-        <button class="choice-btn" onclick="selectChoice('choiceC8', this); showExtra('extraC8', false); updateProgress()">No</button>
+        <button class="choice-btn" data-i18n="btn-yes" onclick="selectChoice('choiceC8', this); showExtra('extraC8', true); updateProgress()">Yes</button>
+        <button class="choice-btn" data-i18n="btn-no" onclick="selectChoice('choiceC8', this); showExtra('extraC8', false); updateProgress()">No</button>
       </div>
       <div id="extraC8" style="display:none;" class="extra-field">
-        <div class="question-hint" style="margin-bottom:8px;">How often do you do this? Please specify the type of data, the source, and a brief description of your procedure.</div>
-        <div class="question-hint">e.g. invoice amounts, delivery dates, order numbers</div>
-        <textarea id="q8b" placeholder="Describe your process…" oninput="countChars(this,'c8b')"></textarea>
+        <div class="question-hint" data-i18n="q8b-hint1" style="margin-bottom:8px;">How often do you do this? Please specify the type of data, the source, and a brief description of your procedure.</div>
+        <div class="question-hint" data-i18n="q8b-hint2">e.g. invoice amounts, delivery dates, order numbers</div>
+        <textarea id="q8b" data-i18n-ph="q8b-ph" placeholder="Describe your process…" oninput="countChars(this,'c8b')"></textarea>
         <div class="char-counter" id="c8b"></div>
       </div>
     </div>
@@ -725,39 +792,66 @@
     <div class="section-header">
       <div class="section-letter dark">D</div>
       <div>
-        <div class="section-title">Follow-ups &amp; coordination</div>
-        <div class="section-desc">Tasks and handoffs that fall through the cracks</div>
+        <div class="section-title" data-i18n="secD-title">Follow-ups &amp; coordination</div>
+        <div class="section-desc" data-i18n="secD-desc">Tasks and handoffs that fall through the cracks</div>
       </div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q11</span> Do any tasks get lost or ignored because there is no clear system to track them? If yes, please provide a specific example of something that was missed. <span class="req">*</span>
+        <span class="q-num">Q7</span> <span data-i18n="q7-text">Do any tasks get lost or ignored because there is no clear system to track them? If yes, please provide a specific example of something that was missed.</span> <span class="req">*</span>
       </label>
-      <textarea id="q11" placeholder="Describe a concrete situation where something slipped through…" oninput="updateProgress(); countChars(this,'c11')"></textarea>
+      <textarea id="q11" data-i18n-ph="q7-ph" placeholder="Describe a concrete situation where something slipped through…" oninput="updateProgress(); countChars(this,'c11')"></textarea>
       <div class="char-counter" id="c11"></div>
     </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION E -->
+  <div class="section" id="secE">
+    <div class="section-header">
+      <div class="section-letter amber">E</div>
+      <div>
+        <div class="section-title" data-i18n="secE-title">Ideas &amp; proposals</div>
+        <div class="section-desc" data-i18n="secE-desc">Any automation or AI ideas you'd like to share</div>
+      </div>
+    </div>
+
+    <p class="question-hint" data-i18n="secE-hint" style="margin-bottom:16px;">
+      Not mandatory — but if something comes to mind, we'd love to hear it. Each idea is logged and reviewed by the Data &amp; AI team.
+    </p>
+
+    <div id="ideasList">
+      <div class="idea-entry">
+        <textarea class="idea-text" data-i18n-ph="idea-ph" placeholder="Describe your idea or automation suggestion…"></textarea>
+        <button type="button" class="btn-remove-idea" onclick="removeIdeaEntry(this)" title="Remove">×</button>
+      </div>
+    </div>
+
+    <button type="button" class="btn-add-idea" id="addIdeaBtn" onclick="addIdeaEntry()">
+      <span class="plus">+</span>
+      <span data-i18n="add-idea">Add another idea</span>
+    </button>
   </div>
 
   <!-- SUBMIT -->
   <div class="submit-section">
     <div class="submit-content">
-      <div class="submit-title">Ready to submit?</div>
-      <p class="submit-sub">Your answers are used only to design automations that save your team time.</p>
+      <div class="submit-title" data-i18n="submit-title">Ready to submit?</div>
+      <p class="submit-sub" data-i18n="submit-sub">Your answers are used only to design automations that save your team time.</p>
       <button class="btn-submit" id="btnSubmit" onclick="submitForm()">
-        <span id="btnText">Submit my answers</span>
+        <span id="btnText" data-i18n="btn-submit">Submit my answers</span>
         <div class="spinner" id="btnSpinner"></div>
         <svg id="btnArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
       </button>
-      <div class="error-banner" id="errorBanner">
-        ⚠️ Something went wrong saving your response. Please try again or contact the Data &amp; AI team directly.
-      </div>
+      <div class="error-banner" id="errorBanner"></div>
     </div>
   </div>
 
-  <div class="footer-note">
+  <div class="footer-note" data-i18n="footer-note">
     Your answers are used only to design automations that save your team time. They will not be shared outside the Data &amp; AI team.
   </div>
 
@@ -766,109 +860,287 @@
 <!-- SUCCESS -->
 <div class="success-screen" id="successScreen">
   <div class="success-icon">✓</div>
-  <div class="success-title">Thank you.</div>
-  <p class="success-sub">Your answers have been received by the Data &amp; AI team. We review every response carefully before any work begins.</p>
+  <div class="success-title" data-i18n="success-title">Thank you.</div>
+  <p class="success-sub" data-i18n="success-sub">Your answers have been received by the Data &amp; AI team. We review every response carefully before any work begins.</p>
 </div>
 
 <script>
   // ─── CONFIG ──────────────────────────────────────────────────────────────────
-  // Paste your Google Apps Script Web App URL here after deployment:
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbywxgS_bqC3bhrXhtVJe4a7QAOTxNVEGlxz9zkI5RUF6VzFtoWVxNVNgUlWnQPZqb74Cw/exec';
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  // ─── TRANSLATIONS ─────────────────────────────────────────────────────────────
+  var T = {
+    en: {
+      'eyebrow':       'Data & AI Team · Team Discovery',
+      'h1':            'AI Automation<br><em>Team Discovery</em>',
+      'hero-sub':      'We are exploring how AI can simplify repetitive work across our teams. This form helps us understand your daily working routine.',
+      'progress-label':'Progress',
+      'intro-text':    'Answer based on your actual day-to-day — there are no right or wrong answers. Be specific: concrete examples help us identify the right automations. The Data & AI team relies entirely on what you share here to understand how work actually happens — without your honest input, we would be building on assumptions rather than reality.',
+      'details-title': 'Your details',
+      'name-label':    'Name',
+      'team-label':    'Team / Department',
+      'entity-label':  'Entity',
+      'date-label':    'Date',
+      'team-ph':       'Select your team…',
+      'entity-ph':     'Select your entity…',
+      'name-ph':       'Your full name',
+      'secA-title':    'Your daily work',
+      'secA-desc':     'How you spend your time day to day',
+      'q1-text':       'What is the most repetitive task you do every day?',
+      'q1-ph':         'Describe the task as concretely as possible…',
+      'q2-text':       'Which tasks take the most time but feel like low-value and repetitive work?',
+      'q2-hint':       'e.g. copying data, sending the same emails, updating spreadsheets manually…',
+      'q2-ph':         'List as many as come to mind…',
+      'secB-title':    'Email & communication',
+      'secB-desc':     'Patterns in the emails you send and receive',
+      'q3-text':       'Which emails do you respond to with nearly the same text every time?',
+      'q3-hint':       'e.g. delivery confirmations, order status, supplier follow-ups',
+      'q3-ph':         'Describe the type of email and how often it comes in…',
+      'q4-text':       'Are there specific emails you send that require manual follow-up to check for a reply? Please describe the context and the types of recipients involved.',
+      'q4-hint':       'e.g. external clients, internal departments, vendors, etc.',
+      'q4-ph':         'Describe the situation and who you follow up with…',
+      'secC-title':    'Data entry & documents',
+      'secC-desc':     'Manual data work and document handling',
+      'q5-text':       'Which spreadsheets do you update manually — and where does the data come from?',
+      'q5-ph':         'Name the spreadsheet and describe where the data originates…',
+      'q6-text':       'Do you ever copy data from emails or PDFs into a spreadsheet?',
+      'btn-yes':       'Yes',
+      'btn-no':        'No',
+      'q8b-hint1':     'How often do you do this? Please specify the type of data, the source, and a brief description of your procedure.',
+      'q8b-hint2':     'e.g. invoice amounts, delivery dates, order numbers',
+      'q8b-ph':        'Describe your process…',
+      'secD-title':    'Follow-ups & coordination',
+      'secD-desc':     'Tasks and handoffs that fall through the cracks',
+      'q7-text':       'Do any tasks get lost or ignored because there is no clear system to track them? If yes, please provide a specific example of something that was missed.',
+      'q7-ph':         'Describe a concrete situation where something slipped through…',
+      'secE-title':    'Ideas & proposals',
+      'secE-desc':     "Any automation or AI ideas you'd like to share",
+      'secE-hint':     "Not mandatory — but if something comes to mind, we'd love to hear it. Each idea is logged and reviewed by the Data & AI team.",
+      'idea-ph':       'Describe your idea or automation suggestion…',
+      'add-idea':      'Add another idea',
+      'submit-title':  'Ready to submit?',
+      'submit-sub':    'Your answers are used only to design automations that save your team time.',
+      'btn-submit':    'Submit my answers',
+      'submitting':    'Submitting…',
+      'footer-note':   'Your answers are used only to design automations that save your team time. They will not be shared outside the Data & AI team.',
+      'success-title': 'Thank you.',
+      'success-sub':   'Your answers have been received by the Data & AI team. We review every response carefully before any work begins.',
+      'error-msg':     '⚠️ Something went wrong saving your response. Please try again or contact the Data & AI team directly.',
+      'chars':         'characters',
+      'team-opts':     ['Purchasing','Customer Service','Logistics / Operations','Finance','Sales','Management','IT','Other'],
+      'lang-toggle':   'FR'
+    },
+    fr: {
+      'eyebrow':       'Équipe Data & IA · Découverte des équipes',
+      'h1':            'Automatisation IA<br><em>Découverte des équipes</em>',
+      'hero-sub':      "Nous explorons comment l'IA peut simplifier les tâches répétitives au sein de nos équipes. Ce formulaire nous aide à comprendre votre quotidien professionnel.",
+      'progress-label':'État d’avancement',
+      'intro-text':    "Répondez en vous basant sur votre quotidien réel — il n'y a pas de bonnes ou de mauvaises réponses. Soyez précis : des exemples concrets nous aident à identifier les bonnes automatisations. L'équipe Data & IA s'appuie entièrement sur ce que vous partagez ici pour comprendre comment le travail se déroule réellement — sans vos réponses honnêtes, nous construirions sur des hypothèses plutôt que sur la réalité.",
+      'details-title': 'Vos informations',
+      'name-label':    'Nom',
+      'team-label':    'Équipe / Département',
+      'entity-label':  'Entité',
+      'date-label':    'Date',
+      'team-ph':       'Sélectionnez votre équipe…',
+      'entity-ph':     'Sélectionnez votre entité…',
+      'name-ph':       'Votre nom complet',
+      'secA-title':    'Votre travail quotidien',
+      'secA-desc':     'Comment vous passez votre temps au quotidien',
+      'q1-text':       'Quelle est la tâche la plus répétitive que vous effectuez chaque jour ?',
+      'q1-ph':         'Décrivez la tâche aussi concrètement que possible…',
+      'q2-text':       'Quelles tâches vous prennent le plus de temps mais semblent être des travaux à faible valeur et répétitifs ?',
+      'q2-hint':       'ex : copier des données, envoyer les mêmes emails, mettre à jour des tableaux manuellement…',
+      'q2-ph':         'Listez autant que possible…',
+      'secB-title':    'Email et communication',
+      'secB-desc':     'Les modèles dans les emails que vous envoyez et recevez',
+      'q3-text':       'À quels emails répondez-vous presque toujours avec le même texte ?',
+      'q3-hint':       'ex : confirmations de livraison, statut de commande, relances fournisseurs',
+      'q3-ph':         "Décrivez le type d'email et sa fréquence…",
+      'q4-text':       "Y a-t-il des emails spécifiques que vous envoyez et qui nécessitent un suivi manuel pour vérifier une réponse ? Décrivez le contexte et les types de destinataires concernés.",
+      'q4-hint':       'ex : clients externes, départements internes, fournisseurs, etc.',
+      'q4-ph':         'Décrivez la situation et les personnes que vous relancez…',
+      'secC-title':    'Saisie de données et documents',
+      'secC-desc':     'Traitement manuel des données et des documents',
+      'q5-text':       "Quels tableaux mettez-vous à jour manuellement — et d'où viennent les données ?",
+      'q5-ph':         'Nommez le tableau et décrivez la provenance des données…',
+      'q6-text':       'Copiez-vous des données depuis des emails ou des PDF dans un tableau ?',
+      'btn-yes':       'Oui',
+      'btn-no':        'Non',
+      'q8b-hint1':     'À quelle fréquence faites-vous cela ? Précisez le type de données, la source et une brève description de votre procédure.',
+      'q8b-hint2':     'ex : montants de factures, dates de livraison, numéros de commande',
+      'q8b-ph':        'Décrivez votre processus…',
+      'secD-title':    'Suivi et coordination',
+      'secD-desc':     'Tâches et transferts qui passent entre les mailles du filet',
+      'q7-text':       "Des tâches se perdent-elles ou sont-elles ignorées parce qu'il n'existe pas de système clair pour les suivre ? Si oui, donnez un exemple concret de quelque chose qui a été manqué.",
+      'q7-ph':         "Décrivez une situation concrète où quelque chose a échappé au suivi…",
+      'secE-title':    'Idées et propositions',
+      'secE-desc':     'Toute idée d’automatisation ou d’IA que vous souhaitez partager',
+      'secE-hint':     "Facultatif — mais si quelque chose vous vient à l'esprit, nous aimerions l'entendre. Chaque idée est enregistrée et examinée par l'équipe Data & IA.",
+      'idea-ph':       "Décrivez votre idée ou suggestion d'automatisation…",
+      'add-idea':      'Ajouter une autre idée',
+      'submit-title':  'Prêt à soumettre ?',
+      'submit-sub':    'Vos réponses sont uniquement utilisées pour concevoir des automatisations qui font gagner du temps à votre équipe.',
+      'btn-submit':    'Envoyer mes réponses',
+      'submitting':    'Envoi en cours…',
+      'footer-note':   "Vos réponses sont uniquement utilisées pour concevoir des automatisations qui font gagner du temps à votre équipe. Elles ne seront pas partagées en dehors de l'équipe Data & IA.",
+      'success-title': 'Merci.',
+      'success-sub':   "Vos réponses ont été reçues par l'équipe Data & IA. Nous examinons chaque réponse attentivement avant de commencer tout travail.",
+      'error-msg':     "⚠️ Un problème est survenu lors de l'enregistrement de votre réponse. Veuillez réessayer ou contacter directement l'équipe Data & IA.",
+      'chars':         'caractères',
+      'team-opts':     ['Achats','Service client','Logistique / Opérations','Finance','Commercial','Direction','IT','Autre'],
+      'lang-toggle':   'EN'
+    }
+  };
+
+  var currentLang = 'en';
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    var t = T[lang];
+    document.documentElement.lang = lang;
+
+    // Plain text elements
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+
+    // HTML elements (h1 with em tags)
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n-html');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+
+    // Placeholders on inputs and textareas
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n-ph');
+      if (t[key] !== undefined) el.placeholder = t[key];
+    });
+
+    // Team select: update displayed text, keep English value attributes
+    var teamSel = document.getElementById('q-team');
+    var teamOpts = t['team-opts'];
+    document.querySelectorAll('#q-team option[data-i18n-opt]').forEach(function(opt, i) {
+      if (teamOpts[i] !== undefined) opt.textContent = teamOpts[i];
+    });
+    document.querySelector('#q-team option[value=""]').textContent = t['team-ph'];
+
+    // Entity select placeholder
+    document.querySelector('#q-entity option[value=""]').textContent = t['entity-ph'];
+
+    // Date: re-format in local language
+    document.getElementById('q-date').value = new Date().toLocaleDateString(
+      lang === 'fr' ? 'fr-FR' : 'en-GB',
+      {day: '2-digit', month: 'long', year: 'numeric'}
+    );
+
+    // Dynamically added idea placeholders
+    document.querySelectorAll('.idea-text').forEach(function(ta) {
+      ta.placeholder = t['idea-ph'];
+    });
+
+    // Lang toggle button shows the OTHER language
+    document.getElementById('langToggle').textContent = t['lang-toggle'];
+  }
   // ─────────────────────────────────────────────────────────────────────────────
 
   document.getElementById('q-date').value = new Date().toLocaleDateString('en-GB', {day:'2-digit', month:'long', year:'numeric'});
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.07 });
-  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+  document.querySelectorAll('.section').forEach(function(s) { observer.observe(s); });
 
-  const required = ['q-name','q-team','q-entity','q1','q2','q5','q6','q7','q11'];
-  const TOTAL_FIELDS = required.length + 1; // +1 for Q8 choice
+  var required = ['q-name','q-team','q-entity','q1','q2','q5','q6','q7','q11'];
+  var TOTAL_FIELDS = required.length + 1; // +1 for Q6 yes/no
 
   function updateProgress() {
-    const filled = required.filter(id => {
-      const el = document.getElementById(id);
+    var filled = required.filter(function(id) {
+      var el = document.getElementById(id);
       return el && el.value.trim() !== '';
     }).length;
-    const q8Filled = !!document.querySelector('#choiceC8 .choice-btn.selected') ? 1 : 0;
-    const pct = Math.round(((filled + q8Filled) / TOTAL_FIELDS) * 100);
+    var q8Filled = document.querySelector('#choiceC8 .choice-btn.selected') ? 1 : 0;
+    var pct = Math.round(((filled + q8Filled) / TOTAL_FIELDS) * 100);
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressPct').textContent = pct + '%';
   }
 
   function countChars(el, counterId) {
-    const counter = document.getElementById(counterId);
+    var counter = document.getElementById(counterId);
     if (!counter) return;
-    const len = el.value.length;
-    counter.textContent = len > 0 ? len + ' characters' : '';
+    var len = el.value.length;
+    counter.textContent = len > 0 ? len + ' ' + T[currentLang]['chars'] : '';
   }
 
   function selectChoice(groupId, btn) {
-    document.querySelectorAll('#' + groupId + ' .choice-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('#' + groupId + ' .choice-btn').forEach(function(b) { b.classList.remove('selected'); });
     btn.classList.add('selected');
   }
 
   function showExtra(id, visible) {
-    const el = document.getElementById(id);
+    var el = document.getElementById(id);
     if (el) el.style.display = visible ? 'block' : 'none';
   }
 
   function setSubmitting(loading) {
-    const btn = document.getElementById('btnSubmit');
-    const spinner = document.getElementById('btnSpinner');
-    const arrow = document.getElementById('btnArrow');
-    const text = document.getElementById('btnText');
+    var btn = document.getElementById('btnSubmit');
+    var spinner = document.getElementById('btnSpinner');
+    var arrow = document.getElementById('btnArrow');
+    var text = document.getElementById('btnText');
     btn.disabled = loading;
     spinner.style.display = loading ? 'block' : 'none';
     arrow.style.display = loading ? 'none' : 'block';
-    text.textContent = loading ? 'Submitting…' : 'Submit my answers';
+    text.textContent = loading ? T[currentLang]['submitting'] : T[currentLang]['btn-submit'];
   }
 
   async function submitForm() {
-    const missing = required.filter(id => {
-      const el = document.getElementById(id);
+    var missing = required.filter(function(id) {
+      var el = document.getElementById(id);
       return !el || el.value.trim() === '';
     });
 
-    const q8Missing = !document.querySelector('#choiceC8 .choice-btn.selected');
+    var q8Missing = !document.querySelector('#choiceC8 .choice-btn.selected');
 
     if (missing.length > 0) {
-      const el = document.getElementById(missing[0]);
+      var el = document.getElementById(missing[0]);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        setTimeout(() => el.focus(), 400);
+        setTimeout(function() { el.focus(); }, 400);
         el.style.borderColor = '#D85A30';
         el.style.boxShadow = '0 0 0 3px rgba(216,90,48,0.13)';
-        setTimeout(() => { el.style.borderColor = ''; el.style.boxShadow = ''; }, 2500);
+        setTimeout(function() { el.style.borderColor = ''; el.style.boxShadow = ''; }, 2500);
       }
       return;
     }
 
     if (q8Missing) {
-      const q8 = document.getElementById('choiceC8');
+      var q8 = document.getElementById('choiceC8');
       if (q8) q8.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
 
-    // Gather Q8 Yes/No selection
-    const q8Selected = document.querySelector('#choiceC8 .choice-btn.selected');
-    const q8Answer = q8Selected ? q8Selected.textContent.trim() : '';
+    var q8Selected = document.querySelector('#choiceC8 .choice-btn.selected');
+    var q8Answer = q8Selected ? q8Selected.textContent.trim() : '';
 
-    const payload = {
-      timestamp:  new Date().toISOString(),
-      name:       document.getElementById('q-name').value.trim(),
-      team:       document.getElementById('q-team').value,
-      entity:     document.getElementById('q-entity').value.trim(),
-      date:       document.getElementById('q-date').value,
-      q1:         document.getElementById('q1').value.trim(),
-      q2:         document.getElementById('q2').value.trim(),
-      q5:         document.getElementById('q5').value.trim(),
-      q6:         document.getElementById('q6').value.trim(),
-      q7:         document.getElementById('q7').value.trim(),
-      q8:         q8Answer,
-      q8b:        document.getElementById('q8b').value.trim(),
-      q11:        document.getElementById('q11').value.trim(),
+    var payload = {
+      timestamp: new Date().toISOString(),
+      name:      document.getElementById('q-name').value.trim(),
+      team:      document.getElementById('q-team').value,
+      entity:    document.getElementById('q-entity').value.trim(),
+      date:      document.getElementById('q-date').value,
+      q1:        document.getElementById('q1').value.trim(),
+      q2:        document.getElementById('q2').value.trim(),
+      q5:        document.getElementById('q5').value.trim(),
+      q6:        document.getElementById('q6').value.trim(),
+      q7:        document.getElementById('q7').value.trim(),
+      q8:        q8Answer,
+      q8b:       document.getElementById('q8b').value.trim(),
+      q11:       document.getElementById('q11').value.trim(),
+      ideas:     Array.from(document.querySelectorAll('.idea-text'))
+                   .map(function(t) { return t.value.trim(); })
+                   .filter(function(v) { return v; })
+                   .join('\n---\n'),
     };
 
     document.getElementById('errorBanner').style.display = 'none';
@@ -882,9 +1154,8 @@
         body: JSON.stringify(payload)
       });
 
-      // no-cors means we can't read the response — assume success
       document.getElementById('formBody').style.display = 'none';
-      const s = document.getElementById('successScreen');
+      var s = document.getElementById('successScreen');
       s.style.display = 'block';
       s.style.animation = 'fadeUp 0.55s ease forwards';
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -893,12 +1164,40 @@
 
     } catch (err) {
       setSubmitting(false);
-      document.getElementById('errorBanner').style.display = 'block';
+      var banner = document.getElementById('errorBanner');
+      banner.textContent = T[currentLang]['error-msg'];
+      banner.style.display = 'block';
       console.error('Submission error:', err);
     }
   }
 
+  function addIdeaEntry() {
+    var list = document.getElementById('ideasList');
+    var entry = document.createElement('div');
+    entry.className = 'idea-entry';
+    entry.innerHTML =
+      '<textarea class="idea-text" data-i18n-ph="idea-ph" placeholder="' + T[currentLang]['idea-ph'] + '"></textarea>' +
+      '<button type="button" class="btn-remove-idea" onclick="removeIdeaEntry(this)" title="Remove">×</button>';
+    list.appendChild(entry);
+    updateRemoveBtns();
+  }
+
+  function removeIdeaEntry(btn) {
+    var entries = document.querySelectorAll('.idea-entry');
+    if (entries.length <= 1) return;
+    btn.closest('.idea-entry').remove();
+    updateRemoveBtns();
+  }
+
+  function updateRemoveBtns() {
+    var entries = document.querySelectorAll('.idea-entry');
+    entries.forEach(function(e) {
+      e.querySelector('.btn-remove-idea').style.display = entries.length <= 1 ? 'none' : 'flex';
+    });
+  }
+
   updateProgress();
+  updateRemoveBtns();
 </script>
 </body>
 </html>
