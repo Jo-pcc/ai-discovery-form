@@ -8,42 +8,33 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* ── PALETTE ──────────────────────────────────────────────
-     Noir            #040203
-     Polished Marble #D0BC9E
-     Glamorous White #F0EAE1
-     All other tokens are tints/shades derived from these three. */
   :root {
-    /* Marble accent family (replaces the old amber accents) */
-    --amber-50:  #F4EEE4;   /* marble tint — selected / hover backgrounds */
-    --amber-100: #DCC9AC;   /* bright marble — highlights on dark */
-    --amber-200: #D0BC9E;   /* Polished Marble — primary accent */
-    --amber-400: #A98E68;   /* mid marble — gradient ends, accents */
-    --amber-600: #7C6647;   /* deep marble — accent text on light */
-    /* Secondary marble family (replaces the old coral) */
-    --coral-50:  #F4EEE4;
-    --coral-100: #E6D8C3;
-    --coral-200: #C9B188;
-    --coral-400: #7C6647;
-    --coral-600: #5A4632;
-    /* Success family (warm, marble-toned) */
-    --teal-50:   #EFE9DF;
-    --teal-200:  #D0BC9E;
-    --teal-400:  #7C6647;
-    --teal-600:  #5A4632;
-    /* Neutrals — warm, built around Glamorous White + Noir */
-    --gray-50:   #F6F1E9;
-    --gray-100:  #EBE3D6;
-    --gray-200:  #DBD0BF;
-    --gray-400:  #938777;
-    --gray-600:  #5A5147;
-    --gray-900:  #040203;
-    --text:       #1A1512;
-    --text-muted: #5A5147;
-    --text-hint:  #938777;
-    --bg:         #F0EAE1;
-    --surface:    #FBF7F1;
-    --border:     #E2D8C8;
+    --amber-50: #FAEEDA;
+    --amber-100: #FAC775;
+    --amber-200: #EF9F27;
+    --amber-400: #BA7517;
+    --amber-600: #854F0B;
+    --coral-50: #FAECE7;
+    --coral-100: #F5C4B3;
+    --coral-200: #F0997B;
+    --coral-400: #D85A30;
+    --coral-600: #993C1D;
+    --teal-50: #E1F5EE;
+    --teal-200: #5DCAA5;
+    --teal-400: #1D9E75;
+    --teal-600: #0F6E56;
+    --gray-50: #F9F7F4;
+    --gray-100: #F1EFE8;
+    --gray-200: #D3D1C7;
+    --gray-400: #888780;
+    --gray-600: #5F5E5A;
+    --gray-900: #2C2C2A;
+    --text: #2C2C2A;
+    --text-muted: #5F5E5A;
+    --text-hint: #888780;
+    --bg: #FDFCFA;
+    --surface: #FFFFFF;
+    --border: #E8E5DE;
     --radius: 12px;
     --radius-sm: 8px;
   }
@@ -61,7 +52,7 @@
 
   /* HERO */
   .hero {
-    background: linear-gradient(135deg, #040203 0%, #15110D 50%, #241E17 100%);
+    background: linear-gradient(135deg, #2C2C2A 0%, #3A3530 50%, #3C2A1A 100%);
     padding: 0;
     position: relative;
     overflow: hidden;
@@ -70,8 +61,8 @@
   .hero-grid {
     position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(208,188,158,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(208,188,158,0.06) 1px, transparent 1px);
+      linear-gradient(rgba(250,199,117,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(250,199,117,0.05) 1px, transparent 1px);
     background-size: 48px 48px;
   }
 
@@ -79,7 +70,7 @@
     position: absolute;
     width: 500px; height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(208,188,158,0.16) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(239,159,39,0.14) 0%, transparent 70%);
     top: -180px; right: -80px;
     pointer-events: none;
   }
@@ -104,15 +95,15 @@
 
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(208,188,158,0.14);
-    border: 1px solid rgba(208,188,158,0.30);
+    background: rgba(250,199,117,0.12);
+    border: 1px solid rgba(250,199,117,0.25);
     border-radius: 100px;
     padding: 5px 13px;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    color: rgba(220,201,172,0.9);
+    color: rgba(250,199,117,0.8);
     margin-bottom: 24px;
   }
 
@@ -144,7 +135,7 @@
 
   .hero-sub {
     font-size: 15px;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.55);
     max-width: 520px;
     line-height: 1.75;
   }
@@ -180,7 +171,7 @@
 
   .progress-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--amber-200), var(--amber-400));
+    background: linear-gradient(90deg, var(--amber-200), var(--coral-400));
     border-radius: 100px;
     transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
     width: 0%;
@@ -189,7 +180,7 @@
   .progress-pct {
     font-size: 11px;
     font-weight: 600;
-    color: var(--amber-600);
+    color: var(--amber-400);
     min-width: 30px;
     text-align: right;
   }
@@ -215,7 +206,7 @@
   }
   .lang-select:focus {
     border-color: var(--amber-200);
-    box-shadow: 0 0 0 3px rgba(208,188,158,0.4);
+    box-shadow: 0 0 0 3px rgba(239,159,39,0.11);
   }
 
   /* FORM BODY */
@@ -241,7 +232,7 @@
     line-height: 1.75;
   }
 
-  .intro-callout .intro-short {
+  .intro-short {
     font-size: 13px;
     font-weight: 600;
     color: var(--amber-600);
@@ -272,11 +263,15 @@
     display: flex; align-items: center; justify-content: center;
     font-family: 'DM Serif Display', serif;
     font-size: 17px;
-    color: var(--amber-100);
+    color: #FFFFFF;
     flex-shrink: 0;
     margin-top: 2px;
-    background: linear-gradient(135deg, #2A2018, #040203);
   }
+
+  .section-letter.amber { background: linear-gradient(135deg, var(--amber-200), var(--amber-400)); }
+  .section-letter.coral { background: linear-gradient(135deg, var(--coral-200), var(--coral-400)); }
+  .section-letter.teal  { background: linear-gradient(135deg, var(--teal-200), var(--teal-400)); }
+  .section-letter.dark  { background: linear-gradient(135deg, #888780, var(--gray-900)); }
 
   .section-title {
     font-family: 'DM Serif Display', serif;
@@ -342,7 +337,7 @@
 
   textarea:focus, input:focus, select:focus {
     border-color: var(--amber-200);
-    box-shadow: 0 0 0 3px rgba(208,188,158,0.4);
+    box-shadow: 0 0 0 3px rgba(239,159,39,0.11);
   }
 
   textarea:hover:not(:focus), input:hover:not(:focus), select:hover:not(:focus) {
@@ -384,7 +379,7 @@
   }
 
   /* REQUIRED */
-  .req { color: var(--amber-600); margin-left: 2px; }
+  .req { color: var(--coral-400); margin-left: 2px; }
 
   /* CHAR COUNTER */
   .char-counter {
@@ -431,7 +426,7 @@
 
   /* SUBMIT */
   .submit-section {
-    background: linear-gradient(135deg, #040203 0%, #241E17 100%);
+    background: linear-gradient(135deg, #2C2C2A 0%, #3C2A1A 100%);
     border-radius: var(--radius);
     padding: 36px;
     text-align: center;
@@ -444,8 +439,8 @@
     content: '';
     position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(208,188,158,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(208,188,158,0.05) 1px, transparent 1px);
+      linear-gradient(rgba(250,199,117,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(250,199,117,0.04) 1px, transparent 1px);
     background-size: 32px 32px;
   }
 
@@ -461,14 +456,14 @@
 
   .submit-sub {
     font-size: 13px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.45);
     margin-bottom: 24px;
   }
 
   .btn-submit {
     display: inline-flex; align-items: center; gap: 9px;
-    background: linear-gradient(135deg, #D9C6A9, #C7AE85);
-    color: #040203;
+    background: linear-gradient(135deg, var(--amber-200), var(--coral-400));
+    color: #FFFFFF;
     border: none;
     border-radius: 100px;
     padding: 13px 32px;
@@ -481,7 +476,7 @@
 
   .btn-submit:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 10px 32px rgba(124,102,71,0.35);
+    box-shadow: 0 10px 32px rgba(216,90,48,0.3);
   }
 
   .btn-submit:active { transform: translateY(0); }
@@ -496,8 +491,8 @@
   /* SPINNER */
   .spinner {
     width: 16px; height: 16px;
-    border: 2px solid rgba(4,2,3,0.22);
-    border-top-color: #040203;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
     border-radius: 50%;
     animation: spin 0.7s linear infinite;
     display: none;
@@ -507,13 +502,13 @@
   /* ERROR BANNER */
   .error-banner {
     display: none;
-    background: #F8ECE6;
-    border: 1px solid #E4C2AD;
+    background: #fff3f0;
+    border: 1px solid #f5c4b3;
     border-radius: var(--radius-sm);
     padding: 12px 16px;
     margin-top: 16px;
     font-size: 13px;
-    color: #9C3B1A;
+    color: var(--coral-600);
     position: relative;
     z-index: 1;
   }
@@ -588,8 +583,8 @@
   .btn-add-idea:hover { border-color: var(--amber-200); color: var(--amber-600); background: var(--amber-50); }
   .btn-add-idea .plus {
     width: 22px; height: 22px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--amber-200), var(--amber-400));
-    color: #040203; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--amber-200), var(--coral-400));
+    color: #fff; display: flex; align-items: center; justify-content: center;
     font-size: 14px; font-weight: 700;
   }
 
@@ -613,12 +608,12 @@
     </div>
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-dot"></div>
-      <span data-i18n="eyebrow">Data &amp; AI Team · From the ground up</span>
+      <span data-i18n="eyebrow">Data &amp; AI Team · Team Discovery</span>
     </div>
-    <h1 data-i18n-html="h1">AI in your<br><em>everyday work</em></h1>
+    <h1 data-i18n-html="h1">AI Automation<br><em>Team Discovery</em></h1>
     <p class="hero-sub" data-i18n="hero-sub">
-      We're trying to spot where AI can take repetitive work off your plate.
-      This quick form helps us get a feel for your day.
+      We are exploring how AI can simplify repetitive work across our teams.
+      This form helps us understand your daily working routine.
     </p>
   </div>
 </div>
@@ -651,28 +646,28 @@
   <!-- HOW TO COMPLETE -->
   <div class="intro-callout">
     <p data-i18n="intro-text">
-      Answer based on your real day — there are no right or wrong answers.
-      What helps us most are concrete examples; they're what point us in the right direction.
-      We rely on what you tell us to understand how the work really happens —
-      without it, we'd just be guessing.
+      Answer based on your actual day-to-day — there are no right or wrong answers.
+      Be specific: concrete examples help us identify the right automations.
+      The Data &amp; AI team relies entirely on what you share here to understand how work actually happens —
+      without your honest input, we would be building on assumptions rather than reality.
     </p>
     <p class="intro-short" data-i18n="short-note">
-      No need to write much — a couple of sentences or a few bullets is plenty.
+      Please keep your answers short and to the point — a few sentences or bullet points are enough.
     </p>
   </div>
 
   <!-- YOUR DETAILS -->
   <div class="details-card">
-    <div class="details-card-title" data-i18n="details-title">About you</div>
+    <div class="details-card-title" data-i18n="details-title">Your details</div>
     <div class="q-grid-2">
       <div class="question">
         <label class="question-label"><span data-i18n="name-label">Name</span> <span class="req">*</span></label>
-        <input type="text" data-i18n-ph="name-ph" placeholder="Your name" id="q-name" oninput="updateProgress()" />
+        <input type="text" data-i18n-ph="name-ph" placeholder="Your full name" id="q-name" oninput="updateProgress()" />
       </div>
       <div class="question">
         <label class="question-label"><span data-i18n="team-label">Team / Department</span> <span class="req">*</span></label>
         <select id="q-team" onchange="updateProgress()">
-          <option value="" data-i18n="team-ph">Choose your team…</option>
+          <option value="" data-i18n="team-ph">Select your team…</option>
           <option value="Purchasing" data-i18n-opt="team-0">Purchasing</option>
           <option value="Customer Service" data-i18n-opt="team-1">Customer Service</option>
           <option value="Logistics / Operations" data-i18n-opt="team-2">Logistics / Operations</option>
@@ -686,7 +681,7 @@
       <div class="question">
         <label class="question-label"><span data-i18n="entity-label">Entity</span> <span class="req">*</span></label>
         <select id="q-entity" onchange="updateProgress()">
-          <option value="" data-i18n="entity-ph">Choose your entity…</option>
+          <option value="" data-i18n="entity-ph">Select your entity…</option>
           <option>CHARGEURS PCC CORPORATE</option>
           <option>CHARGEURS ENTRETELAS PORTUGAL</option>
           <option>CHARGEURS PCC (THAILAND) CO LTD</option>
@@ -722,26 +717,26 @@
     <div class="section-header">
       <div class="section-letter amber">A</div>
       <div>
-        <div class="section-title" data-i18n="secA-title">Your day-to-day</div>
-        <div class="section-desc" data-i18n="secA-desc">Where your time actually goes</div>
+        <div class="section-title" data-i18n="secA-title">Your daily work</div>
+        <div class="section-desc" data-i18n="secA-desc">How you spend your time day to day</div>
       </div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q1</span> <span data-i18n="q1-text">What do you find yourself repeating the most every day?</span> <span class="req">*</span>
+        <span class="q-num">Q1</span> <span data-i18n="q1-text">What is the most repetitive task you do every day?</span> <span class="req">*</span>
       </label>
       <div class="question-hint" data-i18n="q1-hint">e.g. checking order status, entering orders into ITMS/Steppro, sending the same daily report</div>
-      <textarea id="q1" data-i18n-ph="q1-ph" placeholder="Tell us about it as concretely as you can…" oninput="updateProgress(); countChars(this,'c1')"></textarea>
+      <textarea id="q1" data-i18n-ph="q1-ph" placeholder="Describe the task as concretely as possible…" oninput="updateProgress(); countChars(this,'c1')"></textarea>
       <div class="char-counter" id="c1"></div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q2</span> <span data-i18n="q2-text">What eats up the most time while feeling like low-value, repetitive work?</span> <span class="req">*</span>
+        <span class="q-num">Q2</span> <span data-i18n="q2-text">Which tasks take the most time but feel like low-value and repetitive work?</span> <span class="req">*</span>
       </label>
-      <div class="question-hint" data-i18n="q2-hint">e.g. copying data, sending the same emails, updating spreadsheets by hand…</div>
-      <textarea id="q2" data-i18n-ph="q2-ph" placeholder="Jot down whatever comes to mind…" oninput="updateProgress(); countChars(this,'c2')"></textarea>
+      <div class="question-hint" data-i18n="q2-hint">e.g. copying data, sending the same emails, updating spreadsheets manually…</div>
+      <textarea id="q2" data-i18n-ph="q2-ph" placeholder="List as many as come to mind…" oninput="updateProgress(); countChars(this,'c2')"></textarea>
       <div class="char-counter" id="c2"></div>
     </div>
   </div>
@@ -754,24 +749,24 @@
       <div class="section-letter coral">B</div>
       <div>
         <div class="section-title" data-i18n="secB-title">Email &amp; communication</div>
-        <div class="section-desc" data-i18n="secB-desc">What keeps coming back in your inbox</div>
+        <div class="section-desc" data-i18n="secB-desc">Patterns in the emails you send and receive</div>
       </div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q3</span> <span data-i18n="q3-text">Which emails do you answer with almost the same text every time?</span> <span class="req">*</span>
+        <span class="q-num">Q3</span> <span data-i18n="q3-text">Which emails do you respond to with nearly the same text every time?</span> <span class="req">*</span>
       </label>
-      <div class="question-hint" data-i18n="q3-hint">e.g. delivery confirmations, order status, supplier chasers</div>
-      <textarea id="q5" data-i18n-ph="q3-ph" placeholder="Tell us the type of email and how often it lands…" oninput="updateProgress(); countChars(this,'c5')"></textarea>
+      <div class="question-hint" data-i18n="q3-hint">e.g. delivery confirmations, order status, supplier follow-ups</div>
+      <textarea id="q5" data-i18n-ph="q3-ph" placeholder="Describe the type of email and how often it comes in…" oninput="updateProgress(); countChars(this,'c5')"></textarea>
       <div class="char-counter" id="c5"></div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q4</span> <span data-i18n="q4-text">Are there emails you have to chase up by hand to see if you got a reply? Tell us the situation and who they go to.</span> <span class="req">*</span>
+        <span class="q-num">Q4</span> <span data-i18n="q4-text">Are there specific emails you send that require manual follow-up to check for a reply? Please describe the context and the types of recipients involved.</span> <span class="req">*</span>
       </label>
-      <div class="question-hint" data-i18n="q4-hint">e.g. customers, other departments, suppliers…</div>
+      <div class="question-hint" data-i18n="q4-hint">e.g. external clients, internal departments, vendors, etc.</div>
       <textarea id="q6" data-i18n-ph="q4-ph" placeholder="Describe the situation and who you follow up with…" oninput="updateProgress(); countChars(this,'c6')"></textarea>
       <div class="char-counter" id="c6"></div>
     </div>
@@ -785,31 +780,31 @@
       <div class="section-letter teal">C</div>
       <div>
         <div class="section-title" data-i18n="secC-title">Data entry &amp; documents</div>
-        <div class="section-desc" data-i18n="secC-desc">Data and documents you handle by hand</div>
+        <div class="section-desc" data-i18n="secC-desc">Manual data work and document handling</div>
       </div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q5</span> <span data-i18n="q5-text">Which spreadsheets do you update by hand — and where does the data come from?</span> <span class="req">*</span>
+        <span class="q-num">Q5</span> <span data-i18n="q5-text">Which spreadsheets do you update manually — and where does the data come from?</span> <span class="req">*</span>
       </label>
-      <div class="question-hint" data-i18n="q5-hint">e.g. a stock or shipment tracker, a pricing file — and whether the data comes from emails, ERP exports, or somewhere else</div>
-      <textarea id="q7" data-i18n-ph="q5-ph" placeholder="Name the spreadsheet and tell us where the data comes from…" oninput="updateProgress(); countChars(this,'c7')"></textarea>
+      <div class="question-hint" data-i18n="q5-hint">e.g. a stock or shipment tracker, a pricing file — and whether the data comes from emails, ERP exports, or another system</div>
+      <textarea id="q7" data-i18n-ph="q5-ph" placeholder="Name the spreadsheet and describe where the data originates…" oninput="updateProgress(); countChars(this,'c7')"></textarea>
       <div class="char-counter" id="c7"></div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q6</span> <span data-i18n="q6-text">Do you ever copy data from an email or PDF into a spreadsheet?</span> <span class="req">*</span>
+        <span class="q-num">Q6</span> <span data-i18n="q6-text">Do you ever copy data from emails or PDFs into a spreadsheet?</span> <span class="req">*</span>
       </label>
       <div class="choice-group" id="choiceC8">
         <button class="choice-btn" data-i18n="btn-yes" onclick="selectChoice('choiceC8', this); showExtra('extraC8', true); updateProgress()">Yes</button>
         <button class="choice-btn" data-i18n="btn-no" onclick="selectChoice('choiceC8', this); showExtra('extraC8', false); updateProgress()">No</button>
       </div>
       <div id="extraC8" style="display:none;" class="extra-field">
-        <div class="question-hint" data-i18n="q8b-hint1" style="margin-bottom:8px;">How often? Tell us what kind of data, where it comes from, and roughly how you do it.</div>
+        <div class="question-hint" data-i18n="q8b-hint1" style="margin-bottom:8px;">How often do you do this? Please specify the type of data, the source, and a brief description of your procedure.</div>
         <div class="question-hint" data-i18n="q8b-hint2">e.g. invoice amounts, delivery dates, order numbers</div>
-        <textarea id="q8b" data-i18n-ph="q8b-ph" placeholder="Walk us through how you do it…" oninput="countChars(this,'c8b')"></textarea>
+        <textarea id="q8b" data-i18n-ph="q8b-ph" placeholder="Describe your process…" oninput="countChars(this,'c8b')"></textarea>
         <div class="char-counter" id="c8b"></div>
       </div>
     </div>
@@ -823,16 +818,16 @@
       <div class="section-letter dark">D</div>
       <div>
         <div class="section-title" data-i18n="secD-title">Follow-ups &amp; coordination</div>
-        <div class="section-desc" data-i18n="secD-desc">What slips through the cracks between tasks</div>
+        <div class="section-desc" data-i18n="secD-desc">Tasks and handoffs that fall through the cracks</div>
       </div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q7</span> <span data-i18n="q7-text">Do things ever get lost or forgotten because there's no real system to track them? If so, give us a specific example.</span> <span class="req">*</span>
+        <span class="q-num">Q7</span> <span data-i18n="q7-text">Do any tasks get lost or ignored because there is no clear system to track them? If yes, please provide a specific example of something that was missed.</span> <span class="req">*</span>
       </label>
       <div class="question-hint" data-i18n="q7-hint">e.g. a customer email left unanswered, a missed deadline, a follow-up nobody picked up</div>
-      <textarea id="q11" data-i18n-ph="q7-ph" placeholder="Tell us about a specific time something slipped through…" oninput="updateProgress(); countChars(this,'c11')"></textarea>
+      <textarea id="q11" data-i18n-ph="q7-ph" placeholder="Describe a concrete situation where something slipped through…" oninput="updateProgress(); countChars(this,'c11')"></textarea>
       <div class="char-counter" id="c11"></div>
     </div>
   </div>
@@ -844,18 +839,18 @@
     <div class="section-header">
       <div class="section-letter amber">E</div>
       <div>
-        <div class="section-title" data-i18n="secE-title">Your ideas</div>
-        <div class="section-desc" data-i18n="secE-desc">Got an automation or AI idea? Share it</div>
+        <div class="section-title" data-i18n="secE-title">Ideas &amp; proposals</div>
+        <div class="section-desc" data-i18n="secE-desc">Any automation or AI ideas you'd like to share</div>
       </div>
     </div>
 
     <p class="question-hint" data-i18n="secE-hint" style="margin-bottom:16px;">
-      Totally optional — but if something comes to mind, we'd love to hear it. Every idea gets logged and read by the Data &amp; AI team.
+      Not mandatory — but if something comes to mind, we'd love to hear it. Each idea is logged and reviewed by the Data &amp; AI team.
     </p>
 
     <div id="ideasList">
       <div class="idea-entry">
-        <textarea class="idea-text" data-i18n-ph="idea-ph" placeholder="Tell us your idea or suggestion…"></textarea>
+        <textarea class="idea-text" data-i18n-ph="idea-ph" placeholder="Describe your idea or automation suggestion…"></textarea>
         <button type="button" class="btn-remove-idea" onclick="removeIdeaEntry(this)" title="Remove">×</button>
       </div>
     </div>
@@ -869,10 +864,10 @@
   <!-- SUBMIT -->
   <div class="submit-section">
     <div class="submit-content">
-      <div class="submit-title" data-i18n="submit-title">All set?</div>
-      <p class="submit-sub" data-i18n="submit-sub">Your answers are only used to design automations that save your team time.</p>
+      <div class="submit-title" data-i18n="submit-title">Ready to submit?</div>
+      <p class="submit-sub" data-i18n="submit-sub">Your answers are used only to design automations that save your team time.</p>
       <button class="btn-submit" id="btnSubmit" onclick="submitForm()">
-        <span id="btnText" data-i18n="btn-submit">Send my answers</span>
+        <span id="btnText" data-i18n="btn-submit">Submit my answers</span>
         <div class="spinner" id="btnSpinner"></div>
         <svg id="btnArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -883,7 +878,7 @@
   </div>
 
   <div class="footer-note" data-i18n="footer-note">
-    Your answers are only used to design automations that save your team time, and they stay within the Data &amp; AI team.
+    Your answers are used only to design automations that save your team time. They will not be shared outside the Data &amp; AI team.
   </div>
 
 </div>
@@ -891,8 +886,8 @@
 <!-- SUCCESS -->
 <div class="success-screen" id="successScreen">
   <div class="success-icon">✓</div>
-  <div class="success-title" data-i18n="success-title">Thank you!</div>
-  <p class="success-sub" data-i18n="success-sub">The Data &amp; AI team has got it. We read every response carefully before we start on anything.</p>
+  <div class="success-title" data-i18n="success-title">Thank you.</div>
+  <p class="success-sub" data-i18n="success-sub">Your answers have been received by the Data &amp; AI team. We review every response carefully before any work begins.</p>
 </div>
 
 <script>
@@ -900,572 +895,572 @@
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbywxgS_bqC3bhrXhtVJe4a7QAOTxNVEGlxz9zkI5RUF6VzFtoWVxNVNgUlWnQPZqb74Cw/exec';
   // ─────────────────────────────────────────────────────────────────────────────
 
-  // ─── TRANSLATIONS (written to read naturally, not machine-translated) ─────────
+  // ─── TRANSLATIONS ─────────────────────────────────────────────────────────────
   var T = {
     en: {
-      'eyebrow':       'Data & AI Team · From the ground up',
-      'h1':            'AI in your<br><em>everyday work</em>',
-      'hero-sub':      "We're trying to spot where AI can take repetitive work off your plate. This quick form helps us get a feel for your day.",
+      'eyebrow':       'Data & AI Team · Team Discovery',
+      'h1':            'AI Automation<br><em>Team Discovery</em>',
+      'hero-sub':      "We're looking at where AI can take repetitive work off your plate. This short form helps us understand how your day actually runs.",
       'progress-label':'Progress',
-      'short-note':    'No need to write much — a couple of sentences or a few bullets is plenty.',
-      'intro-text':    "Answer based on your real day — there are no right or wrong answers. What helps us most are concrete examples; they're what point us in the right direction. We rely on what you tell us to understand how the work really happens — without it, we'd just be guessing.",
-      'details-title': 'About you',
+      'short-note':    'Keep it short — a few sentences or bullet points are plenty.',
+      'intro-text':    "Answer from your real day-to-day — there are no wrong answers. The more concrete you are, the easier it is for us to spot what's worth automating. We work from what you tell us here, so be honest and specific.",
+      'details-title': 'Your details',
       'name-label':    'Name',
       'team-label':    'Team / Department',
       'entity-label':  'Entity',
       'date-label':    'Date',
-      'team-ph':       'Choose your team…',
-      'entity-ph':     'Choose your entity…',
-      'name-ph':       'Your name',
-      'secA-title':    'Your day-to-day',
+      'team-ph':       'Select your team…',
+      'entity-ph':     'Select your entity…',
+      'name-ph':       'Your full name',
+      'secA-title':    'Your daily work',
       'secA-desc':     'Where your time actually goes',
-      'q1-text':       'What do you find yourself repeating the most every day?',
+      'q1-text':       "What's the most repetitive task you do every day?",
       'q1-hint':       'e.g. checking order status, entering orders into ITMS/Steppro, sending the same daily report',
-      'q1-ph':         'Tell us about it as concretely as you can…',
-      'q2-text':       'What eats up the most time while feeling like low-value, repetitive work?',
+      'q1-ph':         'Describe it as concretely as you can…',
+      'q2-text':       'Which tasks eat up the most time but feel low-value or repetitive?',
       'q2-hint':       'e.g. copying data, sending the same emails, updating spreadsheets by hand…',
-      'q2-ph':         'Jot down whatever comes to mind…',
+      'q2-ph':         'List as many as come to mind…',
       'secB-title':    'Email & communication',
-      'secB-desc':     'What keeps coming back in your inbox',
+      'secB-desc':     'The emails you send and receive most',
       'q3-text':       'Which emails do you answer with almost the same text every time?',
-      'q3-hint':       'e.g. delivery confirmations, order status, supplier chasers',
-      'q3-ph':         'Tell us the type of email and how often it lands…',
-      'q4-text':       'Are there emails you have to chase up by hand to see if you got a reply? Tell us the situation and who they go to.',
-      'q4-hint':       'e.g. customers, other departments, suppliers…',
-      'q4-ph':         'Describe the situation and who you follow up with…',
+      'q3-hint':       'e.g. delivery confirmations, order status, supplier follow-ups',
+      'q3-ph':         'What kind of email, and how often it lands…',
+      'q4-text':       "Do you send emails where you have to manually chase a reply? Tell us the context and who's usually on the other end.",
+      'q4-hint':       'e.g. external clients, internal departments, vendors, etc.',
+      'q4-ph':         'The situation and who you chase…',
       'secC-title':    'Data entry & documents',
-      'secC-desc':     'Data and documents you handle by hand',
+      'secC-desc':     'Manual data and document work',
       'q5-text':       'Which spreadsheets do you update by hand — and where does the data come from?',
-      'q5-hint':       'e.g. a stock or shipment tracker, a pricing file — and whether the data comes from emails, ERP exports, or somewhere else',
-      'q5-ph':         'Name the spreadsheet and tell us where the data comes from…',
-      'q6-text':       'Do you ever copy data from an email or PDF into a spreadsheet?',
+      'q5-hint':       'e.g. a stock or shipment tracker, a pricing file — and whether the data comes from emails, ERP exports, or another system',
+      'q5-ph':         'Name the spreadsheet and where the data comes from…',
+      'q6-text':       'Do you ever copy data from emails or PDFs into a spreadsheet?',
       'btn-yes':       'Yes',
       'btn-no':        'No',
-      'q8b-hint1':     'How often? Tell us what kind of data, where it comes from, and roughly how you do it.',
+      'q8b-hint1':     'How often? Tell us what data, where it comes from, and roughly how you do it.',
       'q8b-hint2':     'e.g. invoice amounts, delivery dates, order numbers',
-      'q8b-ph':        'Walk us through how you do it…',
+      'q8b-ph':        'Walk us through it…',
       'secD-title':    'Follow-ups & coordination',
-      'secD-desc':     'What slips through the cracks between tasks',
-      'q7-text':       "Do things ever get lost or forgotten because there's no real system to track them? If so, give us a specific example.",
+      'secD-desc':     'Tasks and handoffs that slip through the cracks',
+      'q7-text':       "Do tasks ever slip because there's no clear way to track them? If so, give us a real example.",
       'q7-hint':       'e.g. a customer email left unanswered, a missed deadline, a follow-up nobody picked up',
-      'q7-ph':         'Tell us about a specific time something slipped through…',
-      'secE-title':    'Your ideas',
-      'secE-desc':     'Got an automation or AI idea? Share it',
-      'secE-hint':     "Totally optional — but if something comes to mind, we'd love to hear it. Every idea gets logged and read by the Data & AI team.",
-      'idea-ph':       'Tell us your idea or suggestion…',
+      'q7-ph':         'Describe a time something slipped through…',
+      'secE-title':    'Ideas & proposals',
+      'secE-desc':     "Any automation or AI ideas you'd like to share",
+      'secE-hint':     "Optional — but if you've got an idea, we want to hear it. Every one is read by the Data & AI team.",
+      'idea-ph':       'Describe your idea or suggestion…',
       'add-idea':      'Add another idea',
-      'submit-title':  'All set?',
-      'submit-sub':    'Your answers are only used to design automations that save your team time.',
-      'btn-submit':    'Send my answers',
-      'submitting':    'Sending…',
-      'footer-note':   'Your answers are only used to design automations that save your team time, and they stay within the Data & AI team.',
-      'success-title': 'Thank you!',
-      'success-sub':   'The Data & AI team has got it. We read every response carefully before we start on anything.',
+      'submit-title':  'Ready to submit?',
+      'submit-sub':    "We'll only use your answers to build automations that save your team time.",
+      'btn-submit':    'Submit my answers',
+      'submitting':    'Submitting…',
+      'footer-note':   "We'll only use your answers to build time-saving automations. Nothing is shared outside the Data & AI team.",
+      'success-title': 'Thank you.',
+      'success-sub':   'Your answers are in with the Data & AI team. We read every response before any work starts.',
       'error-msg':     "⚠️ We couldn't save your response. Please try again, or reach out to the Data & AI team directly.",
       'chars':         'characters',
       'team-opts':     ['Purchasing','Customer Service','Logistics / Operations','Finance','Sales','Management','IT','Other']
     },
     fr: {
-      'eyebrow':       'Équipe Data & IA · Découverte terrain',
-      'h1':            "L'IA dans votre<br><em>quotidien</em>",
-      'hero-sub':      "On cherche à voir où l'IA peut vous enlever les tâches répétitives des mains. Ce petit questionnaire nous aide à comprendre votre quotidien.",
+      'eyebrow':       'Équipe Data & IA · Découverte des équipes',
+      'h1':            'Automatisation IA<br><em>Découverte des équipes</em>',
+      'hero-sub':      "Nous cherchons où l'IA peut vous décharger des tâches répétitives. Ce court formulaire nous aide à comprendre comment se déroule vraiment votre journée.",
       'progress-label':'Avancement',
-      'short-note':    'Pas besoin de rédiger : quelques phrases ou une liste à puces, c’est parfait.',
-      'intro-text':    "Répondez avec votre quotidien en tête — il n’y a pas de bonne ou de mauvaise réponse. Ce qui nous aide le plus, ce sont les exemples concrets : ce sont eux qui nous mettent sur la piste. On se base vraiment sur ce que vous nous racontez pour comprendre comment le travail se passe pour de vrai ; sans ça, on avancerait à l’aveugle.",
-      'details-title': 'Vous concernant',
+      'short-note':    'Restez bref — quelques phrases ou puces suffisent.',
+      'intro-text':    "Répondez à partir de votre quotidien réel — il n'y a pas de mauvaises réponses. Plus vous êtes concret, plus il nous est facile de repérer ce qui vaut la peine d'être automatisé. Nous partons de ce que vous nous dites ici, alors soyez honnête et précis.",
+      'details-title': 'Vos informations',
       'name-label':    'Nom',
-      'team-label':    'Équipe / Service',
+      'team-label':    'Équipe / Département',
       'entity-label':  'Entité',
       'date-label':    'Date',
-      'team-ph':       'Votre équipe…',
-      'entity-ph':     'Votre entité…',
-      'name-ph':       'Votre nom',
-      'secA-title':    'Votre quotidien',
-      'secA-desc':     'Là où passe votre temps',
-      'q1-text':       'Quelle est la tâche que vous répétez le plus, jour après jour ?',
-      'q1-hint':       'ex : vérifier le statut des commandes, saisir les commandes dans ITMS/Steppro, envoyer le même rapport tous les jours',
-      'q1-ph':         'Décrivez-la le plus concrètement possible…',
-      'q2-text':       "Qu’est-ce qui vous prend beaucoup de temps alors que ça n’apporte pas grand-chose ?",
-      'q2-hint':       'ex : recopier des données, renvoyer les mêmes emails, mettre à jour des tableaux à la main…',
-      'q2-ph':         'Notez tout ce qui vous vient…',
-      'secB-title':    'Emails & échanges',
-      'secB-desc':     'Ce qui revient dans vos emails',
+      'team-ph':       'Sélectionnez votre équipe…',
+      'entity-ph':     'Sélectionnez votre entité…',
+      'name-ph':       'Votre nom complet',
+      'secA-title':    'Votre travail quotidien',
+      'secA-desc':     'Où passe réellement votre temps',
+      'q1-text':       'Quelle est la tâche la plus répétitive que vous faites chaque jour ?',
+      'q1-hint':       'ex : vérifier le statut des commandes, saisir les commandes dans ITMS/Steppro, envoyer le même rapport quotidien',
+      'q1-ph':         'Décrivez-la aussi concrètement que possible…',
+      'q2-text':       'Quelles tâches vous prennent le plus de temps tout en semblant peu utiles ou répétitives ?',
+      'q2-hint':       'ex : copier des données, envoyer les mêmes emails, mettre à jour des tableaux à la main…',
+      'q2-ph':         'Listez-en autant que possible…',
+      'secB-title':    'Email et communication',
+      'secB-desc':     'Les emails que vous envoyez et recevez le plus',
       'q3-text':       'À quels emails répondez-vous presque toujours avec le même texte ?',
-      'q3-hint':       'ex : confirmations de livraison, suivis de commande, relances fournisseurs',
-      'q3-ph':         "Dites-nous quel type d’email et à quelle fréquence…",
-      'q4-text':       "Y a-t-il des emails que vous devez relancer à la main pour vérifier qu’on vous a répondu ? Dites-nous dans quel contexte et à qui.",
-      'q4-hint':       'ex : clients, autres services, fournisseurs…',
-      'q4-ph':         'Décrivez la situation et qui vous relancez…',
-      'secC-title':    'Saisie & documents',
-      'secC-desc':     'Les données et documents traités à la main',
-      'q5-text':       "Quels tableaux remplissez-vous à la main — et d’où viennent les données ?",
-      'q5-hint':       "ex : un suivi de stock ou d’expéditions, un fichier de prix — et si les données viennent d’emails, d’exports de l’ERP ou d’ailleurs",
-      'q5-ph':         "Nommez le tableau et dites d’où viennent les données…",
-      'q6-text':       "Vous arrive-t-il de recopier des données d’un email ou d’un PDF vers un tableau ?",
+      'q3-hint':       'ex : confirmations de livraison, statut de commande, relances fournisseurs',
+      'q3-ph':         "Le type d'email, et à quelle fréquence il arrive…",
+      'q4-text':       "Envoyez-vous des emails pour lesquels vous devez relancer manuellement pour obtenir une réponse ? Précisez le contexte et qui se trouve en face.",
+      'q4-hint':       'ex : clients externes, départements internes, fournisseurs, etc.',
+      'q4-ph':         'La situation et les personnes que vous relancez…',
+      'secC-title':    'Saisie de données et documents',
+      'secC-desc':     'Traitement manuel des données et des documents',
+      'q5-text':       "Quels tableaux mettez-vous à jour à la main — et d'où viennent les données ?",
+      'q5-hint':       "ex : un suivi de stock ou d'expéditions, un fichier de prix — et si les données viennent d'emails, d'exports ERP ou d'un autre système",
+      'q5-ph':         "Le nom du tableau et l'origine des données…",
+      'q6-text':       'Vous arrive-t-il de copier des données depuis des emails ou des PDF dans un tableau ?',
       'btn-yes':       'Oui',
       'btn-no':        'Non',
-      'q8b-hint1':     'À quelle fréquence ? Dites-nous quel type de données, d’où elles viennent et comment vous vous y prenez.',
+      'q8b-hint1':     'À quelle fréquence ? Précisez quelles données, leur source, et en gros comment vous procédez.',
       'q8b-hint2':     'ex : montants de factures, dates de livraison, numéros de commande',
       'q8b-ph':        'Expliquez-nous votre façon de faire…',
-      'secD-title':    'Suivis & coordination',
-      'secD-desc':     'Ce qui passe entre les mailles du filet',
-      'q7-text':       "Est-ce que des choses passent à la trappe faute d’un vrai système pour les suivre ? Si oui, racontez-nous un cas précis.",
-      'q7-hint':       "ex : un email client resté sans réponse, une échéance oubliée, une relance que personne n’a reprise",
-      'q7-ph':         'Racontez une situation concrète où quelque chose est passé à la trappe…',
-      'secE-title':    'Vos idées',
-      'secE-desc':     "Une idée d’automatisation ou d’IA ? Partagez-la",
-      'secE-hint':     "Rien d’obligatoire — mais si une idée vous vient, on est preneurs. Chacune est notée et regardée par l’équipe Data & IA.",
-      'idea-ph':       'Décrivez votre idée ou votre suggestion…',
-      'add-idea':      'Ajouter une idée',
+      'secD-title':    'Suivi et coordination',
+      'secD-desc':     'Les tâches et transferts qui passent entre les mailles du filet',
+      'q7-text':       "Des tâches passent-elles à la trappe faute d'un moyen clair de les suivre ? Si oui, donnez un exemple concret.",
+      'q7-hint':       "ex : un email client resté sans réponse, une échéance manquée, une relance que personne n'a reprise",
+      'q7-ph':         'Décrivez une fois où quelque chose est passé à la trappe…',
+      'secE-title':    'Idées et propositions',
+      'secE-desc':     "Toute idée d'automatisation ou d'IA que vous souhaitez partager",
+      'secE-hint':     "Facultatif — mais si vous avez une idée, elle nous intéresse. Chacune est lue par l'équipe Data & IA.",
+      'idea-ph':       'Décrivez votre idée ou suggestion…',
+      'add-idea':      'Ajouter une autre idée',
       'submit-title':  'Prêt à envoyer ?',
-      'submit-sub':    'Vos réponses servent seulement à concevoir des automatisations qui vous font gagner du temps.',
+      'submit-sub':    'Vos réponses servent uniquement à concevoir des automatisations qui font gagner du temps à votre équipe.',
       'btn-submit':    'Envoyer mes réponses',
-      'submitting':    'Envoi…',
-      'footer-note':   "Vos réponses servent seulement à concevoir des automatisations qui font gagner du temps à votre équipe, et restent au sein de l’équipe Data & IA.",
-      'success-title': 'Merci !',
-      'success-sub':   "C’est bien reçu du côté de l’équipe Data & IA. On lit chaque réponse avec attention avant de se lancer.",
-      'error-msg':     "⚠️ L’enregistrement n’a pas fonctionné. Réessayez, ou écrivez directement à l’équipe Data & IA.",
+      'submitting':    'Envoi en cours…',
+      'footer-note':   "Vos réponses servent uniquement à concevoir des automatisations qui font gagner du temps. Rien n'est partagé en dehors de l'équipe Data & IA.",
+      'success-title': 'Merci.',
+      'success-sub':   "Vos réponses sont bien arrivées à l'équipe Data & IA. Nous lisons chaque réponse avant de commencer quoi que ce soit.",
+      'error-msg':     "⚠️ Impossible d'enregistrer votre réponse. Réessayez ou contactez directement l'équipe Data & IA.",
       'chars':         'caractères',
       'team-opts':     ['Achats','Service client','Logistique / Opérations','Finance','Commercial','Direction','IT','Autre']
     },
     zh: {
-      'eyebrow':       '数据与 AI 团队 · 走近你的日常',
-      'h1':            'AI 走进<br><em>日常工作</em>',
-      'hero-sub':      '我们想知道，AI 可以在哪些地方帮你省掉重复的活儿。这份问卷能让我们更了解你每天的工作。',
+      'eyebrow':       '数据与 AI 团队 · 团队调研',
+      'h1':            'AI 自动化<br><em>团队调研</em>',
+      'hero-sub':      '我们想找出 AI 能替你分担哪些重复工作。这份简短表单帮助我们了解你每天的实际工作。',
       'progress-label':'进度',
-      'short-note':    '不用写太多，几句话或几条要点就行。',
-      'intro-text':    '凭你每天的实际工作来回答就好——没有标准答案。最有用的是具体的例子，它们能帮我们找准方向。我们就是靠你讲的这些来了解工作真正是怎么运转的；没有这些，就只能靠猜了。',
-      'details-title': '关于你',
+      'short-note':    '尽量简短——几句话或几个要点就够了。',
+      'intro-text':    '根据你的真实日常来回答，没有标准答案。写得越具体，我们越容易看出哪些值得自动化。我们完全依据你在这里填写的内容，所以请如实、具体地回答。',
+      'details-title': '你的信息',
       'name-label':    '姓名',
       'team-label':    '团队 / 部门',
-      'entity-label':  '所属公司',
+      'entity-label':  '所属实体',
       'date-label':    '日期',
-      'team-ph':       '选择你的团队…',
-      'entity-ph':     '选择你所属的公司…',
-      'name-ph':       '你的名字',
-      'secA-title':    '你的日常',
-      'secA-desc':     '时间都花在哪儿了',
-      'q1-text':       '你每天重复得最多的事情是什么？',
-      'q1-hint':       '比如：查订单状态、在 ITMS/Steppro 里录订单、每天发同一份报告',
-      'q1-ph':         '尽量讲得具体一点…',
-      'q2-text':       '哪些事情很花时间，却又没什么价值？',
-      'q2-hint':       '比如：复制数据、反复发同样的邮件、手动更新表格…',
-      'q2-ph':         '想到什么都写下来…',
+      'team-ph':       '请选择你的团队…',
+      'entity-ph':     '请选择你的实体…',
+      'name-ph':       '你的全名',
+      'secA-title':    '你的日常工作',
+      'secA-desc':     '你的时间实际花在哪里',
+      'q1-text':       '你每天做的最重复的工作是什么？',
+      'q1-hint':       '例如：查订单状态、在 ITMS/Steppro 里录订单、发同样的每日报告',
+      'q1-ph':         '尽量写具体一点…',
+      'q2-text':       '哪些工作最花时间，却感觉价值不高或很重复？',
+      'q2-hint':       '例如：复制数据、发同样的邮件、手动更新表格…',
+      'q2-ph':         '想到多少写多少…',
       'secB-title':    '邮件与沟通',
-      'secB-desc':     '你邮件里反复出现的内容',
-      'q3-text':       '哪些邮件你几乎每次都用同样的话回复？',
-      'q3-hint':       '比如：交货确认、订单状态、催供应商',
-      'q3-ph':         '说说是什么邮件、多久来一次…',
-      'q4-text':       '有没有哪些邮件，你得自己回头去看对方有没有回？说说是什么情况、发给谁。',
-      'q4-hint':       '比如：客户、其他部门、供应商…',
-      'q4-ph':         '说说具体情况，以及你在催谁…',
+      'secB-desc':     '你收发最多的邮件',
+      'q3-text':       '哪些邮件你几乎每次都用差不多的内容回复？',
+      'q3-hint':       '例如：交货确认、订单状态、催促供应商',
+      'q3-ph':         '哪类邮件，多久来一次…',
+      'q4-text':       '有没有一些邮件，你发出后要手动跟进才能拿到回复？说说具体情况和对方通常是谁。',
+      'q4-hint':       '例如：外部客户、内部部门、供应商等',
+      'q4-ph':         '具体情况和你跟进的对象…',
       'secC-title':    '数据录入与文档',
-      'secC-desc':     '需要手动处理的数据和文件',
-      'q5-text':       '哪些表格是你手动更新的——数据又是从哪儿来的？',
-      'q5-hint':       '比如：库存或发货台账、价格表——数据是来自邮件、ERP 导出，还是别的地方',
-      'q5-ph':         '说说表格的名字，以及数据从哪儿来…',
-      'q6-text':       '你会把邮件或 PDF 里的数据手动复制到表格里吗？',
+      'secC-desc':     '手动处理数据和文档',
+      'q5-text':       '你手动更新哪些表格——数据从哪来？',
+      'q5-hint':       '例如：库存或发货跟踪表、价格表——以及数据是来自邮件、ERP 导出还是别的系统',
+      'q5-ph':         '写下表格名称和数据来源…',
+      'q6-text':       '你会把邮件或 PDF 里的数据复制到表格里吗？',
       'btn-yes':       '会',
       'btn-no':        '不会',
-      'q8b-hint1':     '多久弄一次？简单说说是什么数据、从哪儿来、你是怎么操作的。',
-      'q8b-hint2':     '比如：发票金额、交货日期、订单号',
+      'q8b-hint1':     '多久做一次？说说是什么数据、从哪来、大致怎么做。',
+      'q8b-hint2':     '例如：发票金额、交货日期、订单号',
       'q8b-ph':        '说说你的做法…',
       'secD-title':    '跟进与协调',
-      'secD-desc':     '容易被漏掉的事和交接',
-      'q7-text':       '有没有什么事因为没人专门盯着，就这么被漏掉或忘了？如果有，举个具体的例子。',
-      'q7-hint':       '比如：客户邮件没人回、错过了截止日期、没人接手的跟进',
-      'q7-ph':         '讲一个具体被漏掉的情况…',
-      'secE-title':    '你的想法',
-      'secE-desc':     '有什么自动化或 AI 的点子？说来听听',
-      'secE-hint':     '不是必填——但你要是有想法，我们很想听。每条都会记下来，由数据与 AI 团队过目。',
+      'secD-desc':     '容易被漏掉的任务和交接',
+      'q7-text':       '有没有任务因为没有清晰的跟踪方式而被漏掉或忽略？如果有，请举一个真实的例子。',
+      'q7-hint':       '例如：没回复的客户邮件、错过的截止日期、没人接手的跟进',
+      'q7-ph':         '描述一次东西被漏掉的具体情况…',
+      'secE-title':    '想法与建议',
+      'secE-desc':     '任何你想分享的自动化或 AI 想法',
+      'secE-hint':     '选填——但只要你有想法，我们就想听。每一条都会由数据与 AI 团队查看。',
       'idea-ph':       '说说你的想法或建议…',
-      'add-idea':      '再加一条',
-      'submit-title':  '都填好了吗？',
-      'submit-sub':    '你的回答只用来设计能帮团队省时间的自动化。',
-      'btn-submit':    '提交',
+      'add-idea':      '再加一条想法',
+      'submit-title':  '可以提交了吗？',
+      'submit-sub':    '你的回答只用于设计帮团队省时间的自动化。',
+      'btn-submit':    '提交回答',
       'submitting':    '提交中…',
-      'footer-note':   '你的回答只用来设计能帮团队省时间的自动化，不会传到数据与 AI 团队之外。',
-      'success-title': '谢谢！',
-      'success-sub':   '数据与 AI 团队已经收到。我们会先认真看完每一份回答，再着手去做。',
-      'error-msg':     '⚠️ 回答没能保存。请再试一次，或者直接联系数据与 AI 团队。',
+      'footer-note':   '你的回答只用于设计省时间的自动化，不会分享到数据与 AI 团队之外。',
+      'success-title': '谢谢。',
+      'success-sub':   '你的回答已经交到数据与 AI 团队手上。动手之前，我们会认真读每一份回答。',
+      'error-msg':     '⚠️ 回答没能保存。请重试，或直接联系数据与 AI 团队。',
       'chars':         '字',
       'team-opts':     ['采购','客户服务','物流 / 运营','财务','销售','管理层','IT','其他']
     },
     it: {
-      'eyebrow':       'Team Data & AI · Sul campo',
-      'h1':            "L'AI nel lavoro<br><em>di tutti i giorni</em>",
-      'hero-sub':      "Vogliamo capire dove l'AI può toglierti di mezzo il lavoro ripetitivo. Con questo questionario ci facciamo un'idea delle tue giornate.",
+      'eyebrow':       'Team Data & IA · Scoperta dei team',
+      'h1':            'Automazione IA<br><em>Scoperta dei team</em>',
+      'hero-sub':      "Vogliamo capire dove l'IA può toglierti di dosso il lavoro ripetitivo. Questo breve modulo ci aiuta a capire com'è davvero la tua giornata.",
       'progress-label':'Avanzamento',
-      'short-note':    'Niente testi lunghi: bastano due righe o un elenco puntato.',
-      'intro-text':    "Rispondi pensando alle tue giornate vere — non ci sono risposte giuste o sbagliate. Quello che ci serve davvero sono gli esempi concreti: sono loro a metterci sulla strada giusta. Ci basiamo su quello che ci racconti per capire come funziona il lavoro nella pratica; senza, andremmo avanti a intuito.",
-      'details-title': 'Qualche dato su di te',
+      'short-note':    'Sii breve — bastano poche frasi o qualche punto elenco.',
+      'intro-text':    "Rispondi partendo dalla tua giornata reale — non ci sono risposte sbagliate. Più sei concreto, più ci è facile capire cosa vale la pena automatizzare. Lavoriamo su ciò che ci dici qui, quindi sii onesto e preciso.",
+      'details-title': 'I tuoi dati',
       'name-label':    'Nome',
       'team-label':    'Team / Reparto',
-      'entity-label':  'Società',
+      'entity-label':  'Entità',
       'date-label':    'Data',
-      'team-ph':       'Scegli il tuo team…',
-      'entity-ph':     'Scegli la tua società…',
-      'name-ph':       'Il tuo nome',
-      'secA-title':    'Le tue giornate',
-      'secA-desc':     'Dove se ne va il tuo tempo',
-      'q1-text':       'Qual è la cosa più ripetitiva che fai ogni giorno?',
-      'q1-hint':       'es. controllare lo stato degli ordini, inserire ordini in ITMS/Steppro, mandare lo stesso report ogni giorno',
-      'q1-ph':         'Raccontacela nel modo più concreto possibile…',
-      'q2-text':       'Cosa ti porta via un sacco di tempo pur valendo poco?',
-      'q2-hint':       'es. ricopiare dati, mandare sempre le stesse email, aggiornare fogli a mano…',
-      'q2-ph':         'Scrivi tutto quello che ti viene in mente…',
-      'secB-title':    'Email e comunicazioni',
-      'secB-desc':     'Quello che si ripete nelle tue email',
+      'team-ph':       'Seleziona il tuo team…',
+      'entity-ph':     'Seleziona la tua entità…',
+      'name-ph':       'Il tuo nome completo',
+      'secA-title':    'Il tuo lavoro quotidiano',
+      'secA-desc':     'Dove va davvero il tuo tempo',
+      'q1-text':       "Qual è l'attività più ripetitiva che fai ogni giorno?",
+      'q1-hint':       'es. controllare lo stato degli ordini, inserire ordini in ITMS/Steppro, inviare lo stesso report giornaliero',
+      'q1-ph':         'Descrivila nel modo più concreto possibile…',
+      'q2-text':       'Quali attività ti portano via più tempo pur sembrando poco utili o ripetitive?',
+      'q2-hint':       'es. copiare dati, inviare le stesse email, aggiornare i fogli di calcolo a mano…',
+      'q2-ph':         'Elencane quante più te ne vengono in mente…',
+      'secB-title':    'Email e comunicazione',
+      'secB-desc':     'Le email che invii e ricevi più spesso',
       'q3-text':       'A quali email rispondi quasi sempre con lo stesso testo?',
       'q3-hint':       'es. conferme di consegna, stato degli ordini, solleciti ai fornitori',
-      'q3-ph':         "Dicci che tipo di email è e ogni quanto arriva…",
-      'q4-text':       'Ci sono email che devi ricontrollare a mano per vedere se ti hanno risposto? Raccontaci in che situazione e a chi le mandi.',
-      'q4-hint':       'es. clienti, altri reparti, fornitori…',
-      'q4-ph':         'Descrivi la situazione e a chi mandi il sollecito…',
-      'secC-title':    'Dati e documenti',
-      'secC-desc':     'Dati e documenti gestiti a mano',
+      'q3-ph':         'Che tipo di email, e con che frequenza arriva…',
+      'q4-text':       "Invii email per cui devi fare un sollecito manuale per avere una risposta? Raccontaci il contesto e chi c'è di solito dall'altra parte.",
+      'q4-hint':       'es. clienti esterni, reparti interni, fornitori, ecc.',
+      'q4-ph':         'La situazione e chi solleciti…',
+      'secC-title':    'Inserimento dati e documenti',
+      'secC-desc':     'Gestione manuale di dati e documenti',
       'q5-text':       'Quali fogli di calcolo aggiorni a mano — e da dove arrivano i dati?',
-      'q5-hint':       "es. un foglio per le scorte o le spedizioni, un listino — e se i dati arrivano da email, da export dell'ERP o da altro",
-      'q5-ph':         'Dicci come si chiama il foglio e da dove arrivano i dati…',
-      'q6-text':       "Ti capita di ricopiare dati da un'email o da un PDF dentro un foglio di calcolo?",
+      'q5-hint':       'es. un foglio per scorte o spedizioni, un listino prezzi — e se i dati arrivano da email, esportazioni ERP o un altro sistema',
+      'q5-ph':         'Il nome del foglio e da dove arrivano i dati…',
+      'q6-text':       'Ti capita di copiare dati da email o PDF in un foglio di calcolo?',
       'btn-yes':       'Sì',
       'btn-no':        'No',
-      'q8b-hint1':     'Ogni quanto? Dicci che tipo di dati, da dove arrivano e come fai, in due parole.',
+      'q8b-hint1':     'Con che frequenza? Dicci quali dati, da dove arrivano e più o meno come fai.',
       'q8b-hint2':     "es. importi delle fatture, date di consegna, numeri d'ordine",
-      'q8b-ph':        'Spiegaci come fai…',
+      'q8b-ph':        'Spiegaci come procedi…',
       'secD-title':    'Follow-up e coordinamento',
-      'secD-desc':     "Quello che sfugge tra una cosa e l'altra",
-      'q7-text':       "Capita che qualcosa vada perso o dimenticato perché non c'è un vero sistema per tenerne traccia? Se sì, facci un esempio preciso.",
-      'q7-hint':       "es. un'email di un cliente rimasta lì, una scadenza saltata, un sollecito che non ha ripreso nessuno",
-      'q7-ph':         'Raccontaci un caso concreto in cui qualcosa è sfuggito…',
-      'secE-title':    'Le tue idee',
-      'secE-desc':     "Hai un'idea di automazione o AI? Diccela",
-      'secE-hint':     "Non è obbligatorio, ma se ti viene in mente qualcosa siamo tutt'orecchi. Ogni idea viene segnata e letta dal team Data & AI.",
-      'idea-ph':       'Raccontaci la tua idea o il tuo suggerimento…',
-      'add-idea':      "Aggiungi un'idea",
-      'submit-title':  'Tutto pronto?',
-      'submit-sub':    'Le tue risposte servono solo a creare automazioni che fanno risparmiare tempo al tuo team.',
-      'btn-submit':    'Invia le risposte',
-      'submitting':    'Invio…',
-      'footer-note':   "Le tue risposte servono solo a creare automazioni che fanno risparmiare tempo al tuo team e restano all'interno del team Data & AI.",
-      'success-title': 'Grazie!',
-      'success-sub':   'Il team Data & AI ha ricevuto tutto. Leggiamo ogni risposta con attenzione prima di muoverci.',
-      'error-msg':     '⚠️ Qualcosa è andato storto nel salvataggio. Riprova, oppure scrivi direttamente al team Data & AI.',
+      'secD-desc':     'Attività e passaggi di consegne che sfuggono',
+      'q7-text':       "Ci sono attività che sfuggono perché manca un modo chiaro per tracciarle? Se sì, facci un esempio concreto.",
+      'q7-hint':       "es. un'email di un cliente rimasta senza risposta, una scadenza mancata, un follow-up che nessuno ha ripreso",
+      'q7-ph':         'Descrivi una volta in cui qualcosa è sfuggito…',
+      'secE-title':    'Idee e proposte',
+      'secE-desc':     'Qualsiasi idea di automazione o IA che vuoi condividere',
+      'secE-hint':     "Facoltativo — ma se hai un'idea, vogliamo sentirla. Ognuna viene letta dal team Data & IA.",
+      'idea-ph':       'Descrivi la tua idea o proposta…',
+      'add-idea':      "Aggiungi un'altra idea",
+      'submit-title':  'Pronto per inviare?',
+      'submit-sub':    'Useremo le tue risposte solo per progettare automazioni che fanno risparmiare tempo al tuo team.',
+      'btn-submit':    'Invia le mie risposte',
+      'submitting':    'Invio in corso…',
+      'footer-note':   'Useremo le tue risposte solo per creare automazioni che fanno risparmiare tempo. Niente viene condiviso fuori dal team Data & IA.',
+      'success-title': 'Grazie.',
+      'success-sub':   'Le tue risposte sono arrivate al team Data & IA. Leggiamo ogni risposta prima di iniziare qualsiasi lavoro.',
+      'error-msg':     '⚠️ Non siamo riusciti a salvare la tua risposta. Riprova o contatta direttamente il team Data & IA.',
       'chars':         'caratteri',
       'team-opts':     ['Acquisti','Servizio clienti','Logistica / Operazioni','Finanza','Vendite','Direzione','IT','Altro']
     },
     es: {
-      'eyebrow':       'Equipo de Datos e IA · Sobre el terreno',
-      'h1':            'La IA en tu<br><em>día a día</em>',
-      'hero-sub':      'Queremos ver dónde la IA puede quitarte de encima el trabajo repetitivo. Con este cuestionario nos hacemos una idea de cómo es tu día.',
+      'eyebrow':       'Equipo de Datos e IA · Descubrimiento de equipos',
+      'h1':            'Automatización con IA<br><em>Descubrimiento de equipos</em>',
+      'hero-sub':      'Queremos ver dónde la IA puede quitarte trabajo repetitivo de encima. Este breve formulario nos ayuda a entender cómo es tu día de verdad.',
       'progress-label':'Progreso',
-      'short-note':    'Nada de textos largos: con un par de frases o unos puntos nos vale.',
-      'intro-text':    'Responde pensando en tu día real — aquí no hay respuestas buenas ni malas. Lo que más nos sirve son los ejemplos concretos: son los que nos ponen sobre la pista. Nos guiamos por lo que nos cuentas para entender cómo funciona el trabajo de verdad; sin eso, iríamos a ciegas.',
-      'details-title': 'Sobre ti',
+      'short-note':    'Sé breve — bastan unas frases o algunos puntos.',
+      'intro-text':    'Responde desde tu día a día real — no hay respuestas incorrectas. Cuanto más concreto seas, más fácil nos resulta ver qué merece la pena automatizar. Trabajamos con lo que nos cuentas aquí, así que sé honesto y concreto.',
+      'details-title': 'Tus datos',
       'name-label':    'Nombre',
       'team-label':    'Equipo / Departamento',
       'entity-label':  'Entidad',
       'date-label':    'Fecha',
-      'team-ph':       'Elige tu equipo…',
-      'entity-ph':     'Elige tu entidad…',
-      'name-ph':       'Tu nombre',
-      'secA-title':    'Tu día a día',
-      'secA-desc':     'En qué se te va el tiempo',
-      'q1-text':       '¿Cuál es la tarea que más repites cada día?',
-      'q1-hint':       'p. ej. revisar el estado de los pedidos, meter pedidos en ITMS/Steppro, enviar el mismo informe a diario',
-      'q1-ph':         'Cuéntanosla con el mayor detalle posible…',
-      'q2-text':       '¿Qué te lleva un montón de tiempo y encima aporta poco?',
-      'q2-hint':       'p. ej. copiar datos, mandar los mismos correos, actualizar hojas a mano…',
-      'q2-ph':         'Apunta todo lo que se te ocurra…',
+      'team-ph':       'Selecciona tu equipo…',
+      'entity-ph':     'Selecciona tu entidad…',
+      'name-ph':       'Tu nombre completo',
+      'secA-title':    'Tu trabajo diario',
+      'secA-desc':     'Adónde va realmente tu tiempo',
+      'q1-text':       '¿Cuál es la tarea más repetitiva que haces cada día?',
+      'q1-hint':       'p. ej. comprobar el estado de los pedidos, introducir pedidos en ITMS/Steppro, enviar el mismo informe diario',
+      'q1-ph':         'Descríbela de la forma más concreta posible…',
+      'q2-text':       '¿Qué tareas te quitan más tiempo aunque parezcan poco útiles o repetitivas?',
+      'q2-hint':       'p. ej. copiar datos, enviar los mismos correos, actualizar hojas de cálculo a mano…',
+      'q2-ph':         'Enumera todas las que se te ocurran…',
       'secB-title':    'Correo y comunicación',
-      'secB-desc':     'Lo que se repite en tus correos',
+      'secB-desc':     'Los correos que más envías y recibes',
       'q3-text':       '¿A qué correos respondes casi siempre con el mismo texto?',
       'q3-hint':       'p. ej. confirmaciones de entrega, estado de pedidos, seguimientos a proveedores',
-      'q3-ph':         'Dinos qué tipo de correo es y cada cuánto llega…',
-      'q4-text':       '¿Hay correos que tienes que revisar a mano para ver si te han contestado? Cuéntanos en qué situación y a quién se los mandas.',
-      'q4-hint':       'p. ej. clientes, otros departamentos, proveedores…',
-      'q4-ph':         'Describe la situación y a quién haces el seguimiento…',
-      'secC-title':    'Datos y documentos',
-      'secC-desc':     'Datos y documentos que tratas a mano',
+      'q3-ph':         'Qué tipo de correo, y cada cuánto llega…',
+      'q4-text':       '¿Envías correos en los que tienes que hacer un seguimiento manual para conseguir respuesta? Cuéntanos el contexto y quién suele estar al otro lado.',
+      'q4-hint':       'p. ej. clientes externos, departamentos internos, proveedores, etc.',
+      'q4-ph':         'La situación y a quién haces el seguimiento…',
+      'secC-title':    'Introducción de datos y documentos',
+      'secC-desc':     'Trabajo manual con datos y documentos',
       'q5-text':       '¿Qué hojas de cálculo actualizas a mano — y de dónde salen los datos?',
-      'q5-hint':       'p. ej. un control de stock o de envíos, una lista de precios — y si los datos vienen de correos, de exportaciones del ERP o de otro sitio',
-      'q5-ph':         'Dinos cómo se llama la hoja y de dónde salen los datos…',
-      'q6-text':       '¿Alguna vez copias datos de un correo o un PDF a una hoja de cálculo?',
+      'q5-hint':       'p. ej. un control de stock o de envíos, una hoja de precios — y si los datos salen de correos, exportaciones de ERP u otro sistema',
+      'q5-ph':         'El nombre de la hoja y de dónde salen los datos…',
+      'q6-text':       '¿Alguna vez copias datos de correos o PDF a una hoja de cálculo?',
       'btn-yes':       'Sí',
       'btn-no':        'No',
-      'q8b-hint1':     '¿Cada cuánto? Dinos qué tipo de datos, de dónde salen y cómo lo haces, a grandes rasgos.',
+      'q8b-hint1':     '¿Cada cuánto? Dinos qué datos, de dónde salen y más o menos cómo lo haces.',
       'q8b-hint2':     'p. ej. importes de facturas, fechas de entrega, números de pedido',
-      'q8b-ph':        'Explícanos cómo lo haces…',
+      'q8b-ph':        'Cuéntanos cómo lo haces…',
       'secD-title':    'Seguimientos y coordinación',
-      'secD-desc':     'Lo que se escapa entre tarea y tarea',
-      'q7-text':       '¿Se pierden o se olvidan cosas porque no hay un sistema claro para seguirlas? Si es así, ponnos un ejemplo concreto.',
-      'q7-hint':       'p. ej. un correo de un cliente sin contestar, un plazo que se pasó, un seguimiento que nadie retomó',
-      'q7-ph':         'Cuéntanos un caso concreto en el que algo se escapó…',
-      'secE-title':    'Tus ideas',
-      'secE-desc':     '¿Se te ocurre alguna automatización o uso de IA? Cuéntanosla',
-      'secE-hint':     'No es obligatorio, pero si se te ocurre algo, encantados de escucharlo. Cada idea se anota y la revisa el equipo de Datos e IA.',
-      'idea-ph':       'Cuéntanos tu idea o tu sugerencia…',
-      'add-idea':      'Añadir una idea',
-      'submit-title':  '¿Lo tienes listo?',
-      'submit-sub':    'Tus respuestas solo se usan para diseñar automatizaciones que te ahorren tiempo.',
+      'secD-desc':     'Tareas y traspasos que se escapan',
+      'q7-text':       '¿Se escapan tareas porque no hay una forma clara de hacerles seguimiento? Si es así, ponnos un ejemplo real.',
+      'q7-hint':       'p. ej. un correo de cliente sin responder, un plazo incumplido, un seguimiento que nadie retomó',
+      'q7-ph':         'Describe una vez en que algo se escapó…',
+      'secE-title':    'Ideas y propuestas',
+      'secE-desc':     'Cualquier idea de automatización o IA que quieras compartir',
+      'secE-hint':     'Opcional — pero si tienes una idea, queremos oírla. El equipo de Datos e IA lee todas.',
+      'idea-ph':       'Describe tu idea o propuesta…',
+      'add-idea':      'Añadir otra idea',
+      'submit-title':  '¿Listo para enviar?',
+      'submit-sub':    'Solo usaremos tus respuestas para diseñar automatizaciones que ahorren tiempo a tu equipo.',
       'btn-submit':    'Enviar mis respuestas',
       'submitting':    'Enviando…',
-      'footer-note':   'Tus respuestas solo se usan para diseñar automatizaciones que ahorren tiempo a tu equipo y no salen del equipo de Datos e IA.',
-      'success-title': '¡Gracias!',
-      'success-sub':   'El equipo de Datos e IA ya lo tiene. Leemos cada respuesta con calma antes de ponernos en marcha.',
-      'error-msg':     '⚠️ No se ha podido guardar tu respuesta. Inténtalo otra vez o escribe directamente al equipo de Datos e IA.',
+      'footer-note':   'Solo usaremos tus respuestas para crear automatizaciones que ahorren tiempo. No se comparte nada fuera del equipo de Datos e IA.',
+      'success-title': 'Gracias.',
+      'success-sub':   'Tus respuestas ya están con el equipo de Datos e IA. Leemos cada respuesta antes de empezar cualquier trabajo.',
+      'error-msg':     '⚠️ No pudimos guardar tu respuesta. Inténtalo de nuevo o escribe directamente al equipo de Datos e IA.',
       'chars':         'caracteres',
       'team-opts':     ['Compras','Atención al cliente','Logística / Operaciones','Finanzas','Ventas','Dirección','TI','Otro']
     },
     pt: {
-      'eyebrow':       'Equipa de Dados e IA · No terreno',
-      'h1':            'A IA no seu<br><em>dia a dia</em>',
-      'hero-sub':      'Queremos perceber onde a IA pode tirar-lhe das mãos o trabalho repetitivo. Com este questionário ficamos com uma ideia de como são os seus dias.',
+      'eyebrow':       'Equipa de Dados e IA · Descoberta das equipas',
+      'h1':            'Automação com IA<br><em>Descoberta das equipas</em>',
+      'hero-sub':      'Queremos perceber onde a IA pode tirar-lhe trabalho repetitivo das mãos. Este breve formulário ajuda-nos a perceber como é realmente o seu dia.',
       'progress-label':'Progresso',
-      'short-note':    'Sem textos longos: duas linhas ou uns tópicos chegam perfeitamente.',
-      'intro-text':    'Responda a pensar no seu dia real — não há respostas certas nem erradas. O que mais nos ajuda são os exemplos concretos: são esses que nos põem no caminho certo. Guiamo-nos pelo que nos conta para perceber como o trabalho funciona de verdade; sem isso, andávamos às escuras.',
-      'details-title': 'Sobre si',
+      'short-note':    'Seja breve — bastam algumas frases ou tópicos.',
+      'intro-text':    'Responda a partir do seu dia a dia real — não há respostas erradas. Quanto mais concreto for, mais fácil é percebermos o que vale a pena automatizar. Trabalhamos com o que nos diz aqui, por isso seja honesto e específico.',
+      'details-title': 'Os seus dados',
       'name-label':    'Nome',
       'team-label':    'Equipa / Departamento',
       'entity-label':  'Entidade',
       'date-label':    'Data',
-      'team-ph':       'Escolha a sua equipa…',
-      'entity-ph':     'Escolha a sua entidade…',
-      'name-ph':       'O seu nome',
-      'secA-title':    'O seu dia a dia',
-      'secA-desc':     'Onde se vai o seu tempo',
-      'q1-text':       'Qual é a tarefa que mais repete todos os dias?',
-      'q1-hint':       'ex.: verificar o estado das encomendas, lançar encomendas no ITMS/Steppro, enviar o mesmo relatório todos os dias',
-      'q1-ph':         'Conte-nos com o máximo de pormenor possível…',
-      'q2-text':       'O que lhe rouba imenso tempo e ainda por cima rende pouco?',
-      'q2-hint':       'ex.: copiar dados, enviar os mesmos emails, atualizar folhas à mão…',
-      'q2-ph':         'Aponte tudo o que lhe vier à cabeça…',
+      'team-ph':       'Selecione a sua equipa…',
+      'entity-ph':     'Selecione a sua entidade…',
+      'name-ph':       'O seu nome completo',
+      'secA-title':    'O seu trabalho diário',
+      'secA-desc':     'Para onde vai realmente o seu tempo',
+      'q1-text':       'Qual é a tarefa mais repetitiva que faz todos os dias?',
+      'q1-hint':       'ex.: verificar o estado das encomendas, introduzir encomendas no ITMS/Steppro, enviar o mesmo relatório diário',
+      'q1-ph':         'Descreva-a da forma mais concreta possível…',
+      'q2-text':       'Que tarefas lhe tiram mais tempo apesar de parecerem pouco úteis ou repetitivas?',
+      'q2-hint':       'ex.: copiar dados, enviar os mesmos emails, atualizar folhas de cálculo à mão…',
+      'q2-ph':         'Liste tantas quantas se lembrar…',
       'secB-title':    'Email e comunicação',
-      'secB-desc':     'O que se repete nos seus emails',
+      'secB-desc':     'Os emails que mais envia e recebe',
       'q3-text':       'A que emails responde quase sempre com o mesmo texto?',
       'q3-hint':       'ex.: confirmações de entrega, estado de encomendas, seguimentos a fornecedores',
-      'q3-ph':         'Diga-nos que tipo de email é e com que frequência chega…',
-      'q4-text':       'Há emails que tem de ir verificar à mão para ver se já lhe responderam? Conte-nos em que situação e a quem os envia.',
-      'q4-hint':       'ex.: clientes, outros departamentos, fornecedores…',
-      'q4-ph':         'Descreva a situação e a quem faz o seguimento…',
-      'secC-title':    'Dados e documentos',
-      'secC-desc':     'Dados e documentos tratados à mão',
+      'q3-ph':         'Que tipo de email, e com que frequência chega…',
+      'q4-text':       'Envia emails em que tem de insistir manualmente para obter resposta? Diga-nos o contexto e quem costuma estar do outro lado.',
+      'q4-hint':       'ex.: clientes externos, departamentos internos, fornecedores, etc.',
+      'q4-ph':         'A situação e a quem faz o seguimento…',
+      'secC-title':    'Introdução de dados e documentos',
+      'secC-desc':     'Trabalho manual com dados e documentos',
       'q5-text':       'Que folhas de cálculo atualiza à mão — e de onde vêm os dados?',
-      'q5-hint':       'ex.: um controlo de stock ou de expedições, uma tabela de preços — e se os dados vêm de emails, de exportações do ERP ou de outro lado',
-      'q5-ph':         'Diga-nos o nome da folha e de onde vêm os dados…',
-      'q6-text':       'Costuma copiar dados de um email ou de um PDF para uma folha de cálculo?',
+      'q5-hint':       'ex.: um controlo de stock ou de expedições, uma folha de preços — e se os dados vêm de emails, exportações de ERP ou de outro sistema',
+      'q5-ph':         'O nome da folha e de onde vêm os dados…',
+      'q6-text':       'Costuma copiar dados de emails ou PDFs para uma folha de cálculo?',
       'btn-yes':       'Sim',
       'btn-no':        'Não',
-      'q8b-hint1':     'Com que frequência? Diga-nos que tipo de dados, de onde vêm e como faz, em poucas palavras.',
+      'q8b-hint1':     'Com que frequência? Diga-nos que dados, de onde vêm e mais ou menos como faz.',
       'q8b-hint2':     'ex.: valores de faturas, datas de entrega, números de encomenda',
       'q8b-ph':        'Explique-nos como faz…',
       'secD-title':    'Seguimentos e coordenação',
-      'secD-desc':     'O que escapa entre uma coisa e outra',
-      'q7-text':       'Há coisas que se perdem ou ficam esquecidas por não haver um sistema claro para as acompanhar? Se sim, dê-nos um exemplo concreto.',
-      'q7-hint':       'ex.: um email de um cliente que ficou sem resposta, um prazo que passou, um seguimento que ninguém retomou',
-      'q7-ph':         'Conte-nos um caso concreto em que algo escapou…',
-      'secE-title':    'As suas ideias',
-      'secE-desc':     'Tem alguma ideia de automação ou de IA? Partilhe-a',
-      'secE-hint':     'Não é obrigatório, mas se lhe ocorrer alguma coisa, gostávamos de ouvir. Cada ideia fica registada e é vista pela equipa de Dados e IA.',
-      'idea-ph':       'Conte-nos a sua ideia ou sugestão…',
-      'add-idea':      'Adicionar uma ideia',
-      'submit-title':  'Está pronto?',
-      'submit-sub':    'As suas respostas servem apenas para criar automações que lhe poupam tempo.',
-      'btn-submit':    'Enviar as respostas',
+      'secD-desc':     'Tarefas e transições que escapam',
+      'q7-text':       'Há tarefas que escapam por não existir uma forma clara de as acompanhar? Se sim, dê-nos um exemplo concreto.',
+      'q7-hint':       'ex.: um email de cliente sem resposta, um prazo não cumprido, um seguimento que ninguém retomou',
+      'q7-ph':         'Descreva uma vez em que algo escapou…',
+      'secE-title':    'Ideias e propostas',
+      'secE-desc':     'Qualquer ideia de automação ou IA que queira partilhar',
+      'secE-hint':     'Opcional — mas se tiver uma ideia, queremos ouvi-la. Cada uma é lida pela equipa de Dados e IA.',
+      'idea-ph':       'Descreva a sua ideia ou proposta…',
+      'add-idea':      'Adicionar outra ideia',
+      'submit-title':  'Pronto para enviar?',
+      'submit-sub':    'Só usamos as suas respostas para conceber automações que poupam tempo à sua equipa.',
+      'btn-submit':    'Enviar as minhas respostas',
       'submitting':    'A enviar…',
-      'footer-note':   'As suas respostas servem apenas para criar automações que poupam tempo à sua equipa e não saem da equipa de Dados e IA.',
-      'success-title': 'Obrigado!',
-      'success-sub':   'A equipa de Dados e IA já recebeu tudo. Lemos cada resposta com atenção antes de avançar.',
-      'error-msg':     '⚠️ Não foi possível guardar a sua resposta. Tente de novo ou escreva diretamente à equipa de Dados e IA.',
+      'footer-note':   'Só usamos as suas respostas para criar automações que poupam tempo. Nada é partilhado fora da equipa de Dados e IA.',
+      'success-title': 'Obrigado.',
+      'success-sub':   'As suas respostas já estão com a equipa de Dados e IA. Lemos cada resposta antes de começar qualquer trabalho.',
+      'error-msg':     '⚠️ Não conseguimos guardar a sua resposta. Tente novamente ou contacte diretamente a equipa de Dados e IA.',
       'chars':         'caracteres',
       'team-opts':     ['Compras','Apoio ao cliente','Logística / Operações','Finanças','Vendas','Direção','TI','Outro']
     },
     ko: {
-      'eyebrow':       '데이터 & AI 팀 · 현장의 이야기',
-      'h1':            'AI, 일상 업무<br><em>속으로</em>',
-      'hero-sub':      'AI가 어디서 반복 업무를 덜어드릴 수 있을지 살펴보고 있어요. 이 설문으로 여러분의 하루가 어떤지 알고 싶어요.',
+      'eyebrow':       '데이터 & AI 팀 · 팀 디스커버리',
+      'h1':            'AI 자동화<br><em>팀 디스커버리</em>',
+      'hero-sub':      'AI로 어떤 반복 업무를 덜어드릴 수 있을지 찾고 있습니다. 이 짧은 설문으로 여러분의 하루가 실제로 어떻게 돌아가는지 파악하려고 합니다.',
       'progress-label':'진행률',
-      'short-note':    '길게 안 쓰셔도 돼요. 몇 문장이나 간단한 목록이면 충분해요.',
-      'intro-text':    '평소 일하시는 그대로 답해 주세요 — 정답은 없어요. 가장 도움이 되는 건 구체적인 예시예요. 그 예시들이 방향을 잡아 주거든요. 저희는 여러분이 들려주시는 이야기로 일이 실제로 어떻게 돌아가는지 파악해요. 그게 없으면 결국 짐작에 기대게 되고요.',
-      'details-title': '간단한 정보',
+      'short-note':    '짧게 써 주세요 — 몇 문장이나 항목이면 충분합니다.',
+      'intro-text':    '실제 업무를 바탕으로 답해 주세요. 정답은 없습니다. 구체적으로 적을수록 무엇을 자동화하면 좋을지 더 쉽게 파악할 수 있습니다. 여기에 적어 주신 내용만으로 판단하니, 솔직하고 구체적으로 부탁드립니다.',
+      'details-title': '기본 정보',
       'name-label':    '이름',
       'team-label':    '팀 / 부서',
-      'entity-label':  '소속 법인',
+      'entity-label':  '법인',
       'date-label':    '날짜',
       'team-ph':       '팀을 선택하세요…',
-      'entity-ph':     '소속 법인을 선택하세요…',
-      'name-ph':       '이름',
-      'secA-title':    '하루 일과',
-      'secA-desc':     '시간이 주로 어디에 쓰이는지',
-      'q1-text':       '매일 가장 자주 반복하는 일은 뭐예요?',
-      'q1-hint':       '예: 주문 상태 확인, ITMS/Steppro에 주문 입력, 매일 같은 보고서 보내기',
-      'q1-ph':         '되도록 구체적으로 적어 주세요…',
-      'q2-text':       '시간은 많이 잡아먹는데 정작 별로 가치 없게 느껴지는 일은요?',
-      'q2-hint':       '예: 데이터 복사, 똑같은 메일 보내기, 스프레드시트 수동 업데이트…',
-      'q2-ph':         '떠오르는 대로 다 적어 주세요…',
-      'secB-title':    '메일과 소통',
-      'secB-desc':     '메일에서 반복되는 것들',
-      'q3-text':       '거의 매번 같은 내용으로 답장하는 메일이 있나요?',
+      'entity-ph':     '법인을 선택하세요…',
+      'name-ph':       '성명',
+      'secA-title':    '일상 업무',
+      'secA-desc':     '시간이 실제로 어디에 쓰이는지',
+      'q1-text':       '매일 하는 가장 반복적인 업무는 무엇인가요?',
+      'q1-hint':       '예: 주문 상태 확인, ITMS/Steppro에 주문 입력, 매일 같은 보고서 전송',
+      'q1-ph':         '최대한 구체적으로 적어 주세요…',
+      'q2-text':       '시간은 가장 많이 쓰지만 가치가 낮거나 반복적이라고 느끼는 업무는 무엇인가요?',
+      'q2-hint':       '예: 데이터 복사, 같은 이메일 발송, 스프레드시트 수동 업데이트…',
+      'q2-ph':         '떠오르는 대로 적어 주세요…',
+      'secB-title':    '이메일 & 커뮤니케이션',
+      'secB-desc':     '가장 자주 주고받는 이메일',
+      'q3-text':       '거의 매번 같은 내용으로 답장하는 이메일은 무엇인가요?',
       'q3-hint':       '예: 배송 확인, 주문 상태, 공급업체 독촉',
-      'q3-ph':         '어떤 메일이고 얼마나 자주 오는지 알려 주세요…',
-      'q4-text':       '답장이 왔는지 직접 확인해야 하는 메일이 있나요? 어떤 상황이고 누구에게 보내는지 알려 주세요.',
-      'q4-hint':       '예: 고객, 다른 부서, 공급업체…',
-      'q4-ph':         '상황과 누구에게 독촉하는지 적어 주세요…',
-      'secC-title':    '데이터 입력과 문서',
-      'secC-desc':     '손으로 처리하는 데이터와 문서',
-      'q5-text':       '어떤 스프레드시트를 손으로 업데이트하나요? 데이터는 어디서 오고요?',
-      'q5-hint':       '예: 재고나 배송 관리표, 가격표 — 그리고 데이터가 메일에서 오는지, ERP 내보내기인지, 다른 데서 오는지',
-      'q5-ph':         '스프레드시트 이름과 데이터 출처를 알려 주세요…',
-      'q6-text':       '메일이나 PDF의 데이터를 스프레드시트로 복사해 넣을 때가 있나요?',
-      'btn-yes':       '네',
+      'q3-ph':         '어떤 이메일이고, 얼마나 자주 오는지…',
+      'q4-text':       '보낸 뒤 답장을 받으려고 직접 챙겨야 하는 이메일이 있나요? 상황과 주로 상대가 누구인지 알려 주세요.',
+      'q4-hint':       '예: 외부 고객, 내부 부서, 공급업체 등',
+      'q4-ph':         '상황과 챙기는 대상…',
+      'secC-title':    '데이터 입력 & 문서',
+      'secC-desc':     '수동으로 하는 데이터·문서 작업',
+      'q5-text':       '직접 손으로 업데이트하는 스프레드시트는 무엇이고, 데이터는 어디서 오나요?',
+      'q5-hint':       '예: 재고나 배송 추적표, 가격표 — 그리고 데이터가 이메일, ERP 내보내기, 다른 시스템 중 어디서 오는지',
+      'q5-ph':         '스프레드시트 이름과 데이터 출처…',
+      'q6-text':       '이메일이나 PDF의 데이터를 스프레드시트로 복사하기도 하나요?',
+      'btn-yes':       '예',
       'btn-no':        '아니요',
-      'q8b-hint1':     '얼마나 자주 하세요? 어떤 데이터인지, 어디서 오는지, 어떻게 하는지 간단히 알려 주세요.',
-      'q8b-hint2':     '예: 송장 금액, 배송일, 주문 번호',
-      'q8b-ph':        '어떻게 하시는지 알려 주세요…',
-      'secD-title':    '후속 처리와 협업',
-      'secD-desc':     '깜빡 놓치기 쉬운 일과 인수인계',
-      'q7-text':       '따로 챙기는 시스템이 없어서 그냥 묻히거나 잊히는 일이 있나요? 있다면 구체적인 사례를 들려주세요.',
-      'q7-hint':       '예: 답장 못 한 고객 메일, 놓친 마감일, 아무도 안 맡은 후속 처리',
-      'q7-ph':         '뭔가 놓쳤던 구체적인 상황을 들려주세요…',
-      'secE-title':    '아이디어',
-      'secE-desc':     '자동화나 AI 관련 아이디어가 있다면 들려주세요',
-      'secE-hint':     '필수는 아니지만 떠오르는 게 있다면 꼭 들려주세요. 하나하나 기록해서 데이터 & AI 팀이 살펴봐요.',
-      'idea-ph':       '아이디어나 제안을 들려주세요…',
+      'q8b-hint1':     '얼마나 자주 하나요? 어떤 데이터인지, 어디서 오는지, 대략 어떻게 하는지 알려 주세요.',
+      'q8b-hint2':     '예: 송장 금액, 배송 날짜, 주문 번호',
+      'q8b-ph':        '어떻게 하는지 알려 주세요…',
+      'secD-title':    '후속 조치 & 조율',
+      'secD-desc':     '놓치기 쉬운 업무와 인수인계',
+      'q7-text':       '명확히 추적할 방법이 없어서 놓치는 업무가 있나요? 있다면 실제 사례를 하나 들어 주세요.',
+      'q7-hint':       '예: 답장 못 한 고객 이메일, 놓친 마감일, 아무도 안 챙긴 후속 조치',
+      'q7-ph':         '무언가 놓쳤던 구체적인 상황을 적어 주세요…',
+      'secE-title':    '아이디어 & 제안',
+      'secE-desc':     '공유하고 싶은 자동화나 AI 아이디어',
+      'secE-hint':     '선택 사항입니다 — 하지만 아이디어가 있다면 꼭 듣고 싶습니다. 모든 아이디어는 데이터 & AI 팀이 읽습니다.',
+      'idea-ph':       '아이디어나 제안을 적어 주세요…',
       'add-idea':      '아이디어 추가',
-      'submit-title':  '다 작성하셨나요?',
-      'submit-sub':    '답변은 팀의 시간을 아껴 줄 자동화를 설계하는 데에만 써요.',
-      'btn-submit':    '제출하기',
+      'submit-title':  '제출할까요?',
+      'submit-sub':    '답변은 팀의 시간을 아끼는 자동화를 설계하는 데에만 사용합니다.',
+      'btn-submit':    '답변 제출',
       'submitting':    '제출 중…',
-      'footer-note':   '답변은 팀의 시간을 아껴 줄 자동화를 설계하는 데에만 쓰고, 데이터 & AI 팀 밖으로는 나가지 않아요.',
-      'success-title': '감사합니다!',
-      'success-sub':   '데이터 & AI 팀이 잘 받았어요. 시작하기 전에 모든 답변을 꼼꼼히 읽어 볼게요.',
-      'error-msg':     '⚠️ 답변을 저장하지 못했어요. 다시 시도하시거나 데이터 & AI 팀에 바로 연락 주세요.',
+      'footer-note':   '답변은 시간을 아끼는 자동화를 만드는 데에만 사용하며, 데이터 & AI 팀 밖으로 공유하지 않습니다.',
+      'success-title': '감사합니다.',
+      'success-sub':   '답변이 데이터 & AI 팀에 잘 전달되었습니다. 작업을 시작하기 전에 모든 답변을 읽습니다.',
+      'error-msg':     '⚠️ 답변을 저장하지 못했습니다. 다시 시도하거나 데이터 & AI 팀에 직접 연락해 주세요.',
       'chars':         '자',
       'team-opts':     ['구매','고객 서비스','물류 / 운영','재무','영업','경영진','IT','기타']
     },
     vi: {
-      'eyebrow':       'Nhóm Dữ liệu & AI · Lắng nghe từ thực tế',
-      'h1':            'AI trong công việc<br><em>hằng ngày</em>',
-      'hero-sub':      'Chúng tôi muốn tìm xem AI có thể gánh bớt những việc lặp đi lặp lại ở chỗ nào. Bảng hỏi này giúp chúng tôi hiểu một ngày của bạn trông ra sao.',
+      'eyebrow':       'Nhóm Dữ liệu & AI · Khám phá nhóm',
+      'h1':            'Tự động hóa AI<br><em>Khám phá nhóm</em>',
+      'hero-sub':      'Chúng tôi đang tìm xem AI có thể gánh bớt công việc lặp lại nào cho bạn. Biểu mẫu ngắn này giúp chúng tôi hiểu một ngày của bạn thực sự diễn ra thế nào.',
       'progress-label':'Tiến độ',
-      'short-note':    'Không cần viết dài đâu — vài câu hoặc vài gạch đầu dòng là đủ.',
-      'intro-text':    'Bạn cứ trả lời theo công việc thật hằng ngày của mình — không có câu nào đúng hay sai cả. Hữu ích nhất là những ví dụ cụ thể, vì chúng giúp chúng tôi đi đúng hướng. Chúng tôi dựa vào những gì bạn kể để hiểu công việc thật sự diễn ra thế nào; thiếu nó, chúng tôi chỉ còn cách đoán mò.',
-      'details-title': 'Đôi nét về bạn',
+      'short-note':    'Hãy trả lời ngắn gọn — vài câu hoặc vài gạch đầu dòng là đủ.',
+      'intro-text':    'Hãy trả lời dựa trên công việc thực tế của bạn — không có câu trả lời sai. Bạn càng cụ thể, chúng tôi càng dễ thấy điều gì đáng để tự động hóa. Chúng tôi làm việc dựa trên những gì bạn ghi ở đây, nên hãy trung thực và cụ thể.',
+      'details-title': 'Thông tin của bạn',
       'name-label':    'Họ tên',
-      'team-label':    'Nhóm / Bộ phận',
+      'team-label':    'Nhóm / Phòng ban',
       'entity-label':  'Pháp nhân',
       'date-label':    'Ngày',
       'team-ph':       'Chọn nhóm của bạn…',
       'entity-ph':     'Chọn pháp nhân của bạn…',
-      'name-ph':       'Tên của bạn',
-      'secA-title':    'Một ngày của bạn',
-      'secA-desc':     'Thời gian của bạn trôi vào đâu',
-      'q1-text':       'Việc bạn lặp lại nhiều nhất mỗi ngày là gì?',
-      'q1-hint':       'ví dụ: kiểm tra trạng thái đơn hàng, nhập đơn vào ITMS/Steppro, gửi cùng một báo cáo mỗi ngày',
-      'q1-ph':         'Kể càng cụ thể càng tốt nhé…',
-      'q2-text':       'Việc gì ngốn nhiều thời gian của bạn mà lại chẳng đáng bao nhiêu?',
-      'q2-hint':       'ví dụ: chép lại dữ liệu, gửi đi gửi lại cùng một email, cập nhật bảng tính bằng tay…',
-      'q2-ph':         'Nghĩ ra gì cứ ghi nấy…',
-      'secB-title':    'Email & trao đổi',
-      'secB-desc':     'Những thứ lặp lại trong email của bạn',
-      'q3-text':       'Những email nào bạn gần như lúc nào cũng trả lời bằng một nội dung giống nhau?',
+      'name-ph':       'Họ và tên đầy đủ của bạn',
+      'secA-title':    'Công việc hằng ngày của bạn',
+      'secA-desc':     'Thời gian của bạn thực sự dành cho đâu',
+      'q1-text':       'Công việc lặp lại nhiều nhất mà bạn làm mỗi ngày là gì?',
+      'q1-hint':       'ví dụ: kiểm tra trạng thái đơn hàng, nhập đơn vào ITMS/Steppro, gửi cùng một báo cáo hằng ngày',
+      'q1-ph':         'Mô tả càng cụ thể càng tốt…',
+      'q2-text':       'Công việc nào ngốn nhiều thời gian nhất nhưng lại thấy ít giá trị hoặc lặp đi lặp lại?',
+      'q2-hint':       'ví dụ: sao chép dữ liệu, gửi cùng loại email, cập nhật bảng tính thủ công…',
+      'q2-ph':         'Liệt kê càng nhiều càng tốt…',
+      'secB-title':    'Email & giao tiếp',
+      'secB-desc':     'Những email bạn gửi và nhận nhiều nhất',
+      'q3-text':       'Bạn trả lời những email nào với nội dung gần như y hệt mỗi lần?',
       'q3-hint':       'ví dụ: xác nhận giao hàng, trạng thái đơn hàng, nhắc nhà cung cấp',
-      'q3-ph':         'Cho chúng tôi biết đó là loại email gì và bao lâu có một lần…',
-      'q4-text':       'Có email nào bạn phải tự kiểm tra lại xem họ đã trả lời chưa không? Kể cho chúng tôi nghe trong tình huống nào và gửi cho ai.',
-      'q4-hint':       'ví dụ: khách hàng, bộ phận khác, nhà cung cấp…',
-      'q4-ph':         'Mô tả tình huống và bạn đang nhắc ai…',
+      'q3-ph':         'Loại email gì, và bao lâu lại đến một lần…',
+      'q4-text':       'Bạn có gửi email nào mà phải tự tay đi nhắc mới nhận được phản hồi không? Cho chúng tôi biết bối cảnh và thường ai là người bên kia.',
+      'q4-hint':       'ví dụ: khách hàng bên ngoài, phòng ban nội bộ, nhà cung cấp, v.v.',
+      'q4-ph':         'Bối cảnh và người bạn đi nhắc…',
       'secC-title':    'Nhập liệu & tài liệu',
-      'secC-desc':     'Dữ liệu và giấy tờ xử lý bằng tay',
-      'q5-text':       'Bạn cập nhật bằng tay những bảng tính nào — và dữ liệu từ đâu ra?',
-      'q5-hint':       'ví dụ: bảng theo dõi tồn kho hay giao hàng, một bảng giá — và dữ liệu đến từ email, từ file xuất ERP hay từ đâu khác',
-      'q5-ph':         'Cho biết tên bảng tính và dữ liệu lấy từ đâu…',
-      'q6-text':       'Bạn có hay chép dữ liệu từ email hoặc PDF sang bảng tính không?',
+      'secC-desc':     'Xử lý dữ liệu và tài liệu thủ công',
+      'q5-text':       'Bạn cập nhật thủ công những bảng tính nào — và dữ liệu đến từ đâu?',
+      'q5-hint':       'ví dụ: bảng theo dõi tồn kho hoặc giao hàng, bảng giá — và dữ liệu đến từ email, xuất ERP hay hệ thống khác',
+      'q5-ph':         'Tên bảng tính và nguồn dữ liệu…',
+      'q6-text':       'Bạn có hay sao chép dữ liệu từ email hoặc PDF vào bảng tính không?',
       'btn-yes':       'Có',
       'btn-no':        'Không',
-      'q8b-hint1':     'Bao lâu một lần? Cho chúng tôi biết loại dữ liệu, nguồn của nó và cách bạn làm, ngắn gọn thôi.',
+      'q8b-hint1':     'Bao lâu một lần? Cho biết đó là dữ liệu gì, đến từ đâu, và bạn làm đại khái thế nào.',
       'q8b-hint2':     'ví dụ: số tiền hóa đơn, ngày giao hàng, số đơn hàng',
-      'q8b-ph':        'Kể cách bạn làm…',
+      'q8b-ph':        'Cho chúng tôi biết bạn làm thế nào…',
       'secD-title':    'Theo dõi & phối hợp',
-      'secD-desc':     'Những thứ lọt khe giữa việc này việc kia',
-      'q7-text':       'Có việc nào bị rơi rớt hay bỏ quên vì không có hệ thống rõ ràng để theo dõi không? Nếu có, cho một ví dụ cụ thể nhé.',
-      'q7-hint':       'ví dụ: một email khách hàng chưa ai trả lời, một hạn chót bị lỡ, một việc cần theo dõi mà không ai nhận',
-      'q7-ph':         'Kể một tình huống cụ thể có thứ gì đó bị bỏ sót…',
-      'secE-title':    'Ý tưởng của bạn',
-      'secE-desc':     'Có ý tưởng tự động hóa hay AI nào không? Chia sẻ với chúng tôi nhé',
-      'secE-hint':     'Không bắt buộc đâu, nhưng nếu nghĩ ra gì thì chúng tôi rất muốn nghe. Mỗi ý tưởng đều được ghi lại và nhóm Dữ liệu & AI sẽ xem.',
-      'idea-ph':       'Kể cho chúng tôi ý tưởng hay góp ý của bạn…',
-      'add-idea':      'Thêm một ý tưởng',
-      'submit-title':  'Xong xuôi chưa?',
-      'submit-sub':    'Câu trả lời của bạn chỉ dùng để thiết kế những tự động hóa giúp nhóm bạn tiết kiệm thời gian.',
+      'secD-desc':     'Những việc và bàn giao bị lọt sổ',
+      'q7-text':       'Có việc nào bị bỏ sót vì không có cách theo dõi rõ ràng không? Nếu có, cho một ví dụ thực tế.',
+      'q7-hint':       'ví dụ: một email khách hàng chưa trả lời, một hạn chót bị lỡ, một việc theo dõi không ai nhận',
+      'q7-ph':         'Mô tả một lần có thứ gì đó bị bỏ sót…',
+      'secE-title':    'Ý tưởng & đề xuất',
+      'secE-desc':     'Bất kỳ ý tưởng tự động hóa hoặc AI nào bạn muốn chia sẻ',
+      'secE-hint':     'Không bắt buộc — nhưng nếu bạn có ý tưởng, chúng tôi rất muốn nghe. Mỗi ý tưởng đều được nhóm Dữ liệu & AI đọc.',
+      'idea-ph':       'Mô tả ý tưởng hoặc đề xuất của bạn…',
+      'add-idea':      'Thêm ý tưởng khác',
+      'submit-title':  'Sẵn sàng gửi chưa?',
+      'submit-sub':    'Chúng tôi chỉ dùng câu trả lời của bạn để thiết kế các tự động hóa giúp nhóm bạn tiết kiệm thời gian.',
       'btn-submit':    'Gửi câu trả lời',
       'submitting':    'Đang gửi…',
-      'footer-note':   'Câu trả lời của bạn chỉ dùng để thiết kế những tự động hóa giúp nhóm bạn đỡ mất thời gian, và không ra khỏi nhóm Dữ liệu & AI.',
-      'success-title': 'Cảm ơn bạn!',
-      'success-sub':   'Nhóm Dữ liệu & AI đã nhận được rồi. Chúng tôi sẽ đọc kỹ từng câu trả lời trước khi bắt tay vào làm.',
-      'error-msg':     '⚠️ Chưa lưu được câu trả lời của bạn. Thử lại giúp chúng tôi, hoặc nhắn thẳng cho nhóm Dữ liệu & AI nhé.',
+      'footer-note':   'Chúng tôi chỉ dùng câu trả lời của bạn để tạo các tự động hóa tiết kiệm thời gian. Không có gì được chia sẻ ra ngoài nhóm Dữ liệu & AI.',
+      'success-title': 'Cảm ơn bạn.',
+      'success-sub':   'Câu trả lời của bạn đã đến nhóm Dữ liệu & AI. Chúng tôi đọc từng câu trả lời trước khi bắt đầu bất kỳ việc gì.',
+      'error-msg':     '⚠️ Chúng tôi không lưu được câu trả lời của bạn. Vui lòng thử lại hoặc liên hệ trực tiếp nhóm Dữ liệu & AI.',
       'chars':         'ký tự',
       'team-opts':     ['Thu mua','Dịch vụ khách hàng','Hậu cần / Vận hành','Tài chính','Kinh doanh','Quản lý','CNTT','Khác']
     },
     bn: {
-      'eyebrow':       'ডেটা ও এআই টিম · কাজের মাঠ থেকে',
-      'h1':            'রোজকার কাজে<br><em>এআই</em>',
-      'hero-sub':      'আমরা দেখতে চাইছি, কোথায় এআই আপনার বারবার করা কাজগুলো হালকা করে দিতে পারে। এই ফর্মটা আপনার দিনটা কেমন কাটে, সেটা বুঝতে আমাদের সাহায্য করবে।',
+      'eyebrow':       'ডেটা ও এআই টিম · টিম ডিসকভারি',
+      'h1':            'এআই অটোমেশন<br><em>টিম ডিসকভারি</em>',
+      'hero-sub':      'এআই দিয়ে আপনার কোন কোন পুনরাবৃত্তিমূলক কাজ কমানো যায়, সেটাই আমরা খুঁজছি। এই ছোট ফর্মটি আপনার দিনটা আসলে কীভাবে চলে তা বুঝতে সাহায্য করে।',
       'progress-label':'অগ্রগতি',
-      'short-note':    'বড় করে লেখার দরকার নেই — দু-একটা বাক্য বা কয়েকটা পয়েন্টই যথেষ্ট।',
-      'intro-text':    'আপনার রোজকার আসল কাজের কথা ভেবেই উত্তর দিন — ঠিক বা ভুল বলে কিছু নেই। সবচেয়ে কাজে লাগে বাস্তব উদাহরণ, ওগুলোই আমাদের সঠিক পথ দেখায়। কাজটা আসলে কীভাবে চলে, সেটা আমরা আপনার কথা থেকেই বুঝি; নইলে শুধু আন্দাজেই চলতে হতো।',
-      'details-title': 'আপনার সম্পর্কে',
+      'short-note':    'সংক্ষেপে লিখুন — কয়েকটি বাক্য বা পয়েন্টই যথেষ্ট।',
+      'intro-text':    'আপনার বাস্তব কাজের ভিত্তিতে উত্তর দিন — কোনো ভুল উত্তর নেই। যত সুনির্দিষ্ট লিখবেন, কী অটোমেট করা দরকার তা আমাদের বুঝতে তত সহজ হয়। আপনি এখানে যা লিখবেন কেবল তার উপরই আমরা কাজ করি, তাই সৎ ও সুনির্দিষ্ট থাকুন।',
+      'details-title': 'আপনার তথ্য',
       'name-label':    'নাম',
       'team-label':    'টিম / বিভাগ',
-      'entity-label':  'প্রতিষ্ঠান',
+      'entity-label':  'এনটিটি',
       'date-label':    'তারিখ',
-      'team-ph':       'আপনার টিম বেছে নিন…',
-      'entity-ph':     'আপনার প্রতিষ্ঠান বেছে নিন…',
-      'name-ph':       'আপনার নাম',
-      'secA-title':    'আপনার রোজকার কাজ',
-      'secA-desc':     'সময়টা কোথায় যায়',
-      'q1-text':       'প্রতিদিন সবচেয়ে বেশি যে কাজটা বারবার করতে হয়, সেটা কী?',
-      'q1-hint':       'যেমন: অর্ডারের অবস্থা দেখা, ITMS/Steppro-তে অর্ডার তোলা, রোজ একই রিপোর্ট পাঠানো',
-      'q1-ph':         'যতটা সম্ভব খুলে বলুন…',
-      'q2-text':       'কোন কাজে অনেকটা সময় চলে যায়, অথচ তেমন কাজে আসে না?',
-      'q2-hint':       'যেমন: ডেটা কপি করা, একই ইমেইল বারবার পাঠানো, হাতে হাতে স্প্রেডশিট আপডেট করা…',
-      'q2-ph':         'যা যা মনে আসে, লিখে ফেলুন…',
+      'team-ph':       'আপনার টিম নির্বাচন করুন…',
+      'entity-ph':     'আপনার এনটিটি নির্বাচন করুন…',
+      'name-ph':       'আপনার পূর্ণ নাম',
+      'secA-title':    'আপনার প্রতিদিনের কাজ',
+      'secA-desc':     'আপনার সময় আসলে কোথায় যায়',
+      'q1-text':       'প্রতিদিন আপনি সবচেয়ে বেশি যে কাজটি বারবার করেন তা কী?',
+      'q1-hint':       'যেমন: অর্ডারের অবস্থা দেখা, ITMS/Steppro-তে অর্ডার ঢোকানো, একই দৈনিক রিপোর্ট পাঠানো',
+      'q1-ph':         'যতটা সম্ভব সুনির্দিষ্টভাবে লিখুন…',
+      'q2-text':       'কোন কাজগুলো সবচেয়ে বেশি সময় নেয় অথচ কম দরকারি বা পুনরাবৃত্তিমূলক মনে হয়?',
+      'q2-hint':       'যেমন: ডেটা কপি করা, একই ইমেইল পাঠানো, হাতে হাতে স্প্রেডশিট আপডেট করা…',
+      'q2-ph':         'যত মনে আসে লিখুন…',
       'secB-title':    'ইমেইল ও যোগাযোগ',
-      'secB-desc':     'আপনার ইমেইলে যা বারবার ফিরে আসে',
-      'q3-text':       'কোন ইমেইলগুলোর উত্তর প্রায় প্রতিবার একই রকম লেখায় দেন?',
-      'q3-hint':       'যেমন: ডেলিভারি কনফার্মেশন, অর্ডারের অবস্থা, সরবরাহকারীকে তাগাদা',
-      'q3-ph':         'কী ধরনের ইমেইল আর কত ঘন ঘন আসে, বলুন…',
-      'q4-text':       'এমন কোনো ইমেইল আছে যেগুলোর উত্তর এসেছে কিনা নিজে গিয়ে দেখতে হয়? কোন পরিস্থিতিতে আর কাকে পাঠান, বলুন।',
-      'q4-hint':       'যেমন: গ্রাহক, অন্য বিভাগ, সরবরাহকারী…',
-      'q4-ph':         'পরিস্থিতিটা আর কাকে তাগাদা দেন, বলুন…',
+      'secB-desc':     'আপনি সবচেয়ে বেশি যে ইমেইল পাঠান ও পান',
+      'q3-text':       'কোন ইমেইলগুলোর উত্তর আপনি প্রায় প্রতিবার একই লেখায় দেন?',
+      'q3-hint':       'যেমন: ডেলিভারি নিশ্চিতকরণ, অর্ডারের অবস্থা, সরবরাহকারীকে তাগাদা',
+      'q3-ph':         'কোন ধরনের ইমেইল, আর কত ঘন ঘন আসে…',
+      'q4-text':       'এমন ইমেইল কি পাঠান যেগুলোর উত্তর পেতে নিজে থেকে তাগাদা দিতে হয়? প্রসঙ্গটা আর সাধারণত কে অপর প্রান্তে থাকে, বলুন।',
+      'q4-hint':       'যেমন: বাইরের গ্রাহক, ভেতরের বিভাগ, সরবরাহকারী ইত্যাদি',
+      'q4-ph':         'পরিস্থিতি আর যাদের তাগাদা দেন…',
       'secC-title':    'ডেটা এন্ট্রি ও নথি',
-      'secC-desc':     'হাতে হাতে সামলানো ডেটা ও কাগজপত্র',
-      'q5-text':       'কোন স্প্রেডশিটগুলো হাতে আপডেট করেন — আর ডেটা আসে কোথা থেকে?',
-      'q5-hint':       'যেমন: স্টক বা চালান ট্র্যাকার, একটা দামের তালিকা — আর ডেটা ইমেইল থেকে আসে, ERP এক্সপোর্ট থেকে, নাকি অন্য কোথাও থেকে',
-      'q5-ph':         'স্প্রেডশিটের নাম আর ডেটা কোথা থেকে আসে, বলুন…',
-      'q6-text':       'ইমেইল বা PDF থেকে ডেটা স্প্রেডশিটে কপি করতে হয় কখনো?',
+      'secC-desc':     'হাতে করা ডেটা ও নথির কাজ',
+      'q5-text':       'কোন স্প্রেডশিটগুলো আপনি হাতে আপডেট করেন — আর ডেটা কোথা থেকে আসে?',
+      'q5-hint':       'যেমন: স্টক বা শিপমেন্ট ট্র্যাকার, একটি মূল্যতালিকা — আর ডেটা ইমেইল, ERP এক্সপোর্ট নাকি অন্য সিস্টেম থেকে আসে',
+      'q5-ph':         'স্প্রেডশিটের নাম আর ডেটার উৎস…',
+      'q6-text':       'ইমেইল বা PDF থেকে ডেটা কি কখনও স্প্রেডশিটে কপি করেন?',
       'btn-yes':       'হ্যাঁ',
       'btn-no':        'না',
-      'q8b-hint1':     'কত ঘন ঘন করেন? কী ধরনের ডেটা, কোথা থেকে আসে আর কীভাবে করেন — সংক্ষেপে বলুন।',
-      'q8b-hint2':     'যেমন: বিলের অঙ্ক, ডেলিভারির তারিখ, অর্ডার নম্বর',
-      'q8b-ph':        'কীভাবে করেন, বলুন…',
+      'q8b-hint1':     'কত ঘন ঘন? কোন ডেটা, কোথা থেকে আসে, আর মোটামুটি কীভাবে করেন বলুন।',
+      'q8b-hint2':     'যেমন: চালানের অঙ্ক, ডেলিভারির তারিখ, অর্ডার নম্বর',
+      'q8b-ph':        'কীভাবে করেন বলুন…',
       'secD-title':    'ফলো-আপ ও সমন্বয়',
-      'secD-desc':     'এক কাজ থেকে আরেক কাজের ফাঁকে যা হারিয়ে যায়',
-      'q7-text':       'ঠিকমতো নজর রাখার ব্যবস্থা নেই বলে কোনো কাজ কি হারিয়ে যায় বা বাদ পড়ে? থাকলে একটা নির্দিষ্ট উদাহরণ দিন।',
-      'q7-hint':       'যেমন: উত্তর না-পাওয়া একটা গ্রাহক ইমেইল, ফেলে আসা একটা সময়সীমা, কেউ ধরেনি এমন একটা ফলো-আপ',
-      'q7-ph':         'এমন একটা নির্দিষ্ট ঘটনা বলুন যেখানে কিছু একটা বাদ পড়ে গিয়েছিল…',
-      'secE-title':    'আপনার ভাবনা',
-      'secE-desc':     'অটোমেশন বা এআই নিয়ে কোনো ভাবনা আছে? জানান',
-      'secE-hint':     'বাধ্যতামূলক নয় — তবে কিছু মনে এলে শুনতে চাই। প্রতিটা ভাবনা লিখে রাখা হয়, আর ডেটা ও এআই টিম দেখে।',
-      'idea-ph':       'আপনার ভাবনা বা পরামর্শ জানান…',
-      'add-idea':      'আরেকটা যোগ করুন',
-      'submit-title':  'সব হয়ে গেছে?',
-      'submit-sub':    'আপনার উত্তর শুধু এমন অটোমেশন বানাতে কাজে লাগে যা আপনার টিমের সময় বাঁচায়।',
-      'btn-submit':    'উত্তর পাঠান',
-      'submitting':    'পাঠানো হচ্ছে…',
-      'footer-note':   'আপনার উত্তর শুধু এমন অটোমেশন বানাতে কাজে লাগে যা আপনার টিমের সময় বাঁচায়, আর ডেটা ও এআই টিমের বাইরে যায় না।',
-      'success-title': 'ধন্যবাদ!',
-      'success-sub':   'ডেটা ও এআই টিম সব পেয়ে গেছে। কাজ শুরুর আগে আমরা প্রতিটা উত্তর মন দিয়ে পড়ি।',
-      'error-msg':     '⚠️ আপনার উত্তরটা সেভ করা যায়নি। আবার চেষ্টা করুন, বা সরাসরি ডেটা ও এআই টিমকে জানান।',
+      'secD-desc':     'যেসব কাজ ও হস্তান্তর বাদ পড়ে যায়',
+      'q7-text':       'স্পষ্ট ট্র্যাকিং না থাকায় কোনো কাজ কি বাদ পড়ে যায়? পড়লে একটা বাস্তব উদাহরণ দিন।',
+      'q7-hint':       'যেমন: উত্তরহীন একটি গ্রাহক ইমেইল, মিস হওয়া একটি সময়সীমা, কেউ হাতে নেয়নি এমন একটি ফলো-আপ',
+      'q7-ph':         'এমন একবারের কথা লিখুন যখন কিছু বাদ পড়ে গিয়েছিল…',
+      'secE-title':    'ধারণা ও প্রস্তাব',
+      'secE-desc':     'শেয়ার করতে চান এমন যেকোনো অটোমেশন বা এআই ধারণা',
+      'secE-hint':     'ঐচ্ছিক — তবে ধারণা থাকলে আমরা শুনতে চাই। প্রতিটি ধারণা ডেটা ও এআই টিম পড়ে।',
+      'idea-ph':       'আপনার ধারণা বা প্রস্তাব লিখুন…',
+      'add-idea':      'আরেকটি ধারণা যোগ করুন',
+      'submit-title':  'জমা দেবেন?',
+      'submit-sub':    'আপনার উত্তর শুধু আপনার টিমের সময় বাঁচায় এমন অটোমেশন ডিজাইন করতেই ব্যবহার করা হয়।',
+      'btn-submit':    'আমার উত্তর জমা দিন',
+      'submitting':    'জমা হচ্ছে…',
+      'footer-note':   'আপনার উত্তর শুধু সময় বাঁচানো অটোমেশন তৈরিতে ব্যবহৃত হয়। ডেটা ও এআই টিমের বাইরে কিছু শেয়ার করা হয় না।',
+      'success-title': 'ধন্যবাদ।',
+      'success-sub':   'আপনার উত্তর ডেটা ও এআই টিমের কাছে পৌঁছেছে। কোনো কাজ শুরুর আগে আমরা প্রতিটি উত্তর পড়ি।',
+      'error-msg':     '⚠️ আপনার উত্তর সংরক্ষণ করা যায়নি। আবার চেষ্টা করুন বা সরাসরি ডেটা ও এআই টিমের সঙ্গে যোগাযোগ করুন।',
       'chars':         'অক্ষর',
       'team-opts':     ['ক্রয়','গ্রাহক সেবা','লজিস্টিকস / অপারেশনস','অর্থ','বিক্রয়','ব্যবস্থাপনা','আইটি','অন্যান্য']
     }
@@ -1529,6 +1524,10 @@
   }
   // ─────────────────────────────────────────────────────────────────────────────
 
+  // Render the initial (English) copy from the T dictionary so what loads
+  // always matches the reworked translations, then set today's date.
+  setLanguage('en');
+
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.07 });
@@ -1589,8 +1588,8 @@
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         setTimeout(function() { el.focus(); }, 400);
-        el.style.borderColor = '#B5552A';
-        el.style.boxShadow = '0 0 0 3px rgba(181,85,42,0.15)';
+        el.style.borderColor = '#D85A30';
+        el.style.boxShadow = '0 0 0 3px rgba(216,90,48,0.13)';
         setTimeout(function() { el.style.borderColor = ''; el.style.boxShadow = ''; }, 2500);
       }
       return;
@@ -1679,8 +1678,6 @@
     });
   }
 
-  // Init — English is the default; this also sets the localized date.
-  setLanguage('en');
   updateProgress();
   updateRemoveBtns();
 </script>
