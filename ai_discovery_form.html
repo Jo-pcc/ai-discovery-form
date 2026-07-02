@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="marble">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Automation · Team Discovery Questionnaire</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Body text uses Proxima Nova. It is a licensed font (not free / not on Google
+     Fonts), so it only renders once an Adobe Fonts (Typekit) or self-hosted
+     licensed source is added. Until then Montserrat (loaded above) is the
+     close free fallback. To enable real Proxima Nova, paste your Adobe Fonts
+     kit <link> here — the CSS already prefers 'proxima-nova' first. -->
 <script>
-  // Hidden developer palette switch — NOT shown to users.
-  //   default URL         → vivid amber/coral/teal palette
-  //   ?theme=marble       → muted Noir / Marble / White palette
+  // Palette switch. Marble (Noir / Marble / White) is the PRODUCTION DEFAULT,
+  // set via data-theme="marble" on the <html> element above.
+  //   default URL   → marble palette
+  //   ?theme=vivid  → original vivid amber/coral/teal palette
   // Runs during <head> parsing so the theme applies before first paint.
   (function () {
     var t = new URLSearchParams(location.search).get('theme');
-    if (t === 'marble') document.documentElement.setAttribute('data-theme', 'marble');
+    if (t === 'vivid') document.documentElement.removeAttribute('data-theme');
   })();
 </script>
 <style>
@@ -52,7 +58,7 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'proxima-nova', 'Proxima Nova', 'Montserrat', sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
@@ -200,7 +206,7 @@
     width: auto;
     flex-shrink: 0;
     padding: 5px 10px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'proxima-nova', 'Proxima Nova', 'Montserrat', sans-serif;
     font-size: 12px; font-weight: 600;
     color: var(--text-muted);
     background: var(--surface);
@@ -330,7 +336,7 @@
 
   textarea, input[type="text"], input[type="email"], select {
     width: 100%;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'proxima-nova', 'Proxima Nova', 'Montserrat', sans-serif;
     font-size: 14px;
     color: var(--text);
     background: var(--surface);
@@ -413,7 +419,7 @@
     border-radius: 100px;
     border: 1px solid var(--border);
     background: var(--surface);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'proxima-nova', 'Proxima Nova', 'Montserrat', sans-serif;
     font-size: 13px;
     color: var(--text-muted);
     cursor: pointer;
@@ -477,7 +483,7 @@
     border: none;
     border-radius: 100px;
     padding: 13px 32px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'proxima-nova', 'Proxima Nova', 'Montserrat', sans-serif;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -586,7 +592,7 @@
     display: flex; align-items: center; justify-content: center; gap: 10px;
     background: var(--surface); border: 1.5px dashed var(--gray-200);
     border-radius: var(--radius); padding: 14px;
-    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+    font-family: 'proxima-nova', 'Proxima Nova', 'Montserrat', sans-serif; font-size: 14px; font-weight: 500;
     color: var(--text-muted); cursor: pointer;
     transition: all 0.18s ease; margin-top: 4px;
   }
@@ -604,10 +610,9 @@
   }
 
   /* ─────────────────────────────────────────────────────────────────────────
-     ALTERNATE THEME — "Marble" (Noir / Marble / White)
-     Hidden from users. Preview it by adding ?theme=marble to the URL.
-     A plain URL always renders the default vivid palette; the CSS above is
-     untouched, so the default look is unchanged.
+     THEME — "Marble" (Noir / Marble / White) — PRODUCTION DEFAULT
+     Applied via data-theme="marble" on <html>. The :root palette above (vivid
+     amber/coral/teal) stays available as the opt-out via ?theme=vivid.
      ───────────────────────────────────────────────────────────────────────── */
   [data-theme="marble"] {
     --amber-50:  #F4EEE4;
