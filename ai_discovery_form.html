@@ -789,7 +789,8 @@
       </div>
       <div class="question">
         <label class="question-label" data-i18n="date-label">Date</label>
-        <input type="text" id="q-date" />
+        <input type="text" id="q-date" readonly tabindex="-1" aria-readonly="true"
+               style="background: var(--gray-50); color: var(--text-muted); cursor: default;" />
       </div>
     </div>
   </div>
@@ -806,19 +807,32 @@
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q1</span> <span data-i18n="q1-text">What is the most repetitive task you do every day?</span> <span class="req">*</span>
+        <span class="q-num">Q1</span> <span data-i18n="q1-text">Which repetitive or low-value task takes up the most time in your day?</span> <span class="req">*</span>
       </label>
-      <div class="question-hint" data-i18n="q1-hint">e.g. checking order status, entering orders into ITMS/Steppro, sending the same daily report</div>
-      <textarea id="q1" data-i18n-ph="q1-ph" placeholder="Describe the task as concretely as possible…" oninput="updateProgress(); countChars(this,'c1')"></textarea>
+      <div class="question-hint" data-i18n="q1-hint">Describe the task, how often you do it (e.g. daily, several times a day), and roughly how much time it takes</div>
+      <textarea id="q1" data-i18n-ph="q1-ph" placeholder="Describe it as concretely as you can…" oninput="updateProgress(); countChars(this,'c1')"></textarea>
       <div class="char-counter" id="c1"></div>
     </div>
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q2</span> <span data-i18n="q2-text">Which tasks take the most time but feel like low-value and repetitive work?</span> <span class="req">*</span>
+        <span class="q-num">Q2</span> <span data-i18n="time-label">How much time does this task typically take?</span> <span class="req">*</span>
       </label>
-      <div class="question-hint" data-i18n="q2-hint">e.g. copying data, sending the same emails, updating spreadsheets manually…</div>
-      <textarea id="q2" data-i18n-ph="q2-ph" placeholder="List as many as come to mind…" oninput="updateProgress(); countChars(this,'c2')"></textarea>
+      <div class="choice-group" id="choiceTime">
+        <button class="choice-btn" data-val="Less than 10 min/day" data-i18n="time-1" onclick="selectChoice('choiceTime', this); updateProgress()">Less than 10 minutes/day</button>
+        <button class="choice-btn" data-val="10–30 min/day" data-i18n="time-2" onclick="selectChoice('choiceTime', this); updateProgress()">10–30 minutes/day</button>
+        <button class="choice-btn" data-val="30–60 min/day" data-i18n="time-3" onclick="selectChoice('choiceTime', this); updateProgress()">30–60 minutes/day</button>
+        <button class="choice-btn" data-val="1–2 hours/day" data-i18n="time-4" onclick="selectChoice('choiceTime', this); updateProgress()">1–2 hours/day</button>
+        <button class="choice-btn" data-val="More than 2 hours/day" data-i18n="time-5" onclick="selectChoice('choiceTime', this); updateProgress()">More than 2 hours/day</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="question-label">
+        <span class="q-num">Q3</span> <span data-i18n="q2-text">Which applications do you use for your daily tasks?</span> <span class="req">*</span>
+      </label>
+      <div class="question-hint" data-i18n="q2-hint">e.g. ITMS, Excel, Steppro, monday…</div>
+      <textarea id="q2" data-i18n-ph="q2-ph" placeholder="List the apps and tools you use…" oninput="updateProgress(); countChars(this,'c2')"></textarea>
       <div class="char-counter" id="c2"></div>
     </div>
   </div>
@@ -837,7 +851,7 @@
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q3</span> <span data-i18n="q3-text">Which emails do you respond to with nearly the same text every time?</span> <span class="req">*</span>
+        <span class="q-num">Q4</span> <span data-i18n="q3-text">Which emails do you respond to with nearly the same text every time?</span> <span class="req">*</span>
       </label>
       <div class="question-hint" data-i18n="q3-hint">e.g. delivery confirmations, order status, supplier follow-ups</div>
       <textarea id="q5" data-i18n-ph="q3-ph" placeholder="Describe the type of email and how often it comes in…" oninput="updateProgress(); countChars(this,'c5')"></textarea>
@@ -846,7 +860,7 @@
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q4</span> <span data-i18n="q4-text">Are there specific emails you send that require manual follow-up to check for a reply? Please describe the context and the types of recipients involved.</span> <span class="req">*</span>
+        <span class="q-num">Q5</span> <span data-i18n="q4-text">Are there specific emails you send that require manual follow-up to check for a reply? Please describe the context and the types of recipients involved.</span> <span class="req">*</span>
       </label>
       <div class="question-hint" data-i18n="q4-hint">e.g. external clients, internal departments, vendors, etc.</div>
       <textarea id="q6" data-i18n-ph="q4-ph" placeholder="Describe the situation and who you follow up with…" oninput="updateProgress(); countChars(this,'c6')"></textarea>
@@ -868,7 +882,7 @@
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q5</span> <span data-i18n="q5-text">Which spreadsheets do you update manually — and where does the data come from?</span> <span class="req">*</span>
+        <span class="q-num">Q6</span> <span data-i18n="q5-text">Which spreadsheets do you update manually — and where does the data come from?</span> <span class="req">*</span>
       </label>
       <div class="question-hint" data-i18n="q5-hint">e.g. a stock or shipment tracker, a pricing file — and whether the data comes from emails, ERP exports, or another system</div>
       <textarea id="q7" data-i18n-ph="q5-ph" placeholder="Name the spreadsheet and describe where the data originates…" oninput="updateProgress(); countChars(this,'c7')"></textarea>
@@ -877,7 +891,7 @@
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q6</span> <span data-i18n="q6-text">Do you ever copy data from emails or PDFs into a spreadsheet?</span> <span class="req">*</span>
+        <span class="q-num">Q7</span> <span data-i18n="q6-text">Do you ever copy data from emails or PDFs into a spreadsheet?</span> <span class="req">*</span>
       </label>
       <div class="choice-group" id="choiceC8">
         <button class="choice-btn" data-i18n="btn-yes" onclick="selectChoice('choiceC8', this); showExtra('extraC8', true); updateProgress()">Yes</button>
@@ -906,7 +920,7 @@
 
     <div class="question">
       <label class="question-label">
-        <span class="q-num">Q7</span> <span data-i18n="q7-text">Do any tasks get lost or ignored because there is no clear system to track them? If yes, please provide a specific example of something that was missed.</span> <span class="req">*</span>
+        <span class="q-num">Q8</span> <span data-i18n="q7-text">Do any tasks get lost or ignored because there is no clear system to track them? If yes, please provide a specific example of something that was missed.</span> <span class="req">*</span>
       </label>
       <div class="question-hint" data-i18n="q7-hint">e.g. a customer email left unanswered, a missed deadline, a follow-up nobody picked up</div>
       <textarea id="q11" data-i18n-ph="q7-ph" placeholder="Describe a concrete situation where something slipped through…" oninput="updateProgress(); countChars(this,'c11')"></textarea>
@@ -924,6 +938,15 @@
         <div class="section-title" data-i18n="secE-title">Ideas &amp; proposals</div>
         <div class="section-desc" data-i18n="secE-desc">Any automation or AI ideas you'd like to share</div>
       </div>
+    </div>
+
+    <div class="question">
+      <label class="question-label">
+        <span class="q-num">Q9</span> <span data-i18n="q9-text">If you could automate just one part of your job tomorrow, what would it be and why?</span> <span class="req">*</span>
+      </label>
+      <div class="question-hint" data-i18n="q9-hint">The one change that would make the biggest difference to your day.</div>
+      <textarea id="q9" data-i18n-ph="q9-ph" placeholder="Describe the one thing — and why it matters…" oninput="updateProgress(); countChars(this,'c9')"></textarea>
+      <div class="char-counter" id="c9"></div>
     </div>
 
     <p class="question-hint" data-i18n="secE-hint" style="margin-bottom:16px;">
@@ -984,8 +1007,8 @@
       'h1':            'AI Automation<br><em>Team Discovery</em>',
       'hero-sub':      "We're looking at where AI can take repetitive work off your plate. This short form helps us understand how your day actually runs.",
       'progress-label':'Progress',
-      'short-note':    'Keep it short — a few sentences or bullet points are plenty.',
-      'intro-text':    "Answer from your real day-to-day — there are no wrong answers. The more concrete you are, the easier it is for us to spot what's worth automating. We work from what you tell us here, so be honest and specific.",
+      'short-note':    'Brief answers are perfectly fine—a few bullet points are enough.',
+      'intro-text':    'Answer from your real day-to-day — there are no wrong answers. We want to understand where you spend your time each day so we can identify repetitive work that could be automated.',
       'details-title': 'Your details',
       'name-label':    'Name',
       'team-label':    'Team / Department',
@@ -995,18 +1018,27 @@
       'entity-ph':     'Select your entity…',
       'name-ph':       'Your full name',
       'secA-title':    'Your daily work',
-      'secA-desc':     'Where your time actually goes',
-      'q1-text':       "What's the most repetitive task you do every day?",
-      'q1-hint':       'e.g. checking order status, entering orders into ITMS/Steppro, sending the same daily report',
+      'secA-desc':     'How you spend your time each day',
+      'q1-text':       'Which repetitive or low-value task takes up the most time in your day?',
+      'q1-hint':       'Describe the task, how often you do it (e.g. daily, several times a day), and roughly how much time it takes',
       'q1-ph':         'Describe it as concretely as you can…',
-      'q2-text':       'Which tasks eat up the most time but feel low-value or repetitive?',
-      'q2-hint':       'e.g. copying data, sending the same emails, updating spreadsheets by hand…',
-      'q2-ph':         'List as many as come to mind…',
+      'q2-text':       'Which applications do you use for your daily tasks?',
+      'q2-hint':       'e.g. ITMS, Excel, Steppro, monday…',
+      'q2-ph':         'List the apps and tools you use…',
+      'time-label':    'How much time does this task typically take?',
+      'time-1':        'Less than 10 minutes/day',
+      'time-2':        '10–30 minutes/day',
+      'time-3':        '30–60 minutes/day',
+      'time-4':        '1–2 hours/day',
+      'time-5':        'More than 2 hours/day',
+      'q9-text':       'If you could automate just one part of your job tomorrow, what would it be and why?',
+      'q9-hint':       'The one change that would make the biggest difference to your day.',
+      'q9-ph':         'Describe the one thing — and why it matters…',
       'secB-title':    'Email & communication',
       'secB-desc':     'The emails you send and receive most',
       'q3-text':       'Which emails do you answer with almost the same text every time?',
       'q3-hint':       'e.g. delivery confirmations, order status, supplier follow-ups',
-      'q3-ph':         'What kind of email, and how often it lands…',
+      'q3-ph':         'What type of email is it, and approximately how often do you receive it?',
       'q4-text':       "Do you send emails where you have to manually chase a reply? Tell us the context and who's usually on the other end.",
       'q4-hint':       'e.g. external clients, internal departments, vendors, etc.',
       'q4-ph':         'The situation and who you chase…',
@@ -1047,8 +1079,8 @@
       'h1':            'Automatisation IA<br><em>Découverte des équipes</em>',
       'hero-sub':      "Nous cherchons où l'IA peut vous décharger des tâches répétitives. Ce court formulaire nous aide à comprendre comment se déroule vraiment votre journée.",
       'progress-label':'Avancement',
-      'short-note':    'Restez bref — quelques phrases ou puces suffisent.',
-      'intro-text':    "Répondez à partir de votre quotidien réel — il n'y a pas de mauvaises réponses. Plus vous êtes concret, plus il nous est facile de repérer ce qui vaut la peine d'être automatisé. Nous partons de ce que vous nous dites ici, alors soyez honnête et précis.",
+      'short-note':    'Des réponses brèves conviennent parfaitement — quelques puces suffisent.',
+      'intro-text':    "Répondez à partir de votre quotidien réel — il n'y a pas de mauvaises réponses. Nous voulons comprendre où passe votre temps chaque jour afin de repérer les tâches répétitives qui pourraient être automatisées.",
       'details-title': 'Vos informations',
       'name-label':    'Nom',
       'team-label':    'Équipe / Département',
@@ -1058,18 +1090,27 @@
       'entity-ph':     'Sélectionnez votre entité…',
       'name-ph':       'Votre nom complet',
       'secA-title':    'Votre travail quotidien',
-      'secA-desc':     'Où passe réellement votre temps',
-      'q1-text':       'Quelle est la tâche la plus répétitive que vous faites chaque jour ?',
-      'q1-hint':       'ex : vérifier le statut des commandes, saisir les commandes dans ITMS/Steppro, envoyer le même rapport quotidien',
+      'secA-desc':     'Comment vous occupez votre temps chaque jour',
+      'q1-text':       'Quelle tâche répétitive ou à faible valeur vous prend le plus de temps dans la journée ?',
+      'q1-hint':       'Décrivez la tâche, à quelle fréquence vous la faites (ex : chaque jour, plusieurs fois par jour) et environ combien de temps elle prend',
       'q1-ph':         'Décrivez-la aussi concrètement que possible…',
-      'q2-text':       'Quelles tâches vous prennent le plus de temps tout en semblant peu utiles ou répétitives ?',
-      'q2-hint':       'ex : copier des données, envoyer les mêmes emails, mettre à jour des tableaux à la main…',
-      'q2-ph':         'Listez-en autant que possible…',
+      'q2-text':       'Quelles applications utilisez-vous pour vos tâches quotidiennes ?',
+      'q2-hint':       'ex : ITMS, Excel, Steppro, monday…',
+      'q2-ph':         'Listez les applications et outils que vous utilisez…',
+      'time-label':    'Combien de temps cette tâche prend-elle généralement ?',
+      'time-1':        'Moins de 10 minutes/jour',
+      'time-2':        '10–30 minutes/jour',
+      'time-3':        '30–60 minutes/jour',
+      'time-4':        '1–2 heures/jour',
+      'time-5':        'Plus de 2 heures/jour',
+      'q9-text':       'Si vous pouviez automatiser une seule partie de votre travail dès demain, laquelle serait-ce et pourquoi ?',
+      'q9-hint':       'Le changement qui ferait la plus grande différence dans votre journée.',
+      'q9-ph':         'Décrivez cette seule chose — et pourquoi elle compte…',
       'secB-title':    'Email et communication',
       'secB-desc':     'Les emails que vous envoyez et recevez le plus',
       'q3-text':       'À quels emails répondez-vous presque toujours avec le même texte ?',
       'q3-hint':       'ex : confirmations de livraison, statut de commande, relances fournisseurs',
-      'q3-ph':         "Le type d'email, et à quelle fréquence il arrive…",
+      'q3-ph':         "De quel type d'email s'agit-il, et à quelle fréquence le recevez-vous environ ?",
       'q4-text':       "Envoyez-vous des emails pour lesquels vous devez relancer manuellement pour obtenir une réponse ? Précisez le contexte et qui se trouve en face.",
       'q4-hint':       'ex : clients externes, départements internes, fournisseurs, etc.',
       'q4-ph':         'La situation et les personnes que vous relancez…',
@@ -1110,8 +1151,8 @@
       'h1':            'AI 自动化<br><em>团队调研</em>',
       'hero-sub':      '我们想找出 AI 能替你分担哪些重复工作。这份简短表单帮助我们了解你每天的实际工作。',
       'progress-label':'进度',
-      'short-note':    '尽量简短——几句话或几个要点就够了。',
-      'intro-text':    '根据你的真实日常来回答，没有标准答案。写得越具体，我们越容易看出哪些值得自动化。我们完全依据你在这里填写的内容，所以请如实、具体地回答。',
+      'short-note':    '简短的回答完全没问题——几个要点就足够了。',
+      'intro-text':    '根据你的真实日常来回答，没有标准答案。我们想了解你每天的时间都花在哪里，以便找出可以自动化的重复性工作。',
       'details-title': '你的信息',
       'name-label':    '姓名',
       'team-label':    '团队 / 部门',
@@ -1121,18 +1162,27 @@
       'entity-ph':     '请选择你的实体…',
       'name-ph':       '你的全名',
       'secA-title':    '你的日常工作',
-      'secA-desc':     '你的时间实际花在哪里',
-      'q1-text':       '你每天做的最重复的工作是什么？',
-      'q1-hint':       '例如：查订单状态、在 ITMS/Steppro 里录订单、发同样的每日报告',
+      'secA-desc':     '你每天如何分配时间',
+      'q1-text':       '哪项重复或低价值的工作在你一天里占用的时间最多？',
+      'q1-hint':       '描述这项工作、你多久做一次（例如每天、每天好几次），以及大概花多少时间',
       'q1-ph':         '尽量写具体一点…',
-      'q2-text':       '哪些工作最花时间，却感觉价值不高或很重复？',
-      'q2-hint':       '例如：复制数据、发同样的邮件、手动更新表格…',
-      'q2-ph':         '想到多少写多少…',
+      'q2-text':       '你日常工作中使用哪些应用程序？',
+      'q2-hint':       '例如：ITMS、Excel、Steppro、monday…',
+      'q2-ph':         '列出你使用的应用和工具…',
+      'time-label':    '这项工作通常要花多少时间？',
+      'time-1':        '每天少于 10 分钟',
+      'time-2':        '每天 10–30 分钟',
+      'time-3':        '每天 30–60 分钟',
+      'time-4':        '每天 1–2 小时',
+      'time-5':        '每天超过 2 小时',
+      'q9-text':       '如果明天你能把工作中的某一部分自动化，你会选哪一部分，为什么？',
+      'q9-hint':       '对你一天影响最大的那一个改变。',
+      'q9-ph':         '描述这一件事——以及它为什么重要…',
       'secB-title':    '邮件与沟通',
       'secB-desc':     '你收发最多的邮件',
       'q3-text':       '哪些邮件你几乎每次都用差不多的内容回复？',
       'q3-hint':       '例如：交货确认、订单状态、催促供应商',
-      'q3-ph':         '哪类邮件，多久来一次…',
+      'q3-ph':         '这是哪类邮件，你大约多久收到一次？',
       'q4-text':       '有没有一些邮件，你发出后要手动跟进才能拿到回复？说说具体情况和对方通常是谁。',
       'q4-hint':       '例如：外部客户、内部部门、供应商等',
       'q4-ph':         '具体情况和你跟进的对象…',
@@ -1173,8 +1223,8 @@
       'h1':            'Automazione IA<br><em>Scoperta dei team</em>',
       'hero-sub':      "Vogliamo capire dove l'IA può toglierti di dosso il lavoro ripetitivo. Questo breve modulo ci aiuta a capire com'è davvero la tua giornata.",
       'progress-label':'Avanzamento',
-      'short-note':    'Sii breve — bastano poche frasi o qualche punto elenco.',
-      'intro-text':    "Rispondi partendo dalla tua giornata reale — non ci sono risposte sbagliate. Più sei concreto, più ci è facile capire cosa vale la pena automatizzare. Lavoriamo su ciò che ci dici qui, quindi sii onesto e preciso.",
+      'short-note':    'Risposte brevi vanno benissimo — bastano pochi punti elenco.',
+      'intro-text':    "Rispondi partendo dalla tua giornata reale — non ci sono risposte sbagliate. Vogliamo capire dove passa il tuo tempo ogni giorno per individuare il lavoro ripetitivo che si potrebbe automatizzare.",
       'details-title': 'I tuoi dati',
       'name-label':    'Nome',
       'team-label':    'Team / Reparto',
@@ -1184,18 +1234,27 @@
       'entity-ph':     'Seleziona la tua entità…',
       'name-ph':       'Il tuo nome completo',
       'secA-title':    'Il tuo lavoro quotidiano',
-      'secA-desc':     'Dove va davvero il tuo tempo',
-      'q1-text':       "Qual è l'attività più ripetitiva che fai ogni giorno?",
-      'q1-hint':       'es. controllare lo stato degli ordini, inserire ordini in ITMS/Steppro, inviare lo stesso report giornaliero',
+      'secA-desc':     'Come impieghi il tuo tempo ogni giorno',
+      'q1-text':       'Quale attività ripetitiva o a basso valore ti porta via più tempo nella giornata?',
+      'q1-hint':       "Descrivi l'attività, con che frequenza la fai (es. ogni giorno, più volte al giorno) e più o meno quanto tempo richiede",
       'q1-ph':         'Descrivila nel modo più concreto possibile…',
-      'q2-text':       'Quali attività ti portano via più tempo pur sembrando poco utili o ripetitive?',
-      'q2-hint':       'es. copiare dati, inviare le stesse email, aggiornare i fogli di calcolo a mano…',
-      'q2-ph':         'Elencane quante più te ne vengono in mente…',
+      'q2-text':       'Quali applicazioni usi per le tue attività quotidiane?',
+      'q2-hint':       'es. ITMS, Excel, Steppro, monday…',
+      'q2-ph':         'Elenca le app e gli strumenti che usi…',
+      'time-label':    'Quanto tempo richiede di solito questa attività?',
+      'time-1':        'Meno di 10 minuti/giorno',
+      'time-2':        '10–30 minuti/giorno',
+      'time-3':        '30–60 minuti/giorno',
+      'time-4':        '1–2 ore/giorno',
+      'time-5':        'Più di 2 ore/giorno',
+      'q9-text':       'Se potessi automatizzare una sola parte del tuo lavoro da domani, quale sarebbe e perché?',
+      'q9-hint':       'Il cambiamento che farebbe la differenza più grande nella tua giornata.',
+      'q9-ph':         'Descrivi quella singola cosa — e perché conta…',
       'secB-title':    'Email e comunicazione',
       'secB-desc':     'Le email che invii e ricevi più spesso',
       'q3-text':       'A quali email rispondi quasi sempre con lo stesso testo?',
       'q3-hint':       'es. conferme di consegna, stato degli ordini, solleciti ai fornitori',
-      'q3-ph':         'Che tipo di email, e con che frequenza arriva…',
+      'q3-ph':         "Di che tipo di email si tratta e all'incirca con che frequenza la ricevi?",
       'q4-text':       "Invii email per cui devi fare un sollecito manuale per avere una risposta? Raccontaci il contesto e chi c'è di solito dall'altra parte.",
       'q4-hint':       'es. clienti esterni, reparti interni, fornitori, ecc.',
       'q4-ph':         'La situazione e chi solleciti…',
@@ -1236,8 +1295,8 @@
       'h1':            'Automatización con IA<br><em>Descubrimiento de equipos</em>',
       'hero-sub':      'Queremos ver dónde la IA puede quitarte trabajo repetitivo de encima. Este breve formulario nos ayuda a entender cómo es tu día de verdad.',
       'progress-label':'Progreso',
-      'short-note':    'Sé breve — bastan unas frases o algunos puntos.',
-      'intro-text':    'Responde desde tu día a día real — no hay respuestas incorrectas. Cuanto más concreto seas, más fácil nos resulta ver qué merece la pena automatizar. Trabajamos con lo que nos cuentas aquí, así que sé honesto y concreto.',
+      'short-note':    'Las respuestas breves están perfectas — con unos puntos basta.',
+      'intro-text':    'Responde desde tu día a día real — no hay respuestas incorrectas. Queremos entender en qué empleas tu tiempo cada día para identificar el trabajo repetitivo que se podría automatizar.',
       'details-title': 'Tus datos',
       'name-label':    'Nombre',
       'team-label':    'Equipo / Departamento',
@@ -1247,18 +1306,27 @@
       'entity-ph':     'Selecciona tu entidad…',
       'name-ph':       'Tu nombre completo',
       'secA-title':    'Tu trabajo diario',
-      'secA-desc':     'Adónde va realmente tu tiempo',
-      'q1-text':       '¿Cuál es la tarea más repetitiva que haces cada día?',
-      'q1-hint':       'p. ej. comprobar el estado de los pedidos, introducir pedidos en ITMS/Steppro, enviar el mismo informe diario',
+      'secA-desc':     'Cómo empleas tu tiempo cada día',
+      'q1-text':       '¿Qué tarea repetitiva o de poco valor te quita más tiempo en el día?',
+      'q1-hint':       'Describe la tarea, con qué frecuencia la haces (p. ej. a diario, varias veces al día) y aproximadamente cuánto tiempo te lleva',
       'q1-ph':         'Descríbela de la forma más concreta posible…',
-      'q2-text':       '¿Qué tareas te quitan más tiempo aunque parezcan poco útiles o repetitivas?',
-      'q2-hint':       'p. ej. copiar datos, enviar los mismos correos, actualizar hojas de cálculo a mano…',
-      'q2-ph':         'Enumera todas las que se te ocurran…',
+      'q2-text':       '¿Qué aplicaciones usas para tus tareas diarias?',
+      'q2-hint':       'p. ej. ITMS, Excel, Steppro, monday…',
+      'q2-ph':         'Enumera las aplicaciones y herramientas que usas…',
+      'time-label':    '¿Cuánto tiempo suele llevarte esta tarea?',
+      'time-1':        'Menos de 10 minutos/día',
+      'time-2':        '10–30 minutos/día',
+      'time-3':        '30–60 minutos/día',
+      'time-4':        '1–2 horas/día',
+      'time-5':        'Más de 2 horas/día',
+      'q9-text':       'Si pudieras automatizar solo una parte de tu trabajo mañana, ¿cuál sería y por qué?',
+      'q9-hint':       'El cambio que marcaría la mayor diferencia en tu día.',
+      'q9-ph':         'Describe esa única cosa — y por qué importa…',
       'secB-title':    'Correo y comunicación',
       'secB-desc':     'Los correos que más envías y recibes',
       'q3-text':       '¿A qué correos respondes casi siempre con el mismo texto?',
       'q3-hint':       'p. ej. confirmaciones de entrega, estado de pedidos, seguimientos a proveedores',
-      'q3-ph':         'Qué tipo de correo, y cada cuánto llega…',
+      'q3-ph':         '¿Qué tipo de correo es y aproximadamente cada cuánto lo recibes?',
       'q4-text':       '¿Envías correos en los que tienes que hacer un seguimiento manual para conseguir respuesta? Cuéntanos el contexto y quién suele estar al otro lado.',
       'q4-hint':       'p. ej. clientes externos, departamentos internos, proveedores, etc.',
       'q4-ph':         'La situación y a quién haces el seguimiento…',
@@ -1299,8 +1367,8 @@
       'h1':            'Automação com IA<br><em>Descoberta das equipas</em>',
       'hero-sub':      'Queremos perceber onde a IA pode tirar-lhe trabalho repetitivo das mãos. Este breve formulário ajuda-nos a perceber como é realmente o seu dia.',
       'progress-label':'Progresso',
-      'short-note':    'Seja breve — bastam algumas frases ou tópicos.',
-      'intro-text':    'Responda a partir do seu dia a dia real — não há respostas erradas. Quanto mais concreto for, mais fácil é percebermos o que vale a pena automatizar. Trabalhamos com o que nos diz aqui, por isso seja honesto e específico.',
+      'short-note':    'Respostas breves são perfeitas — bastam alguns tópicos.',
+      'intro-text':    'Responda a partir do seu dia a dia real — não há respostas erradas. Queremos perceber onde passa o seu tempo cada dia para identificar o trabalho repetitivo que se poderia automatizar.',
       'details-title': 'Os seus dados',
       'name-label':    'Nome',
       'team-label':    'Equipa / Departamento',
@@ -1310,18 +1378,27 @@
       'entity-ph':     'Selecione a sua entidade…',
       'name-ph':       'O seu nome completo',
       'secA-title':    'O seu trabalho diário',
-      'secA-desc':     'Para onde vai realmente o seu tempo',
-      'q1-text':       'Qual é a tarefa mais repetitiva que faz todos os dias?',
-      'q1-hint':       'ex.: verificar o estado das encomendas, introduzir encomendas no ITMS/Steppro, enviar o mesmo relatório diário',
+      'secA-desc':     'Como ocupa o seu tempo cada dia',
+      'q1-text':       'Que tarefa repetitiva ou de pouco valor lhe tira mais tempo no seu dia?',
+      'q1-hint':       'Descreva a tarefa, com que frequência a faz (ex.: todos os dias, várias vezes por dia) e mais ou menos quanto tempo demora',
       'q1-ph':         'Descreva-a da forma mais concreta possível…',
-      'q2-text':       'Que tarefas lhe tiram mais tempo apesar de parecerem pouco úteis ou repetitivas?',
-      'q2-hint':       'ex.: copiar dados, enviar os mesmos emails, atualizar folhas de cálculo à mão…',
-      'q2-ph':         'Liste tantas quantas se lembrar…',
+      'q2-text':       'Que aplicações usa para as suas tarefas diárias?',
+      'q2-hint':       'ex.: ITMS, Excel, Steppro, monday…',
+      'q2-ph':         'Liste as aplicações e ferramentas que usa…',
+      'time-label':    'Quanto tempo costuma demorar esta tarefa?',
+      'time-1':        'Menos de 10 minutos/dia',
+      'time-2':        '10–30 minutos/dia',
+      'time-3':        '30–60 minutos/dia',
+      'time-4':        '1–2 horas/dia',
+      'time-5':        'Mais de 2 horas/dia',
+      'q9-text':       'Se pudesse automatizar apenas uma parte do seu trabalho amanhã, qual seria e porquê?',
+      'q9-hint':       'A mudança que faria a maior diferença no seu dia.',
+      'q9-ph':         'Descreva essa única coisa — e porque importa…',
       'secB-title':    'Email e comunicação',
       'secB-desc':     'Os emails que mais envia e recebe',
       'q3-text':       'A que emails responde quase sempre com o mesmo texto?',
       'q3-hint':       'ex.: confirmações de entrega, estado de encomendas, seguimentos a fornecedores',
-      'q3-ph':         'Que tipo de email, e com que frequência chega…',
+      'q3-ph':         'Que tipo de email é e com que frequência o recebe, mais ou menos?',
       'q4-text':       'Envia emails em que tem de insistir manualmente para obter resposta? Diga-nos o contexto e quem costuma estar do outro lado.',
       'q4-hint':       'ex.: clientes externos, departamentos internos, fornecedores, etc.',
       'q4-ph':         'A situação e a quem faz o seguimento…',
@@ -1362,8 +1439,8 @@
       'h1':            'AI 자동화<br><em>팀 디스커버리</em>',
       'hero-sub':      'AI로 어떤 반복 업무를 덜어드릴 수 있을지 찾고 있습니다. 이 짧은 설문으로 여러분의 하루가 실제로 어떻게 돌아가는지 파악하려고 합니다.',
       'progress-label':'진행률',
-      'short-note':    '짧게 써 주세요 — 몇 문장이나 항목이면 충분합니다.',
-      'intro-text':    '실제 업무를 바탕으로 답해 주세요. 정답은 없습니다. 구체적으로 적을수록 무엇을 자동화하면 좋을지 더 쉽게 파악할 수 있습니다. 여기에 적어 주신 내용만으로 판단하니, 솔직하고 구체적으로 부탁드립니다.',
+      'short-note':    '짧게 답하셔도 전혀 괜찮습니다 — 몇 개의 항목이면 충분합니다.',
+      'intro-text':    '실제 업무를 바탕으로 답해 주세요. 정답은 없습니다. 하루 중 시간을 어디에 쓰는지 파악해 자동화할 수 있는 반복 업무를 찾으려고 합니다.',
       'details-title': '기본 정보',
       'name-label':    '이름',
       'team-label':    '팀 / 부서',
@@ -1373,18 +1450,27 @@
       'entity-ph':     '법인을 선택하세요…',
       'name-ph':       '성명',
       'secA-title':    '일상 업무',
-      'secA-desc':     '시간이 실제로 어디에 쓰이는지',
-      'q1-text':       '매일 하는 가장 반복적인 업무는 무엇인가요?',
-      'q1-hint':       '예: 주문 상태 확인, ITMS/Steppro에 주문 입력, 매일 같은 보고서 전송',
+      'secA-desc':     '하루 동안 시간을 어떻게 쓰는지',
+      'q1-text':       '하루 중 시간을 가장 많이 잡아먹는 반복적이거나 가치가 낮은 업무는 무엇인가요?',
+      'q1-hint':       '업무 내용, 얼마나 자주 하는지(예: 매일, 하루에 여러 번), 대략 얼마나 시간이 걸리는지 적어 주세요',
       'q1-ph':         '최대한 구체적으로 적어 주세요…',
-      'q2-text':       '시간은 가장 많이 쓰지만 가치가 낮거나 반복적이라고 느끼는 업무는 무엇인가요?',
-      'q2-hint':       '예: 데이터 복사, 같은 이메일 발송, 스프레드시트 수동 업데이트…',
-      'q2-ph':         '떠오르는 대로 적어 주세요…',
+      'q2-text':       '일상 업무에 어떤 애플리케이션을 사용하나요?',
+      'q2-hint':       '예: ITMS, Excel, Steppro, monday…',
+      'q2-ph':         '사용하는 앱과 도구를 적어 주세요…',
+      'time-label':    '이 업무는 보통 얼마나 시간이 걸리나요?',
+      'time-1':        '하루 10분 미만',
+      'time-2':        '하루 10–30분',
+      'time-3':        '하루 30–60분',
+      'time-4':        '하루 1–2시간',
+      'time-5':        '하루 2시간 초과',
+      'q9-text':       '내일 당장 업무 중 한 가지만 자동화할 수 있다면, 무엇을 왜 자동화하시겠어요?',
+      'q9-hint':       '당신의 하루에 가장 큰 변화를 가져올 한 가지.',
+      'q9-ph':         '그 한 가지를 적어 주세요 — 그리고 왜 중요한지…',
       'secB-title':    '이메일 & 커뮤니케이션',
       'secB-desc':     '가장 자주 주고받는 이메일',
       'q3-text':       '거의 매번 같은 내용으로 답장하는 이메일은 무엇인가요?',
       'q3-hint':       '예: 배송 확인, 주문 상태, 공급업체 독촉',
-      'q3-ph':         '어떤 이메일이고, 얼마나 자주 오는지…',
+      'q3-ph':         '어떤 종류의 이메일이며, 대략 얼마나 자주 받으시나요?',
       'q4-text':       '보낸 뒤 답장을 받으려고 직접 챙겨야 하는 이메일이 있나요? 상황과 주로 상대가 누구인지 알려 주세요.',
       'q4-hint':       '예: 외부 고객, 내부 부서, 공급업체 등',
       'q4-ph':         '상황과 챙기는 대상…',
@@ -1425,8 +1511,8 @@
       'h1':            'Tự động hóa AI<br><em>Khám phá nhóm</em>',
       'hero-sub':      'Chúng tôi đang tìm xem AI có thể gánh bớt công việc lặp lại nào cho bạn. Biểu mẫu ngắn này giúp chúng tôi hiểu một ngày của bạn thực sự diễn ra thế nào.',
       'progress-label':'Tiến độ',
-      'short-note':    'Hãy trả lời ngắn gọn — vài câu hoặc vài gạch đầu dòng là đủ.',
-      'intro-text':    'Hãy trả lời dựa trên công việc thực tế của bạn — không có câu trả lời sai. Bạn càng cụ thể, chúng tôi càng dễ thấy điều gì đáng để tự động hóa. Chúng tôi làm việc dựa trên những gì bạn ghi ở đây, nên hãy trung thực và cụ thể.',
+      'short-note':    'Trả lời ngắn gọn là hoàn toàn ổn — vài gạch đầu dòng là đủ.',
+      'intro-text':    'Hãy trả lời dựa trên công việc thực tế của bạn — không có câu trả lời sai. Chúng tôi muốn hiểu mỗi ngày bạn dành thời gian vào đâu để tìm ra những công việc lặp lại có thể tự động hóa.',
       'details-title': 'Thông tin của bạn',
       'name-label':    'Họ tên',
       'team-label':    'Nhóm / Phòng ban',
@@ -1436,18 +1522,27 @@
       'entity-ph':     'Chọn pháp nhân của bạn…',
       'name-ph':       'Họ và tên đầy đủ của bạn',
       'secA-title':    'Công việc hằng ngày của bạn',
-      'secA-desc':     'Thời gian của bạn thực sự dành cho đâu',
-      'q1-text':       'Công việc lặp lại nhiều nhất mà bạn làm mỗi ngày là gì?',
-      'q1-hint':       'ví dụ: kiểm tra trạng thái đơn hàng, nhập đơn vào ITMS/Steppro, gửi cùng một báo cáo hằng ngày',
+      'secA-desc':     'Mỗi ngày bạn sử dụng thời gian như thế nào',
+      'q1-text':       'Công việc lặp lại hoặc ít giá trị nào chiếm nhiều thời gian nhất trong ngày của bạn?',
+      'q1-hint':       'Mô tả công việc, bạn làm bao lâu một lần (ví dụ: hằng ngày, vài lần một ngày) và mất khoảng bao nhiêu thời gian',
       'q1-ph':         'Mô tả càng cụ thể càng tốt…',
-      'q2-text':       'Công việc nào ngốn nhiều thời gian nhất nhưng lại thấy ít giá trị hoặc lặp đi lặp lại?',
-      'q2-hint':       'ví dụ: sao chép dữ liệu, gửi cùng loại email, cập nhật bảng tính thủ công…',
-      'q2-ph':         'Liệt kê càng nhiều càng tốt…',
+      'q2-text':       'Bạn dùng những ứng dụng nào cho công việc hằng ngày?',
+      'q2-hint':       'ví dụ: ITMS, Excel, Steppro, monday…',
+      'q2-ph':         'Liệt kê các ứng dụng và công cụ bạn dùng…',
+      'time-label':    'Công việc này thường mất bao nhiêu thời gian?',
+      'time-1':        'Dưới 10 phút/ngày',
+      'time-2':        '10–30 phút/ngày',
+      'time-3':        '30–60 phút/ngày',
+      'time-4':        '1–2 giờ/ngày',
+      'time-5':        'Hơn 2 giờ/ngày',
+      'q9-text':       'Nếu ngày mai bạn có thể tự động hóa chỉ một phần công việc của mình, đó sẽ là gì và vì sao?',
+      'q9-hint':       'Thay đổi tạo ra khác biệt lớn nhất cho ngày của bạn.',
+      'q9-ph':         'Mô tả một điều đó — và vì sao nó quan trọng…',
       'secB-title':    'Email & giao tiếp',
       'secB-desc':     'Những email bạn gửi và nhận nhiều nhất',
       'q3-text':       'Bạn trả lời những email nào với nội dung gần như y hệt mỗi lần?',
       'q3-hint':       'ví dụ: xác nhận giao hàng, trạng thái đơn hàng, nhắc nhà cung cấp',
-      'q3-ph':         'Loại email gì, và bao lâu lại đến một lần…',
+      'q3-ph':         'Đó là loại email gì, và bạn nhận khoảng bao lâu một lần?',
       'q4-text':       'Bạn có gửi email nào mà phải tự tay đi nhắc mới nhận được phản hồi không? Cho chúng tôi biết bối cảnh và thường ai là người bên kia.',
       'q4-hint':       'ví dụ: khách hàng bên ngoài, phòng ban nội bộ, nhà cung cấp, v.v.',
       'q4-ph':         'Bối cảnh và người bạn đi nhắc…',
@@ -1488,8 +1583,8 @@
       'h1':            'এআই অটোমেশন<br><em>টিম ডিসকভারি</em>',
       'hero-sub':      'এআই দিয়ে আপনার কোন কোন পুনরাবৃত্তিমূলক কাজ কমানো যায়, সেটাই আমরা খুঁজছি। এই ছোট ফর্মটি আপনার দিনটা আসলে কীভাবে চলে তা বুঝতে সাহায্য করে।',
       'progress-label':'অগ্রগতি',
-      'short-note':    'সংক্ষেপে লিখুন — কয়েকটি বাক্য বা পয়েন্টই যথেষ্ট।',
-      'intro-text':    'আপনার বাস্তব কাজের ভিত্তিতে উত্তর দিন — কোনো ভুল উত্তর নেই। যত সুনির্দিষ্ট লিখবেন, কী অটোমেট করা দরকার তা আমাদের বুঝতে তত সহজ হয়। আপনি এখানে যা লিখবেন কেবল তার উপরই আমরা কাজ করি, তাই সৎ ও সুনির্দিষ্ট থাকুন।',
+      'short-note':    'সংক্ষিপ্ত উত্তরই একদম ঠিক আছে — কয়েকটি পয়েন্টই যথেষ্ট।',
+      'intro-text':    'আপনার বাস্তব কাজের ভিত্তিতে উত্তর দিন — কোনো ভুল উত্তর নেই। আপনি প্রতিদিন সময় কোথায় ব্যয় করেন তা বুঝতে চাই, যাতে অটোমেট করার মতো পুনরাবৃত্তিমূলক কাজ শনাক্ত করা যায়।',
       'details-title': 'আপনার তথ্য',
       'name-label':    'নাম',
       'team-label':    'টিম / বিভাগ',
@@ -1499,18 +1594,27 @@
       'entity-ph':     'আপনার এনটিটি নির্বাচন করুন…',
       'name-ph':       'আপনার পূর্ণ নাম',
       'secA-title':    'আপনার প্রতিদিনের কাজ',
-      'secA-desc':     'আপনার সময় আসলে কোথায় যায়',
-      'q1-text':       'প্রতিদিন আপনি সবচেয়ে বেশি যে কাজটি বারবার করেন তা কী?',
-      'q1-hint':       'যেমন: অর্ডারের অবস্থা দেখা, ITMS/Steppro-তে অর্ডার ঢোকানো, একই দৈনিক রিপোর্ট পাঠানো',
+      'secA-desc':     'প্রতিদিন আপনি সময় কীভাবে কাটান',
+      'q1-text':       'আপনার দিনের সবচেয়ে বেশি সময় নেয় এমন পুনরাবৃত্তিমূলক বা কম-মূল্যের কাজটি কী?',
+      'q1-hint':       'কাজটি বর্ণনা করুন, কত ঘন ঘন করেন (যেমন: প্রতিদিন, দিনে কয়েকবার) এবং মোটামুটি কত সময় লাগে',
       'q1-ph':         'যতটা সম্ভব সুনির্দিষ্টভাবে লিখুন…',
-      'q2-text':       'কোন কাজগুলো সবচেয়ে বেশি সময় নেয় অথচ কম দরকারি বা পুনরাবৃত্তিমূলক মনে হয়?',
-      'q2-hint':       'যেমন: ডেটা কপি করা, একই ইমেইল পাঠানো, হাতে হাতে স্প্রেডশিট আপডেট করা…',
-      'q2-ph':         'যত মনে আসে লিখুন…',
+      'q2-text':       'প্রতিদিনের কাজে আপনি কোন কোন অ্যাপ্লিকেশন ব্যবহার করেন?',
+      'q2-hint':       'যেমন: ITMS, Excel, Steppro, monday…',
+      'q2-ph':         'যেসব অ্যাপ ও টুল ব্যবহার করেন তা লিখুন…',
+      'time-label':    'এই কাজটি সাধারণত কত সময় নেয়?',
+      'time-1':        'দিনে ১০ মিনিটের কম',
+      'time-2':        'দিনে ১০–৩০ মিনিট',
+      'time-3':        'দিনে ৩০–৬০ মিনিট',
+      'time-4':        'দিনে ১–২ ঘণ্টা',
+      'time-5':        'দিনে ২ ঘণ্টার বেশি',
+      'q9-text':       'আগামীকাল যদি আপনি আপনার কাজের ঠিক একটি অংশ অটোমেট করতে পারতেন, সেটি কী হতো এবং কেন?',
+      'q9-hint':       'যে একটি পরিবর্তন আপনার দিনে সবচেয়ে বড় পার্থক্য গড়ে দেবে।',
+      'q9-ph':         'সেই একটি জিনিস লিখুন — আর কেন তা গুরুত্বপূর্ণ…',
       'secB-title':    'ইমেইল ও যোগাযোগ',
       'secB-desc':     'আপনি সবচেয়ে বেশি যে ইমেইল পাঠান ও পান',
       'q3-text':       'কোন ইমেইলগুলোর উত্তর আপনি প্রায় প্রতিবার একই লেখায় দেন?',
       'q3-hint':       'যেমন: ডেলিভারি নিশ্চিতকরণ, অর্ডারের অবস্থা, সরবরাহকারীকে তাগাদা',
-      'q3-ph':         'কোন ধরনের ইমেইল, আর কত ঘন ঘন আসে…',
+      'q3-ph':         'এটি কোন ধরনের ইমেইল, আর মোটামুটি কত ঘন ঘন পান?',
       'q4-text':       'এমন ইমেইল কি পাঠান যেগুলোর উত্তর পেতে নিজে থেকে তাগাদা দিতে হয়? প্রসঙ্গটা আর সাধারণত কে অপর প্রান্তে থাকে, বলুন।',
       'q4-hint':       'যেমন: বাইরের গ্রাহক, ভেতরের বিভাগ, সরবরাহকারী ইত্যাদি',
       'q4-ph':         'পরিস্থিতি আর যাদের তাগাদা দেন…',
@@ -1615,16 +1719,18 @@
   }, { threshold: 0.07 });
   document.querySelectorAll('.section').forEach(function(s) { observer.observe(s); });
 
-  var required = ['q-name','q-team','q-entity','q1','q2','q5','q6','q7','q11'];
-  var TOTAL_FIELDS = required.length + 1; // +1 for Q6 yes/no
+  var required = ['q-name','q-team','q-entity','q1','q2','q5','q6','q7','q11','q9'];
+  var TOTAL_FIELDS = required.length + 2; // +2 for the two choice-group questions (time + copy yes/no)
 
   function updateProgress() {
     var filled = required.filter(function(id) {
       var el = document.getElementById(id);
       return el && el.value.trim() !== '';
     }).length;
-    var q8Filled = document.querySelector('#choiceC8 .choice-btn.selected') ? 1 : 0;
-    var pct = Math.round(((filled + q8Filled) / TOTAL_FIELDS) * 100);
+    var choiceFilled = 0;
+    if (document.querySelector('#choiceTime .choice-btn.selected')) choiceFilled++;
+    if (document.querySelector('#choiceC8 .choice-btn.selected')) choiceFilled++;
+    var pct = Math.round(((filled + choiceFilled) / TOTAL_FIELDS) * 100);
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressPct').textContent = pct + '%';
   }
@@ -1663,6 +1769,7 @@
       return !el || el.value.trim() === '';
     });
 
+    var timeMissing = !document.querySelector('#choiceTime .choice-btn.selected');
     var q8Missing = !document.querySelector('#choiceC8 .choice-btn.selected');
 
     if (missing.length > 0) {
@@ -1677,11 +1784,20 @@
       return;
     }
 
+    if (timeMissing) {
+      var qt = document.getElementById('choiceTime');
+      if (qt) qt.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
     if (q8Missing) {
       var q8 = document.getElementById('choiceC8');
       if (q8) q8.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
+
+    var timeSelected = document.querySelector('#choiceTime .choice-btn.selected');
+    var timeAnswer = timeSelected ? (timeSelected.getAttribute('data-val') || timeSelected.textContent.trim()) : '';
 
     var q8Selected = document.querySelector('#choiceC8 .choice-btn.selected');
     var q8Answer = q8Selected ? q8Selected.textContent.trim() : '';
@@ -1693,6 +1809,7 @@
       entity:    document.getElementById('q-entity').value.trim(),
       date:      document.getElementById('q-date').value,
       q1:        document.getElementById('q1').value.trim(),
+      time:      timeAnswer,
       q2:        document.getElementById('q2').value.trim(),
       q5:        document.getElementById('q5').value.trim(),
       q6:        document.getElementById('q6').value.trim(),
@@ -1700,6 +1817,7 @@
       q8:        q8Answer,
       q8b:       document.getElementById('q8b').value.trim(),
       q11:       document.getElementById('q11').value.trim(),
+      q9:        document.getElementById('q9').value.trim(),
       ideas:     Array.from(document.querySelectorAll('.idea-text'))
                    .map(function(t) { return t.value.trim(); })
                    .filter(function(v) { return v; })
